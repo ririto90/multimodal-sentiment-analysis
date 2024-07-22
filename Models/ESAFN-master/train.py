@@ -315,7 +315,7 @@ class Instructor:
                 
                     # `clip_grad_norm` helps prevent the exploding gradient problem in RNNs / LSTMs.
                     if self.opt.att_mode != 'text':
-                        nn.utils.clip_grad_norm(params, self.opt.clip_grad)
+                        nn.utils.clip_grad_norm_(params, self.opt.clip_grad)
                     optimizer.step()
 
                     if global_step % self.opt.log_step == 0:

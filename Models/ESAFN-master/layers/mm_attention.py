@@ -83,14 +83,14 @@ class MMAttention(nn.Module):
             vxxx = torch.unsqueeze(vx, dim=2).expand(-1, -1, k_len, -1)
             kv = torch.cat((kxxx, vxxx), dim=-1) # (n_head*?, v_len, k_len, hidden_dim*2)
             
-            score = F.tanh(torch.matmul(kq, self.weight_kq).squeeze(dim=-1)+\
+            score = torch.tanh(torch.matmul(kq, self.weight_kq).squeeze(dim=-1)+\
                             torch.matmul(kv, self.weight_kv).squeeze(dim=-1))
         elif self.score_function == 'bi_linear':
             qw = torch.matmul(qx, self.weight_kq)
             kt = kx.permute(0, 2, 1)
             vw = torch.matmul(vx, self.weight_kv)
             
-            score = F.tanh(torch.bmm(qw, kt)+torch.bmm(vw, kt))
+            score = torch.tanh(torch.bmm(qw, kt)+torch.bmm(vw, kt))
         else:
             raise RuntimeError('invalid score_function')
 

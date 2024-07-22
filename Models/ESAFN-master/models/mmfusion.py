@@ -85,7 +85,7 @@ class MMFUSION(nn.Module):
 
         aspect = self.embed(aspect_indices)
         aspect_lstm, (_, _) = self.lstm_aspect(aspect, ori_aspect_len)
-        aspect_len = torch.tensor(ori_aspect_len, dtype=torch.float).to(self.opt.device)
+        aspect_len = ori_aspect_len.clone().detach().float().to(self.opt.device)
         sum_aspect = torch.sum(aspect_lstm, dim=1)
         avg_aspect = torch.div(sum_aspect, aspect_len.view(aspect_len.size(0), 1))
         
