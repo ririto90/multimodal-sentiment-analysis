@@ -27,7 +27,7 @@ def build_embedding_matrix(word2idx, embed_dim, type):
         embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))  # idx 0 and len(word2idx)+1 are all-zeros
         #fname = '/home/jfyu/torch/stanford_treelstm-master/data/glove/glove.twitter.27B.' + str(embed_dim) + 'd.txt' \
             #if embed_dim != 300 else '/home/jfyu/torch/stanford_treelstm-master/data/glove/glove.840B.300d.txt'
-        fname = '../../../pytorch/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
+        fname = './glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
             #if embed_dim != 200 else '../../../pytorch/glove.6B.300d.txt'
         word_vec = load_word_vec(fname, word2idx=word2idx)
         print('building embedding_matrix:', embedding_matrix_file_name)
