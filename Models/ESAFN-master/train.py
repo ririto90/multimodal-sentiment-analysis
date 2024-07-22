@@ -5,8 +5,14 @@
 
 from data_utils import ABSADatesetReader
 import torch
+print("PyTorch version:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("CUDA version:", torch.version.cuda)
 import torch.nn as nn
 from torch.utils.data import DataLoader
+# torch.backends.cudnn.benchmark = True
+# torch.backends.cudnn.deterministic = True
+
 #from tensorboardX import SummaryWriter
 import argparse
 import resnet.resnet as resnet
@@ -20,6 +26,16 @@ from models.mmian import MMIAN
 from models.mmram import MMRAM
 from models.mmmgan import MMMGAN
 from models.mmfusion import MMFUSION
+
+torch.backends.cudnn.benchmark = True
+torch.backends.cudnn.deterministic = True
+
+
+print(torch.cuda.is_available())  # Should return True if GPU is available
+print(torch.cuda.device_count())  # Should return the number of GPUs
+print(torch.cuda.current_device())  # Should return the index of the current GPU
+print(torch.cuda.get_device_name(0))  # Should return the name of the GPU
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 import numpy as np
@@ -41,6 +57,10 @@ def save_checkpoint(state, track_list, filename):
         json.dump(track_list, f)
     torch.save(state, filename+'.model')
 
+def print_gpu_memory():
+    print(f"Allocated: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
+    print(f"Cached:    {torch.cuda.memory_reserved() / 1024**2:.2f} MB")
+
 class Instructor:
     def __init__(self, opt):
         self.opt = opt
@@ -53,6 +73,9 @@ class Instructor:
             
         # torch.manual_seed(opt.rand_seed)
         # torch.cuda.manual_seed_all(opt.rand_seed)
+
+        print("Before model allocation:")
+        print_gpu_memory()
 
         transform = transforms.Compose([
             transforms.RandomCrop(opt.crop_size), #args.crop_size, by default it is set to be 224
@@ -72,7 +95,15 @@ class Instructor:
         net = getattr(resnet, 'resnet152')()
         net.load_state_dict(torch.load(os.path.join(opt.resnet_root,'resnet152.pth')))
         self.encoder = myResnet(net, opt.fine_tune_cnn, self.opt.device).to(device)
+        # self.model = opt.model_class(absa_dataset.embedding_matrix, opt).to(device)
+        print("Before absa_dataset allocation:")
+        print_gpu_memory()
         self.model = opt.model_class(absa_dataset.embedding_matrix, opt).to(device)
+        print("After model allocation:")
+        print_gpu_memory()
+
+
+        print(self.model)
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -465,11 +496,11 @@ if __name__ == '__main__':
     n_gpu = torch.cuda.device_count()
 
     if opt.dataset == "twitter":
-        opt.path_image = "../multi_modal_ABSA_pytorch_bilinear/twitter_subimages/"
+        opt.path_image = "../../Datasets/IJCAI2019_data/twitter2017_images"
         opt.max_seq_len = 27
         opt.rand_seed = 28
     elif opt.dataset == "twitter2015":
-        opt.path_image = "../multi_modal_ABSA_pytorch_bilinear/twitter15_images/"
+        opt.path_image = "../../Datasets/IJCAI2019_data/twitter2015_images"
         opt.max_seq_len = 24
         opt.rand_seed = 25
     else:
