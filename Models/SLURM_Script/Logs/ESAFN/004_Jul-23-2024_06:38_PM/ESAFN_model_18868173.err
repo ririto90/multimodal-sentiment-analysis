@@ -1,0 +1,33 @@
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 169, in __read_data__
+    image = image_process(image_path, transform)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 43, in image_process
+    image = Image.open(image_path).convert('RGB')
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/PIL/Image.py", line 3280, in open
+    raise UnidentifiedImageError(msg)
+PIL.UnidentifiedImageError: cannot identify image file '../../Datasets/MVSA/mvsa_images/3151.jpg'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/train.py", line 557, in <module>
+    ins = Instructor(opt)
+          ^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/train.py", line 88, in __init__
+    absa_dataset = ABSADatesetReader(transform, dataset=opt.dataset, embed_dim=opt.embed_dim, max_seq_len=opt.max_seq_len, \
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 217, in __init__
+    self.train_data = ABSADataset(ABSADatesetReader.__read_data__(fname[dataset]['train'], tokenizer, path_image, transform))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 174, in __read_data__
+    image = image_process(image_path_fail, transform)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 43, in image_process
+    image = Image.open(image_path).convert('RGB')
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/PIL/Image.py", line 3218, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../../Datasets/MVSA/mvsa_images/17_06_4705.jpg'

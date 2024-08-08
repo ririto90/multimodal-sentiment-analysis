@@ -1,0 +1,110 @@
+PyTorch version: 2.1.1
+CUDA available: True
+CUDA version: 12.3
+True
+1
+0
+NVIDIA A100-PCIE-40GB
+************no tfn layer************
+> training arguments:
+>>> rand_seed: 25
+>>> model_name: mmfusion
+>>> dataset: mvsa-m
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7fd2522a5e40>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 100
+>>> batch_size: 16
+>>> log_step: 50
+>>> logdir: log
+>>> embed_dim: 100
+>>> hidden_dim: 100
+>>> max_seq_len: 24
+>>> polarities_dim: 3
+>>> hops: 3
+>>> att_file: ./att_file/
+>>> pred_file: ./pred_file/
+>>> clip_grad: 5.0
+>>> path_image: ../../Datasets/MVSA/mvsa_images
+>>> crop_size: 224
+>>> fine_tune_cnn: False
+>>> att_mode: vis_concat_attimg_gate
+>>> resnet_root: ./resnet
+>>> checkpoint: ./checkpoint/
+>>> load_check_point: False
+>>> load_opt: False
+>>> tfn: False
+>>> model_class: <class 'models.mmfusion.MMFUSION'>
+>>> inputs_cols: ['text_left_indicator', 'text_right_indicator', 'aspect_indices']
+>>> device: cuda
+Before model allocation:
+Allocated: 0.00 MB
+Cached:    0.00 MB
+preparing mvsa-m dataset...
+loading word vectors...
+building embedding_matrix: 100_mvsa-m_embedding_matrix.dat
+--------------./datasets/mvsa-m/train.txt---------------
+Error processing image ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg: Image file not found: ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg
+Error processing image ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg: Image file not found: ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg
+Error processing image ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg: Image file not found: ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg
+the number of problematic samples: 3
+--------------./datasets/mvsa-m/dev.txt---------------
+Error processing image ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg: Image file not found: ../../Datasets/MVSA/mvsa_images/17_06_4705.jpg
+the number of problematic samples: 1
+--------------./datasets/mvsa-m/test.txt---------------
+the number of problematic samples: 0
+building model
+Before absa_dataset allocation:
+Allocated: 230.28 MB
+Cached:    244.00 MB
+After model allocation:
+Allocated: 254.87 MB
+Cached:    268.00 MB
+DataParallel(
+  (module): MMFUSION(
+    (embed): Embedding(51574, 100)
+    (lstm_aspect): DynamicLSTM(
+      (RNN): LSTM(100, 100, batch_first=True)
+    )
+    (lstm_l): DynamicLSTM(
+      (RNN): LSTM(100, 100, batch_first=True)
+    )
+    (lstm_r): DynamicLSTM(
+      (RNN): LSTM(100, 100, batch_first=True)
+    )
+    (attention_l): Attention2(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (attention_r): Attention2(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (visaspect_att_l): MMAttention(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (visaspect_att_r): MMAttention(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (ltext2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (laspect2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (rtext2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (raspect2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+    (aspect2text): Linear(in_features=100, out_features=100, bias=True)
+    (vismap2text): Linear(in_features=2048, out_features=100, bias=True)
+    (vis2text): Linear(in_features=2048, out_features=100, bias=True)
+    (gate): Linear(in_features=2448, out_features=100, bias=True)
+    (madality_attetion): Linear(in_features=100, out_features=1, bias=True)
+    (text2hiddenvis): Linear(in_features=400, out_features=100, bias=True)
+    (vis2hiddenvis): Linear(in_features=100, out_features=100, bias=True)
+    (dense_6): Linear(in_features=600, out_features=3, bias=True)
+  )
+)
+n_trainable_params: 1200104, n_nontrainable_params: 5157400
+parameters only include text parts without word embeddings
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  0

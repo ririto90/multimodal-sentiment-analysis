@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 169, in __read_data__
+    image = image_process(image_path, transform)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 44, in image_process
+    image = transform(image)
+            ^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torchvision/transforms/transforms.py", line 95, in __call__
+    img = t(img)
+          ^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torchvision/transforms/transforms.py", line 688, in forward
+    i, j, h, w = self.get_params(img, self.size)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torchvision/transforms/transforms.py", line 647, in get_params
+    raise ValueError(f"Required crop size {(th, tw)} is larger than input image size {(h, w)}")
+ValueError: Required crop size (224, 224) is larger than input image size (183, 597)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/train.py", line 556, in <module>
+    ins = Instructor(opt)
+          ^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/train.py", line 87, in __init__
+    absa_dataset = ABSADatesetReader(transform, dataset=opt.dataset, embed_dim=opt.embed_dim, max_seq_len=opt.max_seq_len, \
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 217, in __init__
+    self.train_data = ABSADataset(ABSADatesetReader.__read_data__(fname[dataset]['train'], tokenizer, path_image, transform))
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 174, in __read_data__
+    image = image_process(image_path_fail, transform)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN/data_utils.py", line 43, in image_process
+    image = Image.open(image_path).convert('RGB')
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/PIL/Image.py", line 3218, in open
+    fp = builtins.open(filename, "rb")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '../../Datasets/MVSA/mvsa_images/17_06_4705.jpg'

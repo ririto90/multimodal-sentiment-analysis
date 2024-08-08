@@ -1,0 +1,218 @@
+PyTorch version: 2.1.1
+CUDA available: True
+CUDA version: 12.3
+True
+1
+0
+NVIDIA A100-PCIE-40GB
+************no tfn layer************
+> training arguments:
+>>> rand_seed: 25
+>>> model_name: mmfusion
+>>> dataset: mvsa-m
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7fbbb09a9e40>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 100
+>>> batch_size: 16
+>>> log_step: 50
+>>> logdir: log
+>>> embed_dim: 100
+>>> hidden_dim: 100
+>>> max_seq_len: 24
+>>> polarities_dim: 3
+>>> hops: 3
+>>> att_file: ./att_file/
+>>> pred_file: ./pred_file/
+>>> clip_grad: 5.0
+>>> path_image: ../../Datasets/MVSA/mvsa_images
+>>> crop_size: 224
+>>> fine_tune_cnn: False
+>>> att_mode: vis_concat_attimg_gate
+>>> resnet_root: ./resnet
+>>> checkpoint: ./checkpoint/
+>>> load_check_point: False
+>>> load_opt: False
+>>> tfn: False
+>>> model_class: <class 'models.mmfusion.MMFUSION'>
+>>> inputs_cols: ['text_left_indicator', 'text_right_indicator', 'aspect_indices']
+>>> device: cuda
+Before model allocation:
+Allocated: 0.00 MB
+Cached:    0.00 MB
+preparing mvsa-m dataset...
+loading word vectors...
+building embedding_matrix: 100_mvsa-m_embedding_matrix.dat
+--------------./datasets/mvsa-m/train.txt---------------
+image has problem!
+image has problem!
+image has problem!
+the number of problematic samples: 3
+--------------./datasets/mvsa-m/dev.txt---------------
+image has problem!
+the number of problematic samples: 1
+--------------./datasets/mvsa-m/test.txt---------------
+the number of problematic samples: 0
+building model
+Before absa_dataset allocation:
+Allocated: 230.28 MB
+Cached:    244.00 MB
+After model allocation:
+Allocated: 254.87 MB
+Cached:    268.00 MB
+DataParallel(
+  (module): MMFUSION(
+    (embed): Embedding(51574, 100)
+    (lstm_aspect): DynamicLSTM(
+      (RNN): LSTM(100, 100, batch_first=True)
+    )
+    (lstm_l): DynamicLSTM(
+      (RNN): LSTM(100, 100, batch_first=True)
+    )
+    (lstm_r): DynamicLSTM(
+      (RNN): LSTM(100, 100, batch_first=True)
+    )
+    (attention_l): Attention2(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (attention_r): Attention2(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (visaspect_att_l): MMAttention(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (visaspect_att_r): MMAttention(
+      (proj): Linear(in_features=100, out_features=100, bias=True)
+      (dropout): Dropout(p=0.5, inplace=False)
+    )
+    (ltext2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (laspect2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (rtext2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (raspect2hidden): Linear(in_features=100, out_features=100, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+    (aspect2text): Linear(in_features=100, out_features=100, bias=True)
+    (vismap2text): Linear(in_features=2048, out_features=100, bias=True)
+    (vis2text): Linear(in_features=2048, out_features=100, bias=True)
+    (gate): Linear(in_features=2448, out_features=100, bias=True)
+    (madality_attetion): Linear(in_features=100, out_features=1, bias=True)
+    (text2hiddenvis): Linear(in_features=400, out_features=100, bias=True)
+    (vis2hiddenvis): Linear(in_features=100, out_features=100, bias=True)
+    (dense_6): Linear(in_features=600, out_features=3, bias=True)
+  )
+)
+n_trainable_params: 1200104, n_nontrainable_params: 5157400
+parameters only include text parts without word embeddings
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  0
+loss: 1.0582, acc: 0.4316, dev_acc: 0.4107, test_acc: 0.4357
+dev_f1: 0.2471, test_f1: 0.2567
+loss: 0.9784, acc: 0.4965, dev_acc: 0.5161, test_acc: 0.4941
+dev_f1: 0.2430, test_f1: 0.2363
+loss: 0.9961, acc: 0.5177, dev_acc: 0.5125, test_acc: 0.4959
+dev_f1: 0.3380, test_f1: 0.3280
+loss: 0.9565, acc: 0.5066, dev_acc: 0.4923, test_acc: 0.4941
+dev_f1: 0.3401, test_f1: 0.3408
+loss: 1.1146, acc: 0.4904, dev_acc: 0.4681, test_acc: 0.4842
+dev_f1: 0.3121, test_f1: 0.3176
+loss: 0.7943, acc: 0.5306, dev_acc: 0.5283, test_acc: 0.5181
+dev_f1: 0.3670, test_f1: 0.3759
+loss: 1.0412, acc: 0.5197, dev_acc: 0.5059, test_acc: 0.5247
+dev_f1: 0.4231, test_f1: 0.4348
+loss: 1.0399, acc: 0.5380, dev_acc: 0.5349, test_acc: 0.5237
+dev_f1: 0.3398, test_f1: 0.3376
+loss: 1.0050, acc: 0.5291, dev_acc: 0.5393, test_acc: 0.5196
+dev_f1: 0.3362, test_f1: 0.3273
+loss: 0.8938, acc: 0.5374, dev_acc: 0.5309, test_acc: 0.5204
+dev_f1: 0.3682, test_f1: 0.3688
+loss: 0.8895, acc: 0.5399, dev_acc: 0.5401, test_acc: 0.5227
+dev_f1: 0.3648, test_f1: 0.3582
+loss: 1.0521, acc: 0.5452, dev_acc: 0.5378, test_acc: 0.5309
+dev_f1: 0.3585, test_f1: 0.3596
+loss: 0.7987, acc: 0.5481, dev_acc: 0.5423, test_acc: 0.5327
+dev_f1: 0.3563, test_f1: 0.3610
+loss: 0.9736, acc: 0.5468, dev_acc: 0.5222, test_acc: 0.5288
+dev_f1: 0.3783, test_f1: 0.3852
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  1
+loss: 0.9005, acc: 0.5415, dev_acc: 0.5375, test_acc: 0.5224
+dev_f1: 0.3531, test_f1: 0.3497
+loss: 1.1767, acc: 0.5458, dev_acc: 0.5059, test_acc: 0.5332
+dev_f1: 0.3749, test_f1: 0.3995
+loss: 0.9205, acc: 0.5594, dev_acc: 0.5283, test_acc: 0.5360
+dev_f1: 0.3775, test_f1: 0.3933
+loss: 0.9076, acc: 0.5570, dev_acc: 0.5393, test_acc: 0.5378
+dev_f1: 0.3744, test_f1: 0.3905
+loss: 0.8351, acc: 0.5570, dev_acc: 0.5357, test_acc: 0.5370
+dev_f1: 0.3553, test_f1: 0.3588
+loss: 0.8140, acc: 0.5658, dev_acc: 0.5349, test_acc: 0.5319
+dev_f1: 0.4196, test_f1: 0.4341
+loss: 0.9624, acc: 0.5452, dev_acc: 0.5339, test_acc: 0.5304
+dev_f1: 0.3720, test_f1: 0.3775
+loss: 1.0124, acc: 0.5526, dev_acc: 0.5388, test_acc: 0.5298
+dev_f1: 0.3987, test_f1: 0.4088
+loss: 0.7892, acc: 0.5673, dev_acc: 0.5332, test_acc: 0.5324
+dev_f1: 0.4026, test_f1: 0.4109
+loss: 0.8526, acc: 0.5294, dev_acc: 0.5337, test_acc: 0.5133
+dev_f1: 0.3190, test_f1: 0.3161
+loss: 0.7680, acc: 0.5644, dev_acc: 0.5311, test_acc: 0.5334
+dev_f1: 0.3674, test_f1: 0.3812
+loss: 0.7760, acc: 0.5679, dev_acc: 0.5367, test_acc: 0.5413
+dev_f1: 0.3739, test_f1: 0.3909
+loss: 1.0097, acc: 0.5605, dev_acc: 0.5278, test_acc: 0.5434
+dev_f1: 0.3748, test_f1: 0.3880
+loss: 0.7850, acc: 0.5747, dev_acc: 0.5388, test_acc: 0.5393
+dev_f1: 0.4184, test_f1: 0.4324
+loss: 0.9306, acc: 0.5715, dev_acc: 0.5298, test_acc: 0.5365
+dev_f1: 0.3809, test_f1: 0.3926
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  2
+loss: 0.8501, acc: 0.5509, dev_acc: 0.5423, test_acc: 0.5207
+dev_f1: 0.3711, test_f1: 0.3633
+loss: 1.0995, acc: 0.5779, dev_acc: 0.5332, test_acc: 0.5426
+dev_f1: 0.4042, test_f1: 0.4170
+loss: 0.8380, acc: 0.5665, dev_acc: 0.5168, test_acc: 0.5260
+dev_f1: 0.4413, test_f1: 0.4480
+loss: 0.7984, acc: 0.5755, dev_acc: 0.5242, test_acc: 0.5416
+dev_f1: 0.3816, test_f1: 0.4015
+loss: 0.8127, acc: 0.5799, dev_acc: 0.5329, test_acc: 0.5441
+dev_f1: 0.3962, test_f1: 0.4099
+loss: 0.6767, acc: 0.5825, dev_acc: 0.5372, test_acc: 0.5306
+dev_f1: 0.4084, test_f1: 0.3955
+loss: 0.9967, acc: 0.5585, dev_acc: 0.5352, test_acc: 0.5242
+dev_f1: 0.3637, test_f1: 0.3624
+loss: 1.2522, acc: 0.5803, dev_acc: 0.5235, test_acc: 0.5319
+dev_f1: 0.3795, test_f1: 0.3885
+loss: 0.7449, acc: 0.5831, dev_acc: 0.5227, test_acc: 0.5319
+dev_f1: 0.4249, test_f1: 0.4422
+loss: 0.6062, acc: 0.5787, dev_acc: 0.5360, test_acc: 0.5413
+dev_f1: 0.3826, test_f1: 0.3953
+loss: 0.9757, acc: 0.5724, dev_acc: 0.5372, test_acc: 0.5355
+dev_f1: 0.3750, test_f1: 0.3864
+loss: 0.6755, acc: 0.5832, dev_acc: 0.5179, test_acc: 0.5339
+dev_f1: 0.3890, test_f1: 0.4112
+loss: 0.7787, acc: 0.5828, dev_acc: 0.5311, test_acc: 0.5388
+dev_f1: 0.4206, test_f1: 0.4411
+loss: 0.8121, acc: 0.5891, dev_acc: 0.5276, test_acc: 0.5416
+dev_f1: 0.4024, test_f1: 0.4251
+loss: 1.0053, acc: 0.5939, dev_acc: 0.5296, test_acc: 0.5380
+dev_f1: 0.4113, test_f1: 0.4225
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  3
+loss: 0.8609, acc: 0.5923, dev_acc: 0.5314, test_acc: 0.5398
+dev_f1: 0.4010, test_f1: 0.4177
+loss: 1.0422, acc: 0.5909, dev_acc: 0.5268, test_acc: 0.5401
+dev_f1: 0.4074, test_f1: 0.4331
+loss: 0.9169, acc: 0.5973, dev_acc: 0.5329, test_acc: 0.5355
+dev_f1: 0.4041, test_f1: 0.4149
+loss: 0.9236, acc: 0.5892, dev_acc: 0.5237, test_acc: 0.5298
+dev_f1: 0.4307, test_f1: 0.4364
+loss: 0.8137, acc: 0.5963, dev_acc: 0.5263, test_acc: 0.5421
+dev_f1: 0.3937, test_f1: 0.4289
+loss: 0.6805, acc: 0.6037, dev_acc: 0.5255, test_acc: 0.5393
+dev_f1: 0.4076, test_f1: 0.4264
+loss: 0.7280, acc: 0.5952, dev_acc: 0.5357, test_acc: 0.5291
+dev_f1: 0.3831, test_f1: 0.3914
