@@ -200,15 +200,15 @@ class ABSADatesetReader:
     def __init__(self, transform, dataset='twitter', embed_dim=100, max_seq_len=40, path_image='./twitter_subimages'):
         print("preparing {0} dataset...".format(dataset))
         fname = {
-            'twitter': {
-                'train': './datasets/twitter/train.txt',
-                'dev': './datasets/twitter/dev.txt',
-                'test': './datasets/twitter/test.txt'
-            },
             'twitter2015': {
                 'train': './datasets/twitter2015/train.txt',
                 'dev': './datasets/twitter2015/dev.txt',
                 'test': './datasets/twitter2015/test.txt'
+            },
+            'twitter2017': {
+                'train': './datasets/twitter2017/train.txt',
+                'dev': './datasets/twitter2017/dev.txt',
+                'test': './datasets/twitter2017/test.txt'
             },
             'mvsa-m': {
                 'train': './datasets/mvsa-m/train.txt',

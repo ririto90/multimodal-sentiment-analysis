@@ -467,7 +467,7 @@ if __name__ == '__main__':
     parser.add_argument('--dropout_rate', default=0.5, type=float)
     parser.add_argument('--num_epoch', default=8, type=int)
     parser.add_argument('--batch_size', default=10, type=int)
-    parser.add_argument('--log_step', default=50, type=int) # 50
+    parser.add_argument('--log_step', default=10, type=int) # 50
     parser.add_argument('--logdir', default='log', type=str)
     parser.add_argument('--embed_dim', default=100, type=int)
     parser.add_argument('--hidden_dim', default=100, type=int)
