@@ -5,9 +5,6 @@
 
 from data_utils import ABSADatesetReader
 import torch
-print("PyTorch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
-print("CUDA version:", torch.version.cuda)
 import torch.nn as nn
 from torch.utils.data import DataLoader
 # torch.backends.cudnn.benchmark = True
@@ -30,6 +27,9 @@ from models.mmfusion import MMFUSION
 torch.backends.cudnn.benchmark = True
 torch.backends.cudnn.deterministic = True
 
+print("PyTorch version:", torch.__version__)
+print("CUDA available:", torch.cuda.is_available())
+print("CUDA version:", torch.version.cuda)
 
 print(torch.cuda.is_available())  # Should return True if GPU is available
 print(torch.cuda.device_count())  # Should return the number of GPUs
@@ -102,8 +102,8 @@ class Instructor:
         self.model = opt.model_class(absa_dataset.embedding_matrix, opt).to(device)
         print("After model allocation:")
         print_gpu_memory()
-        self.encoder = nn.DataParallel(self.encoder)
-        self.model = nn.DataParallel(self.model)
+        # self.encoder = nn.DataParallel(self.encoder)
+        # self.model = nn.DataParallel(self.model)
 
 
         print(self.model)
