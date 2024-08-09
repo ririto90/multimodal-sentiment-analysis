@@ -8,9 +8,13 @@ if [ "$MODEL_NAME" = "default" ] || [ -z "$MODEL_NAME" ]; then
     exit 1
 fi
 
+# Get current date and time
+CURRENT_DATE=$(date +"%Y-%m-%d")
+CURRENT_DATE_TIME=$(date +"%b-%d-%Y_%I:%M_%p")
+
 # Variables
 LOGS_DIR="${REPO_DIR}/Logs"
-MODEL_LOGS_DIR="${LOGS_DIR}/${MODEL_NAME}"
+MODEL_LOGS_DIR="${LOGS_DIR}/${MODEL_NAME}/${CURRENT_DATE}"
 
 # Print the logs directory for debugging
 echo "LOGS_DIR: $LOGS_DIR"
@@ -41,11 +45,8 @@ fi
 # Print the incremented NEXT_ID for debugging
 echo "Incremented NEXT_ID: $NEXT_ID"
 
-# Get current date and time
-CURRENT_DATE_TIME=$(date +"%b-%d-%Y_%I:%M_%p")
-
 # Print the current date and time for debugging
-echo "CURRENT_DATE_TIME: $CURRENT_DATE_TIME"
+echo "CURRENT_DATE_TIME: $CURRENT_DATE + $CURRENT_TIME"
 
 # Create new subfolder with the incremented ID and current date and time
 NEW_LOG_DIR="${MODEL_LOGS_DIR}/$(printf "%03d" ${NEXT_ID})_${CURRENT_DATE_TIME}"
@@ -82,7 +83,7 @@ cat <<EOT > ${TEMP_SLURM_SCRIPT}
 #SBATCH --job-name=${MODEL_NAME}    # Name of your job
 #SBATCH --account=multisass         # Your Slurm account
 #SBATCH --partition=tier3           # Run on tier3
-#SBATCH --time=0-04:00:00           # 4 hours time limit
+#SBATCH --time=0-08:00:00           # 4 hours time limit
 #SBATCH --nodes=1                   # # of nodes
 #SBATCH --ntasks=1                  # 1 task (i.e. process)
 #SBATCH --mem=32g                   # Increase RAM to 16GB
