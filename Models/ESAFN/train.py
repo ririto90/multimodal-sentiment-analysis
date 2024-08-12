@@ -511,19 +511,15 @@ if __name__ == '__main__':
     n_gpu = torch.cuda.device_count()
 
     if opt.dataset == "twitter2015":
-        opt.path_image = "../../Datasets/IJCAI2019_data/twitter2015_images"
+        opt.path_image = "../../Datasets/Twitter2015/images"
         opt.max_seq_len = 27
         opt.rand_seed = 28
     elif opt.dataset == "twitter2017":
-        opt.path_image = "../../Datasets/IJCAI2019_data/twitter2017_images"
+        opt.path_image = "../../Datasets/Twitter2017/images"
         opt.max_seq_len = 24
         opt.rand_seed = 25
-    elif opt.dataset == "mvsa-m":
-        opt.path_image = "../../Datasets/MVSA/mvsa_images"
-        opt.max_seq_len = 24
-        opt.rand_seed = 25
-    elif opt.dataset == "mvsa-m-100":
-        opt.path_image = "../../Datasets/ESAFN/mvsa-m-100/images"
+    elif opt.dataset == "mvsa-mts-target":
+        opt.path_image = "../../Datasets/MVSA-Modified/images"
         opt.max_seq_len = 24
         opt.rand_seed = 25
     else:
