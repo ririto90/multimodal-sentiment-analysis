@@ -27,7 +27,7 @@ def build_embedding_matrix(word2idx, embed_dim, type):
         embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))  # idx 0 and len(word2idx)+1 are all-zeros
         #fname = '/home/jfyu/torch/stanford_treelstm-master/data/glove/glove.twitter.27B.' + str(embed_dim) + 'd.txt' \
             #if embed_dim != 300 else '/home/jfyu/torch/stanford_treelstm-master/data/glove/glove.840B.300d.txt'
-        fname = './glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
+        fname = '../../../pytorch/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
             #if embed_dim != 200 else '../../../pytorch/glove.6B.300d.txt'
         word_vec = load_word_vec(fname, word2idx=word2idx)
         print('building embedding_matrix:', embedding_matrix_file_name)
@@ -40,15 +40,9 @@ def build_embedding_matrix(word2idx, embed_dim, type):
     return embedding_matrix
 
 def image_process(image_path, transform):
-    try:
-        if not os.path.exists(image_path):
-            raise FileNotFoundError(f"Image file not found: {image_path}")
-        image = Image.open(image_path).convert('RGB')
-        image = transform(image)
-        return image
-    except (FileNotFoundError) as e:
-        print(f"Error processing image {image_path}: {e}")
-        return None
+    image = Image.open(image_path).convert('RGB')
+    image = transform(image)
+    return image
 
 class Tokenizer(object):
     def __init__(self, lower=False, max_seq_len=None, max_aspect_len=None):
@@ -175,7 +169,7 @@ class ABSADatesetReader:
                 image = image_process(image_path, transform)
             except:
                 count += 1
-                print('image has problem!')
+                #print('image has problem!')
                 image_path_fail = os.path.join(path_img, '17_06_4705.jpg')
                 image = image_process(image_path_fail, transform)
 
@@ -200,25 +194,20 @@ class ABSADatesetReader:
     def __init__(self, transform, dataset='twitter', embed_dim=100, max_seq_len=40, path_image='./twitter_subimages'):
         print("preparing {0} dataset...".format(dataset))
         fname = {
+            'twitter': {
+                'train': './datasets/twitter/train.txt',
+                'dev': './datasets/twitter/dev.txt',
+                'test': './datasets/twitter/test.txt'
+            },
             'twitter2015': {
                 'train': './datasets/twitter2015/train.txt',
                 'dev': './datasets/twitter2015/dev.txt',
                 'test': './datasets/twitter2015/test.txt'
             },
-            'twitter2017': {
-                'train': './datasets/twitter2017/train.txt',
-                'dev': './datasets/twitter2017/dev.txt',
-                'test': './datasets/twitter2017/test.txt'
-            },
-            'mvsa-m': {
-                'train': './datasets/mvsa-m/train.txt',
-                'dev': './datasets/mvsa-m/dev.txt',
-                'test': './datasets/mvsa-m/test.txt'
-            },
-            'mvsa-m-100': {
-                'train': '../../Datasets/MVSA-m/ESAFN-modified/mvsa-m-100/train.tsv',
-                'dev': '../../Datasets/MVSA-m/ESAFN-modified/mvsa-m-100/val.tsv',
-                'test': '../../Datasets/MVSA-m/ESAFN-modified/mvsa-m-100/test.tsv'
+            'snap': {
+                'train': './datasets/snap/train.txt',
+                'dev': './datasets/snap/dev.txt',
+                'test': './datasets/snap/test.txt'
             }
         }
         text = ABSADatesetReader.__read_text__([fname[dataset]['train'], fname[dataset]['dev'], fname[dataset]['test']])

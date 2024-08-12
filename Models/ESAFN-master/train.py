@@ -7,9 +7,6 @@ from data_utils import ABSADatesetReader
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
-# torch.backends.cudnn.benchmark = True
-# torch.backends.cudnn.deterministic = True
-
 #from tensorboardX import SummaryWriter
 import argparse
 import resnet.resnet as resnet
@@ -17,26 +14,12 @@ from resnet.resnet_utils import myResnet
 import os
 import json
 import random
-import time
 
 from torchvision import transforms
 from models.mmian import MMIAN
 from models.mmram import MMRAM
 from models.mmmgan import MMMGAN
 from models.mmfusion import MMFUSION
-
-torch.backends.cudnn.benchmark = True
-torch.backends.cudnn.deterministic = True
-
-print("PyTorch version:", torch.__version__)
-print("CUDA available:", torch.cuda.is_available())
-print("CUDA version:", torch.version.cuda)
-
-print(torch.cuda.is_available())  # Should return True if GPU is available
-print(torch.cuda.device_count())  # Should return the number of GPUs
-print(torch.cuda.current_device())  # Should return the index of the current GPU
-print(torch.cuda.get_device_name(0))  # Should return the name of the GPU
-
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 import numpy as np
@@ -46,7 +29,7 @@ def macro_f1(y_true, y_pred):
     preds = np.argmax(y_pred, axis=-1)
     true = y_true
     p_macro, r_macro, f_macro, support_macro \
-      = precision_recall_fscore_support(true, preds, average='macro', zero_division=0)
+      = precision_recall_fscore_support(true, preds, average='macro')
     #f_macro = 2*p_macro*r_macro/(p_macro+r_macro)
     return p_macro, r_macro, f_macro
     
@@ -57,10 +40,6 @@ def save_checkpoint(state, track_list, filename):
     with open(filename+'.json', 'w') as f:
         json.dump(track_list, f)
     torch.save(state, filename+'.model')
-
-def print_gpu_memory():
-    print(f"Allocated: {torch.cuda.memory_allocated() / 1024**2:.2f} MB")
-    print(f"Cached:    {torch.cuda.memory_reserved() / 1024**2:.2f} MB")
 
 class Instructor:
     def __init__(self, opt):
@@ -75,11 +54,7 @@ class Instructor:
         # torch.manual_seed(opt.rand_seed)
         # torch.cuda.manual_seed_all(opt.rand_seed)
 
-        print("Before model allocation:")
-        print_gpu_memory()
-
         transform = transforms.Compose([
-            transforms.Resize(256),
             transforms.RandomCrop(opt.crop_size), #args.crop_size, by default it is set to be 224
             transforms.RandomHorizontalFlip(),
             transforms.ToTensor(),
@@ -97,17 +72,7 @@ class Instructor:
         net = getattr(resnet, 'resnet152')()
         net.load_state_dict(torch.load(os.path.join(opt.resnet_root,'resnet152.pth')))
         self.encoder = myResnet(net, opt.fine_tune_cnn, self.opt.device).to(device)
-        # self.model = opt.model_class(absa_dataset.embedding_matrix, opt).to(device)
-        print("Before absa_dataset allocation:")
-        print_gpu_memory()
         self.model = opt.model_class(absa_dataset.embedding_matrix, opt).to(device)
-        print("After model allocation:")
-        print_gpu_memory()
-        # self.encoder = nn.DataParallel(self.encoder)
-        # self.model = nn.DataParallel(self.model)
-
-
-        print(self.model)
         self.reset_parameters()
 
     def reset_parameters(self):
@@ -123,7 +88,6 @@ class Instructor:
         print('n_trainable_params: {0}, n_nontrainable_params: {1}'.format(n_trainable_params, n_nontrainable_params))
 
     def run(self):
-        total_start_time = time.time()
         # Loss and Optimizer
         criterion = nn.CrossEntropyLoss()
         text_params = filter(lambda p: p.requires_grad, self.model.parameters())
@@ -292,7 +256,6 @@ class Instructor:
             track_list = list()
             
             for epoch in range(self.opt.num_epoch):
-                start_time = time.time()
                 print('>' * 100)
                 print('epoch: ', epoch)
                 n_correct, n_total = 0, 0
@@ -321,7 +284,7 @@ class Instructor:
                 
                     # `clip_grad_norm` helps prevent the exploding gradient problem in RNNs / LSTMs.
                     if self.opt.att_mode != 'text':
-                        nn.utils.clip_grad_norm_(params, self.opt.clip_grad)
+                        nn.utils.clip_grad_norm(params, self.opt.clip_grad)
                     optimizer.step()
 
                     if global_step % self.opt.log_step == 0:
@@ -451,21 +414,12 @@ class Instructor:
                             #self.writer.add_scalar('loss', loss, global_step)
                             #self.writer.add_scalar('acc', train_acc, global_step)
                             #self.writer.add_scalar('test_acc', test_acc, global_step)
-                end_time = time.time()
-                epoch_duration = end_time - start_time
-                print(f"Epoch {epoch} took {epoch_duration:.2f} seconds")
 
             #self.writer.close()
 
             print('max_dev_acc: {0}, test_acc: {1}'.format(max_dev_acc, max_test_acc))
             print('dev_p: {0}, dev_r: {1}, dev_f1: {2}, test_p: {3}, test_r: {4}, test_f1: {5}'.format(max_dev_p,\
                      max_dev_r, max_dev_f1, max_test_p, max_test_r, max_test_f1))
-
-    
-        total_end_time = time.time()  # End time for total training
-        total_duration = total_end_time - total_start_time
-        print(f"Total training time: {total_duration:.2f} seconds")
-            
             
 if __name__ == '__main__':
     # Hyper Parameters
@@ -510,20 +464,12 @@ if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     n_gpu = torch.cuda.device_count()
 
-    if opt.dataset == "twitter2015":
-        opt.path_image = "../../Datasets/IJCAI2019_data/twitter2015_images"
+    if opt.dataset == "twitter":
+        opt.path_image = "../multi_modal_ABSA_pytorch_bilinear/twitter_subimages/"
         opt.max_seq_len = 27
         opt.rand_seed = 28
-    elif opt.dataset == "twitter2017":
-        opt.path_image = "../../Datasets/IJCAI2019_data/twitter2017_images"
-        opt.max_seq_len = 24
-        opt.rand_seed = 25
-    elif opt.dataset == "mvsa-m":
-        opt.path_image = "../../Datasets/MVSA/mvsa_images"
-        opt.max_seq_len = 24
-        opt.rand_seed = 25
-    elif opt.dataset == "mvsa-m-100":
-        opt.path_image = "../../Datasets/ESAFN/mvsa-m-100/images"
+    elif opt.dataset == "twitter2015":
+        opt.path_image = "../multi_modal_ABSA_pytorch_bilinear/twitter15_images/"
         opt.max_seq_len = 24
         opt.rand_seed = 25
     else:

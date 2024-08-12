@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-for d in 'twitter2015' # 'twitter2015' 'twitter2017' 'mvsa-m'
+for d in 'mvsa-m-100' # 'mvsa-m-100'
 do
     for k in 'mmfusion' # 'mmram' 'mmmgan' 'mmfusion'
     do
