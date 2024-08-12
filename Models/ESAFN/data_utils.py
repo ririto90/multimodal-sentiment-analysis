@@ -201,24 +201,19 @@ class ABSADatesetReader:
         print("preparing {0} dataset...".format(dataset))
         fname = {
             'twitter2015': {
-                'train': './datasets/twitter2015/train.txt',
-                'dev': './datasets/twitter2015/dev.txt',
-                'test': './datasets/twitter2015/test.txt'
+                'train': '../../Datasets/Twitter2015/train.txt',
+                'dev': '../../Datasets/Twitter2015/dev.txt',
+                'test': '../../Datasets/Twitter2015/test.txt'
             },
             'twitter2017': {
-                'train': './datasets/twitter2017/train.txt',
-                'dev': './datasets/twitter2017/dev.txt',
-                'test': './datasets/twitter2017/test.txt'
+                'train': '../../Datasets/Twitter2017/train.txt',
+                'dev': '../../Datasets/Twitter2017/dev.txt',
+                'test': '../../Datasets/Twitter2017/test.txt'
             },
-            'mvsa-m': {
-                'train': './datasets/mvsa-m/train.txt',
-                'dev': './datasets/mvsa-m/dev.txt',
-                'test': './datasets/mvsa-m/test.txt'
-            },
-            'mvsa-m-100': {
-                'train': '../../Datasets/MVSA-m/ESAFN-modified/mvsa-m-100/train.tsv',
-                'dev': '../../Datasets/MVSA-m/ESAFN-modified/mvsa-m-100/val.tsv',
-                'test': '../../Datasets/MVSA-m/ESAFN-modified/mvsa-m-100/test.tsv'
+            'mvsa-mts-targets': {
+                'train': '../../Datasets/MVSA-Modified/mvsa-mts-target/train.txt',
+                'dev': '../../Datasets/MVSA-Modified/mvsa-mts-target/dev.txt',
+                'test': '../../Datasets/MVSA-Modified/mvsa-mts-target/test.txt'
             }
         }
         text = ABSADatesetReader.__read_text__([fname[dataset]['train'], fname[dataset]['dev'], fname[dataset]['test']])
