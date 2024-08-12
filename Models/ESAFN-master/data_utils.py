@@ -92,7 +92,7 @@ class Tokenizer(object):
             sequence = sequence[::-1]
         return Tokenizer.pad_sequence(sequence, self.max_seq_len, dtype='int64', padding=pad_and_trunc, truncating=pad_and_trunc)
 
-
+# Aspect Based Sentiment Analysis (ABSA)
 class ABSADataset(Dataset):
     def __init__(self, data):
         self.data = data
