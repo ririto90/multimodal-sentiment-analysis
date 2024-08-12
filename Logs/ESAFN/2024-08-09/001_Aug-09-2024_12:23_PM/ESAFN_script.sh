@@ -8,8 +8,8 @@
 #SBATCH --ntasks=1                  # 1 task (i.e. process)
 #SBATCH --mem=32g                   # Increase RAM to 16GB
 #SBATCH --gres=gpu:a100:1           # 1 a100 GPU
-#SBATCH --output=/home/rgg2706/Multimodal-Sentiment-Analysis/Logs/ESAFN/2024-08-09/001_Aug-09-2024_11:18_AM/%x_%j.out     # Output file
-#SBATCH --error=/home/rgg2706/Multimodal-Sentiment-Analysis/Logs/ESAFN/2024-08-09/001_Aug-09-2024_11:18_AM/%x_%j.err       # Error file
+#SBATCH --output=/home/rgg2706/Multimodal-Sentiment-Analysis/Logs/ESAFN/2024-08-09/001_Aug-09-2024_12:23_PM/%x_%j.out     # Output file
+#SBATCH --error=/home/rgg2706/Multimodal-Sentiment-Analysis/Logs/ESAFN/2024-08-09/001_Aug-09-2024_12:23_PM/%x_%j.err       # Error file
 
 # Load necessary environment
 spack env activate default-ml-x86_64-24071101

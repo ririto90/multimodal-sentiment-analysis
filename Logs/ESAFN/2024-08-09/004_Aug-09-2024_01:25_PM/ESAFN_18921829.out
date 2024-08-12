@@ -1,0 +1,905 @@
+PyTorch version: 2.1.1
+CUDA available: True
+CUDA version: 12.3
+True
+1
+0
+NVIDIA A100-PCIE-40GB
+************no tfn layer************
+> training arguments:
+>>> rand_seed: 28
+>>> model_name: mmfusion
+>>> dataset: twitter2015
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f8924b31e40>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 100
+>>> batch_size: 128
+>>> log_step: 10
+>>> logdir: log
+>>> embed_dim: 100
+>>> hidden_dim: 100
+>>> max_seq_len: 27
+>>> polarities_dim: 3
+>>> hops: 3
+>>> att_file: ./att_file/
+>>> pred_file: ./pred_file/
+>>> clip_grad: 5.0
+>>> path_image: ../../Datasets/IJCAI2019_data/twitter2015_images
+>>> crop_size: 224
+>>> fine_tune_cnn: False
+>>> att_mode: vis_concat_attimg_gate
+>>> resnet_root: ./resnet
+>>> checkpoint: ./checkpoint/
+>>> load_check_point: False
+>>> load_opt: False
+>>> tfn: False
+>>> model_class: <class 'models.mmfusion.MMFUSION'>
+>>> inputs_cols: ['text_left_indicator', 'text_right_indicator', 'aspect_indices']
+>>> device: cuda
+Before model allocation:
+Allocated: 0.00 MB
+Cached:    0.00 MB
+preparing twitter2015 dataset...
+loading word vectors...
+building embedding_matrix: 100_twitter2015_embedding_matrix.dat
+--------------./datasets/twitter2015/train.txt---------------
+the number of problematic samples: 0
+--------------./datasets/twitter2015/dev.txt---------------
+the number of problematic samples: 0
+--------------./datasets/twitter2015/test.txt---------------
+the number of problematic samples: 0
+building model
+Before absa_dataset allocation:
+Allocated: 230.28 MB
+Cached:    244.00 MB
+After model allocation:
+Allocated: 239.79 MB
+Cached:    268.00 MB
+MMFUSION(
+  (embed): Embedding(12904, 100)
+  (lstm_aspect): DynamicLSTM(
+    (RNN): LSTM(100, 100, batch_first=True)
+  )
+  (lstm_l): DynamicLSTM(
+    (RNN): LSTM(100, 100, batch_first=True)
+  )
+  (lstm_r): DynamicLSTM(
+    (RNN): LSTM(100, 100, batch_first=True)
+  )
+  (attention_l): Attention2(
+    (proj): Linear(in_features=100, out_features=100, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+  (attention_r): Attention2(
+    (proj): Linear(in_features=100, out_features=100, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+  (visaspect_att_l): MMAttention(
+    (proj): Linear(in_features=100, out_features=100, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+  (visaspect_att_r): MMAttention(
+    (proj): Linear(in_features=100, out_features=100, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+  (ltext2hidden): Linear(in_features=100, out_features=100, bias=True)
+  (laspect2hidden): Linear(in_features=100, out_features=100, bias=True)
+  (rtext2hidden): Linear(in_features=100, out_features=100, bias=True)
+  (raspect2hidden): Linear(in_features=100, out_features=100, bias=True)
+  (dropout): Dropout(p=0.5, inplace=False)
+  (aspect2text): Linear(in_features=100, out_features=100, bias=True)
+  (vismap2text): Linear(in_features=2048, out_features=100, bias=True)
+  (vis2text): Linear(in_features=2048, out_features=100, bias=True)
+  (gate): Linear(in_features=2448, out_features=100, bias=True)
+  (madality_attetion): Linear(in_features=100, out_features=1, bias=True)
+  (text2hiddenvis): Linear(in_features=400, out_features=100, bias=True)
+  (vis2hiddenvis): Linear(in_features=100, out_features=100, bias=True)
+  (dense_6): Linear(in_features=600, out_features=3, bias=True)
+)
+n_trainable_params: 1200104, n_nontrainable_params: 1290400
+parameters only include text parts without word embeddings
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  0
+loss: 0.8897, acc: 0.5923, dev_acc: 0.5971, test_acc: 0.5853
+dev_f1: 0.2493, test_f1: 0.2461
+loss: 0.9062, acc: 0.6162, dev_acc: 0.6052, test_acc: 0.5902
+dev_f1: 0.3133, test_f1: 0.2951
+Epoch 0 took 23.40 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  1
+loss: 0.8958, acc: 0.6556, dev_acc: 0.6346, test_acc: 0.6104
+dev_f1: 0.4142, test_f1: 0.3877
+loss: 0.7610, acc: 0.6820, dev_acc: 0.6569, test_acc: 0.6528
+dev_f1: 0.4353, test_f1: 0.4283
+loss: 0.7670, acc: 0.6955, dev_acc: 0.6560, test_acc: 0.6779
+dev_f1: 0.4394, test_f1: 0.4545
+Epoch 1 took 27.27 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  2
+loss: 0.6784, acc: 0.7068, dev_acc: 0.6622, test_acc: 0.6692
+dev_f1: 0.4449, test_f1: 0.4433
+loss: 0.6732, acc: 0.7238, dev_acc: 0.6774, test_acc: 0.6847
+dev_f1: 0.5213, test_f1: 0.5327
+Epoch 2 took 20.16 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  3
+loss: 0.6813, acc: 0.7411, dev_acc: 0.6586, test_acc: 0.6905
+dev_f1: 0.4903, test_f1: 0.5425
+loss: 0.6504, acc: 0.7575, dev_acc: 0.6765, test_acc: 0.6953
+dev_f1: 0.5396, test_f1: 0.5723
+loss: 0.5785, acc: 0.7597, dev_acc: 0.6827, test_acc: 0.6953
+dev_f1: 0.5657, test_f1: 0.5767
+Epoch 3 took 26.82 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  4
+loss: 0.7111, acc: 0.7710, dev_acc: 0.6854, test_acc: 0.6962
+dev_f1: 0.5319, test_f1: 0.5690
+loss: 0.5956, acc: 0.7914, dev_acc: 0.6791, test_acc: 0.7068
+dev_f1: 0.5508, test_f1: 0.5999
+Epoch 4 took 19.64 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  5
+loss: 0.5198, acc: 0.8109, dev_acc: 0.6729, test_acc: 0.7068
+dev_f1: 0.5660, test_f1: 0.6136
+loss: 0.6083, acc: 0.8279, dev_acc: 0.6836, test_acc: 0.7011
+dev_f1: 0.5806, test_f1: 0.6163
+loss: 0.5662, acc: 0.8358, dev_acc: 0.6774, test_acc: 0.6991
+dev_f1: 0.5546, test_f1: 0.6096
+Epoch 5 took 26.47 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  6
+loss: 0.3622, acc: 0.8427, dev_acc: 0.6863, test_acc: 0.7155
+dev_f1: 0.5669, test_f1: 0.6186
+loss: 0.4150, acc: 0.8616, dev_acc: 0.6863, test_acc: 0.6943
+dev_f1: 0.5971, test_f1: 0.6094
+Epoch 6 took 20.08 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  7
+loss: 0.4130, acc: 0.8717, dev_acc: 0.6791, test_acc: 0.6914
+dev_f1: 0.5937, test_f1: 0.6158
+loss: 0.4030, acc: 0.8742, dev_acc: 0.6791, test_acc: 0.6866
+dev_f1: 0.5593, test_f1: 0.5919
+loss: 0.4378, acc: 0.8962, dev_acc: 0.6809, test_acc: 0.7049
+dev_f1: 0.5918, test_f1: 0.6245
+Epoch 7 took 26.62 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  8
+loss: 0.3179, acc: 0.9107, dev_acc: 0.6702, test_acc: 0.6943
+dev_f1: 0.5908, test_f1: 0.6182
+loss: 0.4185, acc: 0.9210, dev_acc: 0.6756, test_acc: 0.6953
+dev_f1: 0.5924, test_f1: 0.6186
+Epoch 8 took 19.50 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  9
+loss: 0.2483, acc: 0.9374, dev_acc: 0.6907, test_acc: 0.6905
+dev_f1: 0.5946, test_f1: 0.6022
+loss: 0.2076, acc: 0.9129, dev_acc: 0.6881, test_acc: 0.6750
+dev_f1: 0.5735, test_f1: 0.5660
+loss: 0.3344, acc: 0.9456, dev_acc: 0.6586, test_acc: 0.6615
+dev_f1: 0.5893, test_f1: 0.5993
+Epoch 9 took 27.40 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  10
+loss: 0.2640, acc: 0.9512, dev_acc: 0.6426, test_acc: 0.6702
+dev_f1: 0.5782, test_f1: 0.6162
+loss: 0.3223, acc: 0.9512, dev_acc: 0.6408, test_acc: 0.6644
+dev_f1: 0.5726, test_f1: 0.6102
+Epoch 10 took 19.18 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  11
+loss: 0.1404, acc: 0.9450, dev_acc: 0.6738, test_acc: 0.6644
+dev_f1: 0.5726, test_f1: 0.5621
+loss: 0.2041, acc: 0.9626, dev_acc: 0.6613, test_acc: 0.6663
+dev_f1: 0.5689, test_f1: 0.5765
+loss: 0.2965, acc: 0.9701, dev_acc: 0.6381, test_acc: 0.6654
+dev_f1: 0.5656, test_f1: 0.6049
+Epoch 11 took 26.91 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  12
+loss: 0.0644, acc: 0.9733, dev_acc: 0.6506, test_acc: 0.6451
+dev_f1: 0.5867, test_f1: 0.5919
+loss: 0.1967, acc: 0.9761, dev_acc: 0.6551, test_acc: 0.6577
+dev_f1: 0.5887, test_f1: 0.6005
+Epoch 12 took 19.47 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  13
+loss: 0.1593, acc: 0.9843, dev_acc: 0.6533, test_acc: 0.6644
+dev_f1: 0.5591, test_f1: 0.5904
+loss: 0.0956, acc: 0.9726, dev_acc: 0.6488, test_acc: 0.6548
+dev_f1: 0.5635, test_f1: 0.5872
+loss: 0.1847, acc: 0.9868, dev_acc: 0.6462, test_acc: 0.6837
+dev_f1: 0.5617, test_f1: 0.6300
+Epoch 13 took 26.57 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  14
+loss: 0.0685, acc: 0.9874, dev_acc: 0.6586, test_acc: 0.6770
+dev_f1: 0.5776, test_f1: 0.6094
+loss: 0.0683, acc: 0.9937, dev_acc: 0.6613, test_acc: 0.6673
+dev_f1: 0.5902, test_f1: 0.6074
+Epoch 14 took 19.69 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  15
+loss: 0.0786, acc: 0.9912, dev_acc: 0.6702, test_acc: 0.6885
+dev_f1: 0.5688, test_f1: 0.6049
+loss: 0.0756, acc: 0.9950, dev_acc: 0.6604, test_acc: 0.6770
+dev_f1: 0.5734, test_f1: 0.5981
+loss: 0.1058, acc: 0.9931, dev_acc: 0.6533, test_acc: 0.6750
+dev_f1: 0.5475, test_f1: 0.5926
+Epoch 15 took 26.47 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  16
+loss: 0.0659, acc: 0.9887, dev_acc: 0.6631, test_acc: 0.6692
+dev_f1: 0.5470, test_f1: 0.5667
+loss: 0.0758, acc: 0.9868, dev_acc: 0.6649, test_acc: 0.6779
+dev_f1: 0.5554, test_f1: 0.5852
+Epoch 16 took 19.57 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  17
+loss: 0.0831, acc: 0.9698, dev_acc: 0.6684, test_acc: 0.6509
+dev_f1: 0.5650, test_f1: 0.5632
+loss: 0.0758, acc: 0.9824, dev_acc: 0.6292, test_acc: 0.6712
+dev_f1: 0.5648, test_f1: 0.6197
+loss: 0.0720, acc: 0.9855, dev_acc: 0.6319, test_acc: 0.6422
+dev_f1: 0.5638, test_f1: 0.5848
+Epoch 17 took 26.78 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  18
+loss: 0.0394, acc: 0.9902, dev_acc: 0.6524, test_acc: 0.6644
+dev_f1: 0.5732, test_f1: 0.5910
+loss: 0.0338, acc: 0.9956, dev_acc: 0.6390, test_acc: 0.6779
+dev_f1: 0.5461, test_f1: 0.5906
+Epoch 18 took 19.34 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  19
+loss: 0.0556, acc: 0.9953, dev_acc: 0.6595, test_acc: 0.6760
+dev_f1: 0.5662, test_f1: 0.5900
+loss: 0.1255, acc: 0.9940, dev_acc: 0.6480, test_acc: 0.6586
+dev_f1: 0.5748, test_f1: 0.5989
+loss: 0.0575, acc: 0.9912, dev_acc: 0.6515, test_acc: 0.6509
+dev_f1: 0.5725, test_f1: 0.5904
+Epoch 19 took 26.98 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  20
+loss: 0.1268, acc: 0.9956, dev_acc: 0.6684, test_acc: 0.6654
+dev_f1: 0.5777, test_f1: 0.5918
+loss: 0.0643, acc: 0.9937, dev_acc: 0.6399, test_acc: 0.6519
+dev_f1: 0.5520, test_f1: 0.5723
+Epoch 20 took 19.23 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  21
+loss: 0.0361, acc: 0.9978, dev_acc: 0.6533, test_acc: 0.6760
+dev_f1: 0.5577, test_f1: 0.5896
+loss: 0.0626, acc: 0.9934, dev_acc: 0.6533, test_acc: 0.6625
+dev_f1: 0.5687, test_f1: 0.5833
+loss: 0.0629, acc: 0.9940, dev_acc: 0.6604, test_acc: 0.6885
+dev_f1: 0.5394, test_f1: 0.5959
+Epoch 21 took 26.74 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  22
+loss: 0.0100, acc: 0.9978, dev_acc: 0.6551, test_acc: 0.6770
+dev_f1: 0.5624, test_f1: 0.5973
+loss: 0.0461, acc: 0.9994, dev_acc: 0.6649, test_acc: 0.6692
+dev_f1: 0.5720, test_f1: 0.5868
+Epoch 22 took 19.71 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  23
+loss: 0.0117, acc: 0.9965, dev_acc: 0.6720, test_acc: 0.6808
+dev_f1: 0.5638, test_f1: 0.5789
+loss: 0.0134, acc: 0.9991, dev_acc: 0.6560, test_acc: 0.6683
+dev_f1: 0.5798, test_f1: 0.5934
+loss: 0.0326, acc: 0.9987, dev_acc: 0.6471, test_acc: 0.6567
+dev_f1: 0.5763, test_f1: 0.5875
+Epoch 23 took 26.47 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  24
+loss: 0.0153, acc: 0.9987, dev_acc: 0.6631, test_acc: 0.6789
+dev_f1: 0.5556, test_f1: 0.5867
+loss: 0.0031, acc: 0.9987, dev_acc: 0.6613, test_acc: 0.6721
+dev_f1: 0.5652, test_f1: 0.5883
+Epoch 24 took 19.63 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  25
+loss: 0.0276, acc: 0.9959, dev_acc: 0.6515, test_acc: 0.6538
+dev_f1: 0.5788, test_f1: 0.5902
+loss: 0.0201, acc: 0.9959, dev_acc: 0.6631, test_acc: 0.6741
+dev_f1: 0.5486, test_f1: 0.5689
+loss: 0.0567, acc: 0.9943, dev_acc: 0.6381, test_acc: 0.6567
+dev_f1: 0.5519, test_f1: 0.5900
+Epoch 25 took 26.55 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  26
+loss: 0.0105, acc: 0.9975, dev_acc: 0.6551, test_acc: 0.6683
+dev_f1: 0.5525, test_f1: 0.5788
+loss: 0.0065, acc: 0.9984, dev_acc: 0.6533, test_acc: 0.6770
+dev_f1: 0.5460, test_f1: 0.5839
+Epoch 26 took 19.55 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  27
+loss: 0.0037, acc: 0.9991, dev_acc: 0.6453, test_acc: 0.6673
+dev_f1: 0.5539, test_f1: 0.5844
+loss: 0.0276, acc: 0.9991, dev_acc: 0.6551, test_acc: 0.6712
+dev_f1: 0.5593, test_f1: 0.5846
+loss: 0.0111, acc: 0.9997, dev_acc: 0.6471, test_acc: 0.6741
+dev_f1: 0.5347, test_f1: 0.5822
+Epoch 27 took 26.90 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  28
+loss: 0.0031, acc: 0.9987, dev_acc: 0.6488, test_acc: 0.6500
+dev_f1: 0.5735, test_f1: 0.5812
+loss: 0.0024, acc: 0.9997, dev_acc: 0.6506, test_acc: 0.6770
+dev_f1: 0.5551, test_f1: 0.5929
+Epoch 28 took 19.28 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  29
+loss: 0.0040, acc: 0.9997, dev_acc: 0.6444, test_acc: 0.6750
+dev_f1: 0.5505, test_f1: 0.5952
+loss: 0.0095, acc: 0.9991, dev_acc: 0.6524, test_acc: 0.6635
+dev_f1: 0.5764, test_f1: 0.5908
+loss: 0.0120, acc: 0.9997, dev_acc: 0.6569, test_acc: 0.6827
+dev_f1: 0.5737, test_f1: 0.5994
+Epoch 29 took 26.95 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  30
+loss: 0.0044, acc: 0.9994, dev_acc: 0.6524, test_acc: 0.6847
+dev_f1: 0.5469, test_f1: 0.5848
+loss: 0.0080, acc: 0.9997, dev_acc: 0.6453, test_acc: 0.6741
+dev_f1: 0.5639, test_f1: 0.5932
+Epoch 30 took 19.33 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  31
+loss: 0.0063, acc: 0.9994, dev_acc: 0.6417, test_acc: 0.6692
+dev_f1: 0.5532, test_f1: 0.5889
+loss: 0.0059, acc: 0.9997, dev_acc: 0.6373, test_acc: 0.6557
+dev_f1: 0.5614, test_f1: 0.5791
+loss: 0.0186, acc: 0.9997, dev_acc: 0.6453, test_acc: 0.6914
+dev_f1: 0.5397, test_f1: 0.5927
+Epoch 31 took 26.93 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  32
+loss: 0.0215, acc: 0.9915, dev_acc: 0.6560, test_acc: 0.6798
+dev_f1: 0.5374, test_f1: 0.5720
+loss: 0.0027, acc: 0.9925, dev_acc: 0.6693, test_acc: 0.6798
+dev_f1: 0.5604, test_f1: 0.5725
+Epoch 32 took 19.96 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  33
+loss: 0.0320, acc: 0.9937, dev_acc: 0.6408, test_acc: 0.6538
+dev_f1: 0.5567, test_f1: 0.5704
+loss: 0.0432, acc: 0.9969, dev_acc: 0.6453, test_acc: 0.6548
+dev_f1: 0.5664, test_f1: 0.5696
+loss: 0.0067, acc: 0.9950, dev_acc: 0.6435, test_acc: 0.6731
+dev_f1: 0.5477, test_f1: 0.5880
+Epoch 33 took 26.67 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  34
+loss: 0.0467, acc: 0.9987, dev_acc: 0.6631, test_acc: 0.6905
+dev_f1: 0.5766, test_f1: 0.6138
+loss: 0.0253, acc: 0.9959, dev_acc: 0.6613, test_acc: 0.6856
+dev_f1: 0.5629, test_f1: 0.6011
+Epoch 34 took 19.63 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  35
+loss: 0.0119, acc: 0.9928, dev_acc: 0.6399, test_acc: 0.6663
+dev_f1: 0.5436, test_f1: 0.5797
+loss: 0.0193, acc: 0.9969, dev_acc: 0.6480, test_acc: 0.6586
+dev_f1: 0.5610, test_f1: 0.5872
+loss: 0.1062, acc: 0.9959, dev_acc: 0.6551, test_acc: 0.6683
+dev_f1: 0.5664, test_f1: 0.5829
+Epoch 35 took 26.56 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  36
+loss: 0.0631, acc: 0.9902, dev_acc: 0.6631, test_acc: 0.6586
+dev_f1: 0.5293, test_f1: 0.5500
+loss: 0.0159, acc: 0.9984, dev_acc: 0.6595, test_acc: 0.6644
+dev_f1: 0.5593, test_f1: 0.5775
+Epoch 36 took 19.48 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  37
+loss: 0.0118, acc: 0.9956, dev_acc: 0.6586, test_acc: 0.6692
+dev_f1: 0.5852, test_f1: 0.5991
+loss: 0.0314, acc: 1.0000, dev_acc: 0.6711, test_acc: 0.6721
+dev_f1: 0.5641, test_f1: 0.5692
+loss: 0.0106, acc: 0.9975, dev_acc: 0.6649, test_acc: 0.6712
+dev_f1: 0.5745, test_f1: 0.5845
+Epoch 37 took 26.95 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  38
+loss: 0.0836, acc: 0.9965, dev_acc: 0.6622, test_acc: 0.6789
+dev_f1: 0.5691, test_f1: 0.5942
+loss: 0.0285, acc: 0.9984, dev_acc: 0.6444, test_acc: 0.6519
+dev_f1: 0.5678, test_f1: 0.5784
+Epoch 38 took 19.19 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  39
+loss: 0.1140, acc: 0.9978, dev_acc: 0.6542, test_acc: 0.6673
+dev_f1: 0.5877, test_f1: 0.6040
+loss: 0.0127, acc: 0.9972, dev_acc: 0.6435, test_acc: 0.6557
+dev_f1: 0.5752, test_f1: 0.5880
+loss: 0.0095, acc: 0.9991, dev_acc: 0.6542, test_acc: 0.6567
+dev_f1: 0.5551, test_f1: 0.5635
+Epoch 39 took 26.94 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  40
+loss: 0.0026, acc: 0.9987, dev_acc: 0.6515, test_acc: 0.6509
+dev_f1: 0.5825, test_f1: 0.5879
+loss: 0.0187, acc: 0.9953, dev_acc: 0.6658, test_acc: 0.6712
+dev_f1: 0.5471, test_f1: 0.5689
+Epoch 40 took 19.39 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  41
+loss: 0.0265, acc: 0.9981, dev_acc: 0.6417, test_acc: 0.6442
+dev_f1: 0.5574, test_f1: 0.5762
+loss: 0.0608, acc: 0.9978, dev_acc: 0.6381, test_acc: 0.6471
+dev_f1: 0.5706, test_f1: 0.5845
+loss: 0.0971, acc: 0.9965, dev_acc: 0.6711, test_acc: 0.6789
+dev_f1: 0.5820, test_f1: 0.5929
+Epoch 41 took 26.63 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  42
+loss: 0.0365, acc: 0.9975, dev_acc: 0.6480, test_acc: 0.6856
+dev_f1: 0.5586, test_f1: 0.6077
+loss: 0.1182, acc: 0.9965, dev_acc: 0.6399, test_acc: 0.6432
+dev_f1: 0.5498, test_f1: 0.5655
+Epoch 42 took 19.68 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  43
+loss: 0.0213, acc: 0.9978, dev_acc: 0.6515, test_acc: 0.6673
+dev_f1: 0.5599, test_f1: 0.5733
+loss: 0.0021, acc: 0.9981, dev_acc: 0.6506, test_acc: 0.6606
+dev_f1: 0.5685, test_f1: 0.5751
+loss: 0.0071, acc: 0.9991, dev_acc: 0.6569, test_acc: 0.6702
+dev_f1: 0.5545, test_f1: 0.5654
+Epoch 43 took 26.41 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  44
+loss: 0.0030, acc: 0.9962, dev_acc: 0.6390, test_acc: 0.6663
+dev_f1: 0.5633, test_f1: 0.5924
+loss: 0.0396, acc: 0.9984, dev_acc: 0.6551, test_acc: 0.6789
+dev_f1: 0.5565, test_f1: 0.5810
+Epoch 44 took 19.63 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  45
+loss: 0.0047, acc: 1.0000, dev_acc: 0.6435, test_acc: 0.6673
+dev_f1: 0.5652, test_f1: 0.5893
+loss: 0.0079, acc: 0.9981, dev_acc: 0.6506, test_acc: 0.6663
+dev_f1: 0.5740, test_f1: 0.5925
+loss: 0.0468, acc: 0.9997, dev_acc: 0.6595, test_acc: 0.6586
+dev_f1: 0.5781, test_f1: 0.5717
+Epoch 45 took 27.06 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  46
+loss: 0.0142, acc: 1.0000, dev_acc: 0.6595, test_acc: 0.6615
+dev_f1: 0.5680, test_f1: 0.5685
+loss: 0.0031, acc: 1.0000, dev_acc: 0.6551, test_acc: 0.6702
+dev_f1: 0.5451, test_f1: 0.5707
+Epoch 46 took 19.46 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  47
+loss: 0.0199, acc: 0.9997, dev_acc: 0.6399, test_acc: 0.6644
+dev_f1: 0.5617, test_f1: 0.5885
+loss: 0.0066, acc: 0.9991, dev_acc: 0.6631, test_acc: 0.6750
+dev_f1: 0.5565, test_f1: 0.5780
+loss: 0.0081, acc: 1.0000, dev_acc: 0.6462, test_acc: 0.6673
+dev_f1: 0.5579, test_f1: 0.5857
+Epoch 47 took 26.96 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  48
+loss: 0.0071, acc: 1.0000, dev_acc: 0.6515, test_acc: 0.6615
+dev_f1: 0.5652, test_f1: 0.5825
+loss: 0.0008, acc: 1.0000, dev_acc: 0.6551, test_acc: 0.6606
+dev_f1: 0.5692, test_f1: 0.5774
+Epoch 48 took 19.16 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  49
+loss: 0.0010, acc: 1.0000, dev_acc: 0.6569, test_acc: 0.6567
+dev_f1: 0.5786, test_f1: 0.5762
+loss: 0.0009, acc: 1.0000, dev_acc: 0.6551, test_acc: 0.6625
+dev_f1: 0.5764, test_f1: 0.5730
+loss: 0.0086, acc: 0.9997, dev_acc: 0.6604, test_acc: 0.6567
+dev_f1: 0.5743, test_f1: 0.5639
+Epoch 49 took 26.79 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  50
+loss: 0.0073, acc: 1.0000, dev_acc: 0.6693, test_acc: 0.6663
+dev_f1: 0.5740, test_f1: 0.5558
+loss: 0.0018, acc: 1.0000, dev_acc: 0.6435, test_acc: 0.6586
+dev_f1: 0.5589, test_f1: 0.5695
+Epoch 50 took 19.62 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  51
+loss: 0.0007, acc: 1.0000, dev_acc: 0.6524, test_acc: 0.6586
+dev_f1: 0.5671, test_f1: 0.5671
+loss: 0.0054, acc: 0.9997, dev_acc: 0.6506, test_acc: 0.6760
+dev_f1: 0.5606, test_f1: 0.5839
+loss: 0.0010, acc: 0.9994, dev_acc: 0.6480, test_acc: 0.6625
+dev_f1: 0.5633, test_f1: 0.5750
+Epoch 51 took 26.51 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  52
+loss: 0.0056, acc: 1.0000, dev_acc: 0.6542, test_acc: 0.6663
+dev_f1: 0.5595, test_f1: 0.5680
+loss: 0.0013, acc: 1.0000, dev_acc: 0.6497, test_acc: 0.6721
+dev_f1: 0.5723, test_f1: 0.5907
+Epoch 52 took 19.63 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  53
+loss: 0.0004, acc: 0.9997, dev_acc: 0.6542, test_acc: 0.6750
+dev_f1: 0.5722, test_f1: 0.5931
+loss: 0.0019, acc: 1.0000, dev_acc: 0.6471, test_acc: 0.6741
+dev_f1: 0.5542, test_f1: 0.5795
+loss: 0.0322, acc: 1.0000, dev_acc: 0.6497, test_acc: 0.6673
+dev_f1: 0.5624, test_f1: 0.5703
+Epoch 53 took 26.51 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  54
+loss: 0.0014, acc: 0.9997, dev_acc: 0.6497, test_acc: 0.6721
+dev_f1: 0.5558, test_f1: 0.5851
+loss: 0.0092, acc: 0.9997, dev_acc: 0.6569, test_acc: 0.6663
+dev_f1: 0.5553, test_f1: 0.5670
+Epoch 54 took 19.56 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  55
+loss: 0.0005, acc: 0.9997, dev_acc: 0.6551, test_acc: 0.6779
+dev_f1: 0.5614, test_f1: 0.5903
+loss: 0.0061, acc: 1.0000, dev_acc: 0.6622, test_acc: 0.6731
+dev_f1: 0.5540, test_f1: 0.5691
+loss: 0.0013, acc: 1.0000, dev_acc: 0.6569, test_acc: 0.6692
+dev_f1: 0.5713, test_f1: 0.5877
+Epoch 55 took 26.82 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  56
+loss: 0.0045, acc: 1.0000, dev_acc: 0.6497, test_acc: 0.6615
+dev_f1: 0.5726, test_f1: 0.5877
+loss: 0.0004, acc: 1.0000, dev_acc: 0.6622, test_acc: 0.6702
+dev_f1: 0.5606, test_f1: 0.5605
+Epoch 56 took 19.26 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  57
+loss: 0.0003, acc: 1.0000, dev_acc: 0.6453, test_acc: 0.6596
+dev_f1: 0.5483, test_f1: 0.5619
+loss: 0.0008, acc: 0.9991, dev_acc: 0.6604, test_acc: 0.6731
+dev_f1: 0.5616, test_f1: 0.5778
+loss: 0.0174, acc: 0.9997, dev_acc: 0.6257, test_acc: 0.6596
+dev_f1: 0.5542, test_f1: 0.5856
+Epoch 57 took 26.91 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  58
+loss: 0.0087, acc: 0.9994, dev_acc: 0.6595, test_acc: 0.6702
+dev_f1: 0.5666, test_f1: 0.5664
+loss: 0.0003, acc: 0.9997, dev_acc: 0.6586, test_acc: 0.6721
+dev_f1: 0.5635, test_f1: 0.5603
+Epoch 58 took 19.33 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  59
+loss: 0.0032, acc: 0.9994, dev_acc: 0.6533, test_acc: 0.6683
+dev_f1: 0.5746, test_f1: 0.5787
+loss: 0.0100, acc: 0.9981, dev_acc: 0.6569, test_acc: 0.6847
+dev_f1: 0.5345, test_f1: 0.5692
+loss: 0.0354, acc: 0.9987, dev_acc: 0.6417, test_acc: 0.6750
+dev_f1: 0.5651, test_f1: 0.6001
+Epoch 59 took 26.71 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  60
+loss: 0.0035, acc: 0.9984, dev_acc: 0.6408, test_acc: 0.6644
+dev_f1: 0.5689, test_f1: 0.5968
+loss: 0.0712, acc: 0.9994, dev_acc: 0.6462, test_acc: 0.6731
+dev_f1: 0.5351, test_f1: 0.5794
+Epoch 60 took 19.71 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  61
+loss: 0.0379, acc: 0.9997, dev_acc: 0.6488, test_acc: 0.6876
+dev_f1: 0.5462, test_f1: 0.6026
+loss: 0.0005, acc: 0.9984, dev_acc: 0.6381, test_acc: 0.6683
+dev_f1: 0.5645, test_f1: 0.6058
+loss: 0.0070, acc: 0.9987, dev_acc: 0.6524, test_acc: 0.6789
+dev_f1: 0.5247, test_f1: 0.5718
+Epoch 61 took 26.37 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  62
+loss: 0.0025, acc: 0.9994, dev_acc: 0.6435, test_acc: 0.6712
+dev_f1: 0.5583, test_f1: 0.5922
+loss: 0.0036, acc: 0.9969, dev_acc: 0.6586, test_acc: 0.6856
+dev_f1: 0.5250, test_f1: 0.5712
+Epoch 62 took 19.60 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  63
+loss: 0.0019, acc: 0.9987, dev_acc: 0.6390, test_acc: 0.6500
+dev_f1: 0.5623, test_f1: 0.5790
+loss: 0.0029, acc: 0.9997, dev_acc: 0.6515, test_acc: 0.6760
+dev_f1: 0.5401, test_f1: 0.5748
+loss: 0.0100, acc: 0.9991, dev_acc: 0.6292, test_acc: 0.6625
+dev_f1: 0.5682, test_f1: 0.6047
+Epoch 63 took 26.62 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  64
+loss: 0.0035, acc: 1.0000, dev_acc: 0.6524, test_acc: 0.6847
+dev_f1: 0.5477, test_f1: 0.5912
+loss: 0.0044, acc: 1.0000, dev_acc: 0.6426, test_acc: 0.6750
+dev_f1: 0.5500, test_f1: 0.5973
+Epoch 64 took 19.49 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  65
+loss: 0.0068, acc: 0.9994, dev_acc: 0.6390, test_acc: 0.6654
+dev_f1: 0.5366, test_f1: 0.5870
+loss: 0.0037, acc: 0.9997, dev_acc: 0.6364, test_acc: 0.6596
+dev_f1: 0.5460, test_f1: 0.5865
+loss: 0.0508, acc: 0.9978, dev_acc: 0.6399, test_acc: 0.6837
+dev_f1: 0.5591, test_f1: 0.6137
+Epoch 65 took 26.93 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  66
+loss: 0.0023, acc: 0.9987, dev_acc: 0.6578, test_acc: 0.6885
+dev_f1: 0.5315, test_f1: 0.5775
+loss: 0.0335, acc: 0.9991, dev_acc: 0.6560, test_acc: 0.6770
+dev_f1: 0.5766, test_f1: 0.6088
+Epoch 66 took 19.18 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  67
+loss: 0.0337, acc: 0.9915, dev_acc: 0.6373, test_acc: 0.6635
+dev_f1: 0.5641, test_f1: 0.6039
+loss: 0.0435, acc: 0.9956, dev_acc: 0.6649, test_acc: 0.6847
+dev_f1: 0.5544, test_f1: 0.5953
+loss: 0.0077, acc: 0.9981, dev_acc: 0.6444, test_acc: 0.6586
+dev_f1: 0.5630, test_f1: 0.5895
+Epoch 67 took 26.93 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  68
+loss: 0.0249, acc: 0.9928, dev_acc: 0.6283, test_acc: 0.6577
+dev_f1: 0.5528, test_f1: 0.5863
+loss: 0.0022, acc: 0.9959, dev_acc: 0.6417, test_acc: 0.6721
+dev_f1: 0.5448, test_f1: 0.5924
+Epoch 68 took 19.38 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  69
+loss: 0.0135, acc: 0.9972, dev_acc: 0.6551, test_acc: 0.6760
+dev_f1: 0.5551, test_f1: 0.5884
+loss: 0.0174, acc: 0.9972, dev_acc: 0.6774, test_acc: 0.6991
+dev_f1: 0.5752, test_f1: 0.6103
+loss: 0.0021, acc: 0.9981, dev_acc: 0.6649, test_acc: 0.6789
+dev_f1: 0.5667, test_f1: 0.5886
+Epoch 69 took 26.58 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  70
+loss: 0.0179, acc: 0.9994, dev_acc: 0.6453, test_acc: 0.6673
+dev_f1: 0.5477, test_f1: 0.5893
+loss: 0.0077, acc: 0.9981, dev_acc: 0.6444, test_acc: 0.6654
+dev_f1: 0.5590, test_f1: 0.5950
+Epoch 70 took 19.66 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  71
+loss: 0.0026, acc: 0.9991, dev_acc: 0.6524, test_acc: 0.6837
+dev_f1: 0.5294, test_f1: 0.5859
+loss: 0.0074, acc: 0.9991, dev_acc: 0.6462, test_acc: 0.6827
+dev_f1: 0.5716, test_f1: 0.6137
+loss: 0.0075, acc: 0.9994, dev_acc: 0.6524, test_acc: 0.6856
+dev_f1: 0.5390, test_f1: 0.5950
+Epoch 71 took 26.48 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  72
+loss: 0.0020, acc: 0.9997, dev_acc: 0.6586, test_acc: 0.6905
+dev_f1: 0.5388, test_f1: 0.5927
+loss: 0.0026, acc: 0.9997, dev_acc: 0.6533, test_acc: 0.6808
+dev_f1: 0.5794, test_f1: 0.6130
+Epoch 72 took 19.55 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  73
+loss: 0.0337, acc: 1.0000, dev_acc: 0.6524, test_acc: 0.6827
+dev_f1: 0.5395, test_f1: 0.5818
+loss: 0.0010, acc: 0.9997, dev_acc: 0.6488, test_acc: 0.6856
+dev_f1: 0.5628, test_f1: 0.6096
+loss: 0.0054, acc: 0.9997, dev_acc: 0.6462, test_acc: 0.6770
+dev_f1: 0.5525, test_f1: 0.5946
+Epoch 73 took 26.74 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  74
+loss: 0.0023, acc: 1.0000, dev_acc: 0.6578, test_acc: 0.6741
+dev_f1: 0.5289, test_f1: 0.5479
+loss: 0.0003, acc: 1.0000, dev_acc: 0.6533, test_acc: 0.6750
+dev_f1: 0.5664, test_f1: 0.5861
+Epoch 74 took 19.34 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  75
+loss: 0.0011, acc: 1.0000, dev_acc: 0.6426, test_acc: 0.6866
+dev_f1: 0.5683, test_f1: 0.6182
+loss: 0.0040, acc: 1.0000, dev_acc: 0.6604, test_acc: 0.6837
+dev_f1: 0.5694, test_f1: 0.5936
+loss: 0.0006, acc: 1.0000, dev_acc: 0.6622, test_acc: 0.6885
+dev_f1: 0.5715, test_f1: 0.5936
+Epoch 75 took 26.95 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  76
+loss: 0.0032, acc: 1.0000, dev_acc: 0.6542, test_acc: 0.6798
+dev_f1: 0.5472, test_f1: 0.5690
+loss: 0.0005, acc: 1.0000, dev_acc: 0.6551, test_acc: 0.6847
+dev_f1: 0.5706, test_f1: 0.5997
+Epoch 76 took 19.22 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  77
+loss: 0.0012, acc: 1.0000, dev_acc: 0.6569, test_acc: 0.6741
+dev_f1: 0.5557, test_f1: 0.5763
+loss: 0.0040, acc: 1.0000, dev_acc: 0.6542, test_acc: 0.6779
+dev_f1: 0.5504, test_f1: 0.5788
+loss: 0.0011, acc: 1.0000, dev_acc: 0.6480, test_acc: 0.6827
+dev_f1: 0.5557, test_f1: 0.5951
+Epoch 77 took 26.78 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  78
+loss: 0.0005, acc: 0.9994, dev_acc: 0.6480, test_acc: 0.6702
+dev_f1: 0.5454, test_f1: 0.5721
+loss: 0.0058, acc: 0.9997, dev_acc: 0.6435, test_acc: 0.6798
+dev_f1: 0.5465, test_f1: 0.5883
+Epoch 78 took 19.62 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  79
+loss: 0.0010, acc: 0.9997, dev_acc: 0.6506, test_acc: 0.6731
+dev_f1: 0.5500, test_f1: 0.5791
+loss: 0.0029, acc: 0.9994, dev_acc: 0.6524, test_acc: 0.6673
+dev_f1: 0.5290, test_f1: 0.5510
+loss: 0.0177, acc: 0.9994, dev_acc: 0.6426, test_acc: 0.6577
+dev_f1: 0.5476, test_f1: 0.5755
+Epoch 79 took 26.48 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  80
+loss: 0.0030, acc: 0.9997, dev_acc: 0.6533, test_acc: 0.6721
+dev_f1: 0.5597, test_f1: 0.5856
+loss: 0.0023, acc: 1.0000, dev_acc: 0.6497, test_acc: 0.6789
+dev_f1: 0.5430, test_f1: 0.5966
+Epoch 80 took 19.62 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  81
+loss: 0.0005, acc: 0.9997, dev_acc: 0.6533, test_acc: 0.6808
+dev_f1: 0.5480, test_f1: 0.5932
+loss: 0.0002, acc: 0.9997, dev_acc: 0.6497, test_acc: 0.6692
+dev_f1: 0.5474, test_f1: 0.5773
+loss: 0.0017, acc: 1.0000, dev_acc: 0.6604, test_acc: 0.6847
+dev_f1: 0.5393, test_f1: 0.5803
+Epoch 81 took 26.47 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  82
+loss: 0.0348, acc: 1.0000, dev_acc: 0.6524, test_acc: 0.6789
+dev_f1: 0.5508, test_f1: 0.5836
+loss: 0.0007, acc: 1.0000, dev_acc: 0.6488, test_acc: 0.6827
+dev_f1: 0.5519, test_f1: 0.6035
+Epoch 82 took 19.53 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  83
+loss: 0.0013, acc: 1.0000, dev_acc: 0.6426, test_acc: 0.6837
+dev_f1: 0.5430, test_f1: 0.5993
+loss: 0.0063, acc: 0.9997, dev_acc: 0.6488, test_acc: 0.6827
+dev_f1: 0.5271, test_f1: 0.5798
+loss: 0.0033, acc: 0.9978, dev_acc: 0.6355, test_acc: 0.6606
+dev_f1: 0.5702, test_f1: 0.5979
+Epoch 83 took 26.87 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  84
+loss: 0.0025, acc: 0.9972, dev_acc: 0.6578, test_acc: 0.6866
+dev_f1: 0.5332, test_f1: 0.5735
+loss: 0.0039, acc: 0.9984, dev_acc: 0.6488, test_acc: 0.6731
+dev_f1: 0.5803, test_f1: 0.6147
+Epoch 84 took 19.26 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  85
+loss: 0.0100, acc: 0.9987, dev_acc: 0.6676, test_acc: 0.6760
+dev_f1: 0.5421, test_f1: 0.5744
+loss: 0.0226, acc: 0.9994, dev_acc: 0.6604, test_acc: 0.6673
+dev_f1: 0.5752, test_f1: 0.5884
+loss: 0.0090, acc: 0.9984, dev_acc: 0.6542, test_acc: 0.6663
+dev_f1: 0.5465, test_f1: 0.5718
+Epoch 85 took 26.92 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  86
+loss: 0.0011, acc: 0.9984, dev_acc: 0.6515, test_acc: 0.6606
+dev_f1: 0.5778, test_f1: 0.5871
+loss: 0.0505, acc: 0.9994, dev_acc: 0.6604, test_acc: 0.6731
+dev_f1: 0.5683, test_f1: 0.5903
+Epoch 86 took 19.33 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  87
+loss: 0.0053, acc: 1.0000, dev_acc: 0.6551, test_acc: 0.6644
+dev_f1: 0.5712, test_f1: 0.5888
+loss: 0.0021, acc: 0.9991, dev_acc: 0.6533, test_acc: 0.6692
+dev_f1: 0.5572, test_f1: 0.5757
+loss: 0.0966, acc: 0.9994, dev_acc: 0.6480, test_acc: 0.6683
+dev_f1: 0.5500, test_f1: 0.5889
+Epoch 87 took 26.70 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  88
+loss: 0.0909, acc: 0.9994, dev_acc: 0.6480, test_acc: 0.6586
+dev_f1: 0.5417, test_f1: 0.5650
+loss: 0.0334, acc: 0.9991, dev_acc: 0.6533, test_acc: 0.6567
+dev_f1: 0.5588, test_f1: 0.5671
+Epoch 88 took 19.70 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  89
+loss: 0.0038, acc: 0.9994, dev_acc: 0.6622, test_acc: 0.6741
+dev_f1: 0.5524, test_f1: 0.5757
+loss: 0.0265, acc: 0.9984, dev_acc: 0.6435, test_acc: 0.6606
+dev_f1: 0.5730, test_f1: 0.5898
+loss: 0.0017, acc: 0.9997, dev_acc: 0.6604, test_acc: 0.6712
+dev_f1: 0.5749, test_f1: 0.5922
+Epoch 89 took 26.36 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  90
+loss: 0.0080, acc: 0.9965, dev_acc: 0.6720, test_acc: 0.6712
+dev_f1: 0.5703, test_f1: 0.5667
+loss: 0.0011, acc: 0.9981, dev_acc: 0.6711, test_acc: 0.6644
+dev_f1: 0.5799, test_f1: 0.5664
+Epoch 90 took 19.54 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  91
+loss: 0.0128, acc: 0.9959, dev_acc: 0.6462, test_acc: 0.6480
+dev_f1: 0.5852, test_f1: 0.5827
+loss: 0.0068, acc: 0.9981, dev_acc: 0.6604, test_acc: 0.6770
+dev_f1: 0.5637, test_f1: 0.5830
+loss: 0.0374, acc: 0.9962, dev_acc: 0.6480, test_acc: 0.6461
+dev_f1: 0.5801, test_f1: 0.5686
+Epoch 91 took 26.68 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  92
+loss: 0.0703, acc: 0.9984, dev_acc: 0.6586, test_acc: 0.6615
+dev_f1: 0.5556, test_f1: 0.5657
+loss: 0.0179, acc: 0.9984, dev_acc: 0.6578, test_acc: 0.6644
+dev_f1: 0.5705, test_f1: 0.5740
+Epoch 92 took 19.46 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  93
+loss: 0.0127, acc: 0.9997, dev_acc: 0.6480, test_acc: 0.6683
+dev_f1: 0.5537, test_f1: 0.5743
+loss: 0.0020, acc: 0.9994, dev_acc: 0.6533, test_acc: 0.6731
+dev_f1: 0.5459, test_f1: 0.5735
+loss: 0.0224, acc: 0.9994, dev_acc: 0.6408, test_acc: 0.6577
+dev_f1: 0.5645, test_f1: 0.5876
+Epoch 93 took 26.96 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  94
+loss: 0.0034, acc: 0.9987, dev_acc: 0.6604, test_acc: 0.6625
+dev_f1: 0.5555, test_f1: 0.5586
+loss: 0.0047, acc: 0.9997, dev_acc: 0.6426, test_acc: 0.6692
+dev_f1: 0.5548, test_f1: 0.5819
+Epoch 94 took 19.17 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  95
+loss: 0.0306, acc: 0.9981, dev_acc: 0.6399, test_acc: 0.6538
+dev_f1: 0.5359, test_f1: 0.5574
+loss: 0.0035, acc: 0.9987, dev_acc: 0.6408, test_acc: 0.6451
+dev_f1: 0.5695, test_f1: 0.5753
+loss: 0.0018, acc: 0.9987, dev_acc: 0.6578, test_acc: 0.6586
+dev_f1: 0.5586, test_f1: 0.5643
+Epoch 95 took 26.90 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  96
+loss: 0.0207, acc: 0.9991, dev_acc: 0.6631, test_acc: 0.6673
+dev_f1: 0.5640, test_f1: 0.5694
+loss: 0.0007, acc: 0.9997, dev_acc: 0.6613, test_acc: 0.6422
+dev_f1: 0.5921, test_f1: 0.5734
+Epoch 96 took 19.43 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  97
+loss: 0.0016, acc: 1.0000, dev_acc: 0.6560, test_acc: 0.6538
+dev_f1: 0.5772, test_f1: 0.5739
+loss: 0.0007, acc: 1.0000, dev_acc: 0.6613, test_acc: 0.6596
+dev_f1: 0.5698, test_f1: 0.5737
+loss: 0.0006, acc: 1.0000, dev_acc: 0.6497, test_acc: 0.6635
+dev_f1: 0.5631, test_f1: 0.5817
+Epoch 97 took 26.55 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  98
+loss: 0.0140, acc: 1.0000, dev_acc: 0.6515, test_acc: 0.6683
+dev_f1: 0.5839, test_f1: 0.6085
+loss: 0.0038, acc: 1.0000, dev_acc: 0.6524, test_acc: 0.6673
+dev_f1: 0.5749, test_f1: 0.5947
+Epoch 98 took 19.68 seconds
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  99
+loss: 0.0001, acc: 1.0000, dev_acc: 0.6613, test_acc: 0.6683
+dev_f1: 0.5774, test_f1: 0.5875
+loss: 0.0017, acc: 1.0000, dev_acc: 0.6595, test_acc: 0.6644
+dev_f1: 0.5844, test_f1: 0.5919
+loss: 0.0060, acc: 1.0000, dev_acc: 0.6586, test_acc: 0.6692
+dev_f1: 0.5717, test_f1: 0.5907
+Epoch 99 took 26.39 seconds
+max_dev_acc: 0.6907308377896613, test_acc: 0.6904532304725168
+dev_p: 0.6433490408084436, dev_r: 0.5732553040939674, dev_f1: 0.5945902458831956, test_p: 0.6569703339735762, test_r: 0.5755161797307471, test_f1: 0.6021699681787359
+Total training time: 2316.22 seconds
