@@ -1,0 +1,47 @@
+************no tfn layer************
+> training arguments:
+>>> rand_seed: 25
+>>> model_name: mmfusion
+>>> dataset: mvsa-mts-100
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f0eb4f913a0>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 100
+>>> batch_size: 16
+>>> log_step: 32
+>>> logdir: log
+>>> embed_dim: 100
+>>> hidden_dim: 100
+>>> max_seq_len: 40
+>>> polarities_dim: 3
+>>> hops: 3
+>>> att_file: ./att_file/
+>>> pred_file: ./pred_file/
+>>> clip_grad: 5.0
+>>> path_image: ../../Datasets/MVSA-Modified/images-indexed
+>>> crop_size: 224
+>>> fine_tune_cnn: False
+>>> att_mode: vis_concat_attimg_gate
+>>> resnet_root: ../util_models/resnet
+>>> checkpoint: ./checkpoint/
+>>> load_check_point: False
+>>> load_opt: False
+>>> tfn: False
+>>> model_class: <class 'models.mmfusion.MMFUSION'>
+>>> inputs_cols: ['text_indices']
+>>> device: cuda
+Preparing mvsa-mts-100 dataset...
+loading word vectors...
+building embedding_matrix: 100_mvsa-mts-100_embedding_matrix.dat
+--------------../../Datasets/MVSA-Modified/mvsa-mts-100/train.tsv---------------
+The number of problematic samples: 5
+--------------../../Datasets/MVSA-Modified/mvsa-mts-100/val.tsv---------------
+The number of problematic samples: 1
+--------------../../Datasets/MVSA-Modified/mvsa-mts-100/test.tsv---------------
+The number of problematic samples: 1
+building model
+n_trainable_params: 326403, n_nontrainable_params: 79100
+parameters only include text parts without word embeddings
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  0

@@ -20,6 +20,8 @@ from models.mmfusion import MMFUSION
 import numpy as np
 from sklearn.metrics import precision_recall_fscore_support
 
+
+
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # This function calculates macro-averaged precision, recall, and F1-score 
@@ -324,7 +326,7 @@ if __name__ == '__main__':
                                                'text_vis_att_img_gate', 'vis_att_concat', 'vis_att_attimg', \
     'vis_att_img_gate', 'vis_concat_attimg_gate'], default ='vis_concat_attimg_gate', \
     help='different attention mechanism')
-    parser.add_argument('--resnet_root', default='./resnet', help='path the pre-trained cnn models')
+    parser.add_argument('--resnet_root', default='../util_models/resnet', help='path the pre-trained cnn models')
     parser.add_argument('--checkpoint', default='./checkpoint/', help='path to checkpoint prefix')
     parser.add_argument('--load_check_point', action='store_true', help='path of checkpoint')
     parser.add_argument('--load_opt', action='store_true', help='load optimizer from ')
@@ -336,11 +338,11 @@ if __name__ == '__main__':
     n_gpu = torch.cuda.device_count()
 
     if opt.dataset == "mvsa-mts":
-        opt.path_image = "../../Datasets/MVSA-Modified/images"
+        opt.path_image = "../../Datasets/MVSA-Modified/images-indexed"
         opt.max_seq_len = 25
         opt.rand_seed = 28
     elif opt.dataset == "mvsa-mts-100":
-        opt.path_image = "../../Datasets/MVSA-Modified/images"
+        opt.path_image = "../../Datasets/MVSA-Modified/images-indexed"
         opt.max_seq_len = 40
         opt.rand_seed = 25
     else:

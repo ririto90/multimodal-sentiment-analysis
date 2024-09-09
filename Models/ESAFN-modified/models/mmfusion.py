@@ -37,7 +37,7 @@ class MMFUSION(nn.Module):
     def forward(self, inputs, visual_embeds_global):
 
         x = inputs[0]  # Assuming the entire text sequence is provided as a single input
-        ori_x_len = torch.sum(x != 0, dim=-1)
+        ori_x_len = torch.sum(x != 0, dim=-1).cpu()
 
         # Embed the text input
         x = self.embed(x)

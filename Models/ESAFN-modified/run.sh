@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-for d in 'mvsa-mts-100' # 'mvsa-m' 'mvsa-m-100'
+for d in 'mvsa-mts' # 'mvsa-m' 'mvsa-m-100'
 do
     for k in 'mmfusion' # 'mmfusion'
     do

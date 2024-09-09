@@ -1,0 +1,26 @@
+/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN-modified/data_utils.py:55: ResourceWarning: unclosed file <_io.TextIOWrapper name='../util_models/glove.twitter.27B/glove.twitter.27B.100d.txt' mode='r' encoding='utf-8'>
+  word_vec = load_word_vec(fname, word2idx=word2idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN-modified/data_utils.py:69: ResourceWarning: unclosed file <_io.BufferedWriter name='100_mvsa-mts_embedding_matrix.dat'>
+  pickle.dump(embedding_matrix, open(embedding_matrix_file_name, 'wb'))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN-modified/data_utils.py:223: ResourceWarning: unclosed file <_io.BufferedReader name='../../Datasets/MVSA-Modified/images-indexed/12244.jpg'>
+  image = image_process(image_path_fail, transform)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN-modified/train.py", line 386, in <module>
+    ins = Instructor(opt)
+          ^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/ESAFN-modified/train.py", line 81, in __init__
+    net.load_state_dict(torch.load(os.path.join(opt.resnet_root, 'resnet152.pth')))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torch/serialization.py", line 986, in load
+    with _open_file_like(f, 'rb') as opened_file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torch/serialization.py", line 435, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-ml-x86_64-24071101/.spack-env/view/lib/python3.11/site-packages/torch/serialization.py", line 416, in __init__
+    super().__init__(open(name, mode))
+                     ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './resnet/resnet152.pth'

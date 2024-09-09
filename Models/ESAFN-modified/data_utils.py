@@ -10,6 +10,9 @@ from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
 
+def print_device(var, var_name):
+    print(f"{var_name} is on device: {var.device}")
+
 def load_word_vec(path, word2idx=None):
   
 	# file input (fin)
@@ -49,7 +52,7 @@ def build_embedding_matrix(word2idx, embed_dim, type):
 		
 		# Set the file path for the word vectors based on the embedding dimension
 		# The file contains pre-trained word vectors like GloVe
-		fname = './glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
+		fname = '../util_models/glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
 		
 		# Load the word vectors from the file, filtering for the words in word2idx
 		word_vec = load_word_vec(fname, word2idx=word2idx)
@@ -66,7 +69,10 @@ def build_embedding_matrix(word2idx, embed_dim, type):
 				embedding_matrix[i] = vec
 		
 		# Save the embedding matrix to a file using pickle for later use
-		pickle.dump(embedding_matrix, open(embedding_matrix_file_name, 'wb'))
+		# pickle.dump(embedding_matrix, open(embedding_matrix_file_name, 'wb'))
+  
+		with open(embedding_matrix_file_name, 'wb') as f:
+			pickle.dump(embedding_matrix, f)
 		
 	return embedding_matrix
 
