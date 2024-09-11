@@ -1,0 +1,75 @@
+************no tfn layer************
+> training arguments:
+>>> rand_seed: 28
+>>> model_name: mmfusion
+>>> dataset: mvsa-mts
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f441d2b1300>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 100
+>>> batch_size: 16
+>>> log_step: 32
+>>> logdir: log
+>>> embed_dim: 100
+>>> hidden_dim: 100
+>>> max_seq_len: 25
+>>> polarities_dim: 3
+>>> hops: 3
+>>> att_file: ./att_file/
+>>> pred_file: ./pred_file/
+>>> clip_grad: 5.0
+>>> path_image: ../../Datasets/MVSA-Modified/images-indexed
+>>> crop_size: 224
+>>> fine_tune_cnn: False
+>>> att_mode: vis_concat_attimg_gate
+>>> resnet_root: ../util_models/resnet
+>>> checkpoint: ./checkpoint/
+>>> load_check_point: False
+>>> load_opt: False
+>>> tfn: False
+>>> model_class: <class 'models.mmfusion.MMFUSION'>
+>>> inputs_cols: ['text_indices']
+>>> device: cuda
+Preparing mvsa-mts dataset...
+loading word vectors...
+building embedding_matrix: 100_mvsa-mts_embedding_matrix.dat
+--------------../../Datasets/MVSA-Modified/mvsa-mts/train.tsv---------------
+The number of problematic samples: 402
+--------------../../Datasets/MVSA-Modified/mvsa-mts/val.tsv---------------
+The number of problematic samples: 136
+--------------../../Datasets/MVSA-Modified/mvsa-mts/test.tsv---------------
+The number of problematic samples: 142
+building model
+n_trainable_params: 326403, n_nontrainable_params: 5195200
+parameters only include text parts without word embeddings
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch:  0
+loss: 1.7763, acc: 0.5419, dev_acc: 0.5367, test_acc: 0.5344
+dev_f1: 0.3560, test_f1: 0.3524
+loss: 1.0817, acc: 0.5406, dev_acc: 0.5349, test_acc: 0.5462
+dev_f1: 0.2564, test_f1: 0.2636
+loss: 1.1495, acc: 0.5477, dev_acc: 0.5242, test_acc: 0.5393
+dev_f1: 0.3501, test_f1: 0.3617
+loss: 1.7975, acc: 0.5527, dev_acc: 0.5648, test_acc: 0.5520
+dev_f1: 0.3911, test_f1: 0.3805
+loss: 0.9632, acc: 0.5483, dev_acc: 0.5406, test_acc: 0.5492
+dev_f1: 0.3391, test_f1: 0.3453
+loss: 1.1441, acc: 0.5161, dev_acc: 0.5212, test_acc: 0.5079
+dev_f1: 0.3628, test_f1: 0.3507
+loss: 1.1733, acc: 0.5548, dev_acc: 0.5597, test_acc: 0.5398
+dev_f1: 0.3865, test_f1: 0.3739
+loss: 1.0424, acc: 0.5321, dev_acc: 0.5196, test_acc: 0.5138
+dev_f1: 0.3546, test_f1: 0.3513
+loss: 1.0416, acc: 0.5835, dev_acc: 0.5673, test_acc: 0.5681
+dev_f1: 0.3900, test_f1: 0.3911
+loss: 0.7208, acc: 0.5353, dev_acc: 0.5311, test_acc: 0.5406
+dev_f1: 0.2364, test_f1: 0.2409
+loss: 0.8106, acc: 0.5717, dev_acc: 0.5625, test_acc: 0.5707
+dev_f1: 0.3267, test_f1: 0.3286
+loss: 1.0280, acc: 0.5889, dev_acc: 0.5668, test_acc: 0.5735
+dev_f1: 0.3763, test_f1: 0.3856
+loss: 0.8040, acc: 0.5810, dev_acc: 0.5645, test_acc: 0.5791
+dev_f1: 0.4526, test_f1: 0.4846
+loss: 0.8090, acc: 0.6022, dev_acc: 0.5719, test_acc: 0.5842
+dev_f1: 0.3853, test_f1: 0.3847
