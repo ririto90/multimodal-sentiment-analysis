@@ -63,11 +63,11 @@ class Attention2(nn.Module):
             kxx = torch.unsqueeze(kx, dim=1).expand(-1, q_len, -1, -1)
             qxx = torch.unsqueeze(qx, dim=2).expand(-1, -1, k_len, -1)
             kq = torch.cat((kxx, qxx), dim=-1)  # (n_head*?, q_len, k_len, hidden_dim*2)
-            score = F.tanh(torch.matmul(kq, self.weight).squeeze(dim=-1))
+            score = torch.tanh(torch.matmul(kq, self.weight).squeeze(dim=-1))
         elif self.score_function == 'bi_linear':
             qw = torch.matmul(qx, self.weight)
             kt = kx.permute(0, 2, 1)
-            score = F.tanh(torch.bmm(qw, kt))
+            score = torch.tanh(torch.bmm(qw, kt))
         else:
             raise RuntimeError('invalid score_function')
         score = F.softmax(score, dim=-1)

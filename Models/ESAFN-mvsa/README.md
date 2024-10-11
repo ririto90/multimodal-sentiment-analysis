@@ -16,6 +16,11 @@ Dec 2, 2019
 
 * PyTorch 1.0.0
 * Python 3.7
+* numpy==1.16.4
+* scikit-learn==0.20.3
+* Pillow==6.2.1
+* torchvision==0.2.1
+
 
 
 ## Download tweet images and set up image path

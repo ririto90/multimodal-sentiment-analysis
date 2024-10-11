@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- used for returning attention weights
+# -*- coding: utf-8 -*-
 # file: attention.py
 # author: jianfei yu <jyu5@snapchat.com>
 # Copyright (C) 2018. All Rights Reserved.
@@ -10,7 +10,7 @@ import torch.nn.functional as F
 from torch.autograd import Variable
 
 
-class Attention2(nn.Module):
+class Attention(nn.Module):
     def __init__(self, embed_dim, hidden_dim=None, n_head=1, score_function='scaled_dot_product', dropout=0.1):
         ''' Attention Mechanism
         :param embed_dim:
@@ -18,7 +18,7 @@ class Attention2(nn.Module):
         :param n_head: num of head (Multi-Head Attention)
         :param score_function: scaled_dot_product / mlp (concat) / bi_linear (general dot)
         '''
-        super(Attention2, self).__init__()
+        super(Attention, self).__init__()
         if hidden_dim is None:
             hidden_dim = embed_dim // n_head
         self.embed_dim = embed_dim
@@ -63,11 +63,11 @@ class Attention2(nn.Module):
             kxx = torch.unsqueeze(kx, dim=1).expand(-1, q_len, -1, -1)
             qxx = torch.unsqueeze(qx, dim=2).expand(-1, -1, k_len, -1)
             kq = torch.cat((kxx, qxx), dim=-1)  # (n_head*?, q_len, k_len, hidden_dim*2)
-            score = F.tanh(torch.matmul(kq, self.weight).squeeze(dim=-1))
+            score = torch.tanh(torch.matmul(kq, self.weight).squeeze(dim=-1))
         elif self.score_function == 'bi_linear':
             qw = torch.matmul(qx, self.weight)
             kt = kx.permute(0, 2, 1)
-            score = F.tanh(torch.bmm(qw, kt))
+            score = torch.tanh(torch.bmm(qw, kt))
         else:
             raise RuntimeError('invalid score_function')
         score = F.softmax(score, dim=-1)
@@ -92,10 +92,10 @@ class Attention2(nn.Module):
         output = torch.cat(torch.split(output, mb_size, dim=0), dim=-1)  # (?, k_len, n_head*hidden_dim)
         output = self.proj(output)  # (?, k_len, embed_dim)
         output = self.dropout(output)
-        return output,attentions
+        return output
 
 
-class SelfAttention(Attention2):
+class SelfAttention(Attention):
     '''q is a parameter'''
     def __init__(self, embed_dim, hidden_dim=None, n_head=1, score_function='scaled_dot_product', q_len=1, dropout=0.1):
         super(SelfAttention, self).__init__(embed_dim, hidden_dim, n_head, score_function, dropout)
