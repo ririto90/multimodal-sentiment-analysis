@@ -83,7 +83,7 @@ cat <<EOT > ${TEMP_SLURM_SCRIPT}
 #SBATCH --job-name=${MODEL_NAME}    # Name of your job
 #SBATCH --account=multisass         # Your Slurm account
 #SBATCH --partition=tier3           # Run on tier3
-#SBATCH --time=0-08:00:00           # 4 hours time limit
+#SBATCH --time=1-00:00:00           # 4 hours time limit
 #SBATCH --nodes=1                   # # of nodes
 #SBATCH --ntasks=1                  # 1 task (i.e. process)
 #SBATCH --mem=32g                   # Increase RAM to 16GB
@@ -92,16 +92,19 @@ cat <<EOT > ${TEMP_SLURM_SCRIPT}
 #SBATCH --error=${ERROR_PATH}       # Error file
 
 # Load necessary environment
-spack env activate default-ml-x86_64-24071101
+spack env activate default-nlp-x86_64-24072401
 
 # Run the main script
-cd ${REPO_DIR}/Models/${MODEL_NAME}/
+cd ${REPO_DIR}/
+
 stdbuf -oL -eL bash ${REPO_DIR}/Models/${MODEL_NAME}/run.sh
 EOT
 
 # Print the contents of the temporary Slurm script
 echo "Temporary Slurm script content:"
 cat ${TEMP_SLURM_SCRIPT}
+
+# Models/${MODEL_NAME}/
 
 # Make the temporary script executable
 chmod +x ${TEMP_SLURM_SCRIPT}

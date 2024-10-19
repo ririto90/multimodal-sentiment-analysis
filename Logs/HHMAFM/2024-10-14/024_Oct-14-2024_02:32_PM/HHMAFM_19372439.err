@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor_tests/train2_test.py", line 238, in <module>
+    ins = Instructor(opt)
+          ^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor_tests/train2_test.py", line 43, in __init__
+    mvsa_dataset = MVSADatasetReader(transform, dataset=opt.dataset, max_seq_len=opt.max_seq_len, path_image=opt.path_image)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/util_tests/data_utils_test.py", line 385, in __init__
+    train_data, train_classes = MVSADatasetReader.__read_data__(fname[dataset]['train'], tokenizer, path_image, transform, max_seq_len)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/util_tests/data_utils_test.py", line 297, in __read_data__
+    topic_list = extract_topics(raw_text)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/util_tests/data_utils_test.py", line 76, in extract_topics
+    lda_model = LdaModel(corpus, num_topics=1, id2word=dictionary, random_state=42)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/gensim/models/ldamodel.py", line 448, in __init__
+    raise ValueError("cannot compute LDA over an empty collection (no terms)")
+ValueError: cannot compute LDA over an empty collection (no terms)

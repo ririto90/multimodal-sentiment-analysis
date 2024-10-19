@@ -375,7 +375,9 @@ if __name__ == '__main__':
         torch.cuda.manual_seed_all(opt.rand_seed)
 
     model_classes = {
-        'mmfusion': MMFUSION
+        'mmfusion': MMFUSION,
+        'cmhafusion': CMHAFUSION,
+        'mfcchfusion': MFCCHFUSION,
     }
     input_colses = {
         'mmfusion': ['text_indices']

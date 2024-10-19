@@ -1,0 +1,24 @@
+model.safetensors:   0%|          | 0.00/499M [00:00<?, ?B/s]model.safetensors:   2%|▏         | 10.5M/499M [00:00<00:04, 97.9MB/s]model.safetensors:  13%|█▎        | 62.9M/499M [00:00<00:01, 337MB/s] model.safetensors:  23%|██▎       | 115M/499M [00:00<00:00, 420MB/s] model.safetensors:  34%|███▎      | 168M/499M [00:00<00:00, 431MB/s]model.safetensors:  44%|████▍     | 220M/499M [00:00<00:00, 438MB/s]model.safetensors:  55%|█████▍    | 273M/499M [00:00<00:00, 453MB/s]model.safetensors:  65%|██████▌   | 325M/499M [00:00<00:00, 462MB/s]model.safetensors:  76%|███████▌  | 377M/499M [00:00<00:00, 464MB/s]model.safetensors:  86%|████████▌ | 430M/499M [00:00<00:00, 476MB/s]model.safetensors:  97%|█████████▋| 482M/499M [00:01<00:00, 476MB/s]model.safetensors: 100%|██████████| 499M/499M [00:01<00:00, 443MB/s]
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-base and are newly initialized: ['roberta.pooler.dense.weight', 'roberta.pooler.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=ResNet152_Weights.IMAGENET1K_V1`. You can also use `weights=ResNet152_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/resnet152-394f9c45.pth" to /home/rgg2706/.cache/torch/hub/checkpoints/resnet152-394f9c45.pth
+  0%|          | 0.00/230M [00:00<?, ?B/s]  3%|▎         | 7.89M/230M [00:00<00:02, 82.7MB/s] 12%|█▏        | 28.7M/230M [00:00<00:01, 162MB/s]  22%|██▏       | 50.0M/230M [00:00<00:00, 190MB/s] 31%|███       | 71.2M/230M [00:00<00:00, 203MB/s] 40%|████      | 92.7M/230M [00:00<00:00, 211MB/s] 50%|████▉     | 115M/230M [00:00<00:00, 219MB/s]  59%|█████▉    | 136M/230M [00:00<00:00, 219MB/s] 69%|██████▊   | 158M/230M [00:00<00:00, 223MB/s] 78%|███████▊  | 180M/230M [00:00<00:00, 224MB/s] 88%|████████▊ | 202M/230M [00:01<00:00, 227MB/s] 97%|█████████▋| 224M/230M [00:01<00:00, 227MB/s]100%|██████████| 230M/230M [00:01<00:00, 214MB/s]
+/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=DenseNet121_Weights.IMAGENET1K_V1`. You can also use `weights=DenseNet121_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/densenet121-a639ec97.pth" to /home/rgg2706/.cache/torch/hub/checkpoints/densenet121-a639ec97.pth
+  0%|          | 0.00/30.8M [00:00<?, ?B/s] 31%|███       | 9.61M/30.8M [00:00<00:00, 101MB/s] 94%|█████████▍| 29.1M/30.8M [00:00<00:00, 162MB/s]100%|██████████| 30.8M/30.8M [00:00<00:00, 156MB/s]
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor_tests/train2_test.py", line 205, in <module>
+    ins = Instructor(opt)
+          ^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor_tests/train2_test.py", line 53, in __init__
+    self.model = opt.model_class(opt).to(device)
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/models/mmfusion.py", line 11, in __init__
+    roberta_text_feature_dim = opt.roberta_text_feature_dim  # e.g., 768
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Namespace' object has no attribute 'roberta_text_feature_dim'

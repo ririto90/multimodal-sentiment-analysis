@@ -4,6 +4,7 @@
 # Copyright (C) 2018. All Rights Reserved.
 
 import os
+import time
 import pickle
 import numpy as np
 from PIL import Image
@@ -68,9 +69,15 @@ def extract_topics(tweet, use_hashtags=True):
         # Preprocess the tweet
         processed_tweet = preprocess_tweet(tweet)
         
+        if len(processed_tweet) < 3:
+            return []
+        
         # Create dictionary and corpus for the tweet
         dictionary = corpora.Dictionary([processed_tweet])
         corpus = [dictionary.doc2bow(processed_tweet)]
+        
+        if not corpus[0]:
+            return []
         
         # Perform LDA on the tweet with 1 topic (since it's just 1 tweet)
         lda_model = LdaModel(corpus, num_topics=1, id2word=dictionary, random_state=42)
@@ -275,9 +282,11 @@ class MVSADatasetReader:
 
   @staticmethod
   def __read_data__(fname, tokenizer, path_img, transform, max_seq_len=35):
-    print('--------------' + fname + '---------------')
+    start_time = time.time()
+    print(f'-------------- Loading {fname} ---------------')
     
-    all_data = []
+    data = []
+    num_classes = set()
     sample_error = 0
     
     with open(fname, 'r', encoding='utf-8', newline='\n', errors='ignore') as fin:
@@ -291,8 +300,12 @@ class MVSADatasetReader:
         sentiment = line_parts[1].strip() # polarity 0-2 (str)
         raw_text = line_parts[2].strip().lower() # text (str)
         
+        # print(image_id, sentiment, raw_text)
+        
         topic_list = extract_topics(raw_text)
         raw_topic = ' '.join(topic_list) # topics (str)
+        
+        num_classes.add(int(sentiment))
         
         # Tokenize and encode using RobertaTokenizer
         encoded_text = tokenizer(
@@ -328,7 +341,7 @@ class MVSADatasetReader:
           image = image_process(image_path_fail, transform)
 
         # Create a data dictionary for this sample
-        data = {
+        sample = {
           'raw_text': raw_text,
           'raw_topic': raw_topic,
           'input_ids_text': encoded_text['input_ids'].squeeze(0),
@@ -339,12 +352,15 @@ class MVSADatasetReader:
           'image': image,
         }
 
-        all_data.append(data)
+        data.append(sample)
+        
+    end_time = time.time()
+    print(f'Time taken to load {fname}: {end_time - start_time:.2f} seconds ({(end_time - start_time) / 60:.2f} minutes)')
 
     print('The number of problematic samples: ' + str(sample_error))
-    return all_data
+    return data, num_classes
 
-  def __init__(self, transform, dataset='mvsa-mts', embed_dim=100, max_seq_len=40, path_image='./images'):
+  def __init__(self, transform, dataset='mvsa-mts', max_seq_len=40, path_image='./images'):
     print("Preparing {0} dataset...".format(dataset))
     
     # Define file paths for the MVSA dataset
@@ -354,7 +370,7 @@ class MVSADatasetReader:
         'dev': 'Datasets/MVSA-MTS/mvsa-mts/val.tsv',
         'test': 'Datasets/MVSA-MTS/mvsa-mts/test.tsv'
       },
-         'mvsa-mts-100': {
+      'mvsa-mts-100': {
         'train': 'Datasets/MVSA-MTS/mvsa-mts-100/train.tsv',
         'dev': 'Datasets/MVSA-MTS/mvsa-mts-100/val.tsv',
         'test': 'Datasets/MVSA-MTS/mvsa-mts-100/test.tsv'
@@ -374,11 +390,33 @@ class MVSADatasetReader:
     # tokenizer = Tokenizer(max_seq_len=max_seq_len)
     # tokenizer.fit_on_text(combined_text.lower())
     
-    # Build the embedding matrix
-    # self.embedding_matrix = build_embedding_matrix(tokenizer.word2idx, embed_dim, dataset
     tokenizer = RobertaTokenizer.from_pretrained('roberta-base')
-    
+
     # Prepare the train, dev, and test datasets
-    self.train_data = MVSADataset(MVSADatasetReader.__read_data__(fname[dataset]['train'], tokenizer, path_image, transform))
-    self.dev_data = MVSADataset(MVSADatasetReader.__read_data__(fname[dataset]['dev'], tokenizer, path_image, transform))
-    self.test_data = MVSADataset(MVSADatasetReader.__read_data__(fname[dataset]['test'], tokenizer, path_image, transform))
+    train_data, train_classes = MVSADatasetReader.__read_data__(fname[dataset]['train'], tokenizer, path_image, transform, max_seq_len)
+    dev_data, dev_classes = MVSADatasetReader.__read_data__(fname[dataset]['dev'], tokenizer, path_image, transform, max_seq_len)
+    test_data, test_classes = MVSADatasetReader.__read_data__(fname[dataset]['test'], tokenizer, path_image, transform, max_seq_len)
+
+    # Store the datasets
+    self.train_data = MVSADataset(train_data)
+    self.dev_data = MVSADataset(dev_data)
+    self.test_data = MVSADataset(test_data)
+
+    # Combine all unique classes from train, dev, and test sets
+    all_unique_classes = train_classes.union(dev_classes).union(test_classes)
+    self.num_classes = len(all_unique_classes)
+    
+    total_training_samples = (
+      len(train_data) +
+      len(dev_data) +
+      len(test_data)
+    )
+    
+    print(f'Total Training Samples: {total_training_samples}')
+
+    # Print the number of samples in each dataset split
+    print(f'Number of Training Samples: {len(train_data)}')
+    print(f'Number of Development Samples: {len(dev_data)}')
+    print(f'Number of Test Samples: {len(test_data)}')
+
+    print(f"Number of unique sentiment classes: {self.num_classes}")
