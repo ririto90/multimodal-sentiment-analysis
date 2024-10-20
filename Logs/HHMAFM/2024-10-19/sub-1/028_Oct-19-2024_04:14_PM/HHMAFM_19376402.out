@@ -1,0 +1,113 @@
+Number of GPUs available: 2
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-19/028_Oct-19-2024_04:14_PM
+/home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-19/028_Oct-19-2024_04:14_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_name: cmhafusion
+>>> dataset: mvsa-mts
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7fa56544da80>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 10
+>>> batch_size: 128
+>>> log_step: 10
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> roberta_text_feature_dim: 768
+>>> roberta_topic_feature_dim: 50
+>>> resnet_feature_dim: 2048
+>>> densenet_feature_dim: 1024
+>>> common_dim: 512
+>>> num_classes: 3
+>>> model_class: <class 'models.cmhafusion.CMHAFUSION'>
+Preparing mvsa-mts dataset...
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/train.tsv: 230.87 seconds (3.85 minutes)
+The number of problematic samples: 402
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/val.tsv: 83.48 seconds (1.39 minutes)
+The number of problematic samples: 136
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/test.tsv: 83.35 seconds (1.39 minutes)
+The number of problematic samples: 142
+Total Training Samples: 19600
+Number of Training Samples: 11760
+Number of Development Samples: 3920
+Number of Test Samples: 3920
+Number of unique sentiment classes: 3
+building model
+Using 2 GPUs
+n_trainable_params: 5228035, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Logged Loss/train: 1.1170178651809692 at step 0
+Batch 0 completed in 3.69 seconds (0.06 minutes)
+max_dev_f1: 0, max_test_f1: 0
+loss: 1.117018, dev_acc: 52.91% (0.529082), dev_f1: 23.07% (0.230675), test_acc: 53.78% (0.537755), test_f1: 23.31% (0.233134)
+tensor([[   0,  179,    5,  ...,    1,    1,    1],
+        [   0,  108,  605,  ...,    1,    1,    1],
+        [   0,  118, 2649,  ...,    1,    1,    1],
+        ...,
+        [   0, 4651,  889,  ...,    1,    1,    1],
+        [   0,  415,   84,  ...,    1,    1,    1],
+        [   0, 6025,   18,  ...,    1,    1,    1]], device='cuda:0')
+tensor([[1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0],
+        ...,
+        [1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0]], device='cuda:0')
+tensor([[    0,  1187,   642,  ...,     1,     1,     1],
+        [    0,   219,  3733,  ...,     1,     1,     1],
+        [    0, 18178, 27171,  ...,     1,     1,     1],
+        ...,
+        [    0,   705, 40601,  ...,     1,     1,     1],
+        [    0, 33175,   438,  ...,     1,     1,     1],
+        [    0,  3865,  3697,  ...,     1,     1,     1]], device='cuda:0')
+tensor([[1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0],
+        ...,
+        [1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0],
+        [1, 1, 1,  ..., 0, 0, 0]], device='cuda:0')
+Logged Loss/train: 1.0713282823562622 at step 1
+Logged Loss/train: 1.0380606651306152 at step 2
+Logged Loss/train: 0.9181194305419922 at step 3
+Logged Loss/train: 1.0358141660690308 at step 4
+Logged Loss/train: 1.0201947689056396 at step 5
+Logged Loss/train: 1.0045698881149292 at step 6
+Logged Loss/train: 1.0045698881149292 at step 7
+Logged Loss/train: 0.965507447719574 at step 8
+Logged Loss/train: 1.0123823881149292 at step 9
+Logged Loss/train: 1.0201948881149292 at step 10
+Batch 10 completed in 1.21 seconds (0.02 minutes)
+loss: 1.020195, dev_acc: 52.91% (0.529082), dev_f1: 23.07% (0.230675), test_acc: 53.78% (0.537755), test_f1: 23.31% (0.233134)
+Logged Loss/train: 1.0280073881149292 at step 11
+Logged Loss/train: 0.996757447719574 at step 12
+Logged Loss/train: 1.0592573881149292 at step 13
+Logged Loss/train: 0.996757447719574 at step 14
+Logged Loss/train: 1.0514448881149292 at step 15
+Logged Loss/train: 1.0045698881149292 at step 16
+Logged Loss/train: 0.981132447719574 at step 17
+Logged Loss/train: 1.0201948881149292 at step 18
+Logged Loss/train: 1.0201948881149292 at step 19
+Logged Loss/train: 1.0670698881149292 at step 20
+Batch 20 completed in 1.21 seconds (0.02 minutes)
+loss: 1.067070, dev_acc: 52.91% (0.529082), dev_f1: 23.07% (0.230675), test_acc: 53.78% (0.537755), test_f1: 23.31% (0.233134)
+Logged Loss/train: 0.996757447719574 at step 21
+Logged Loss/train: 0.965507447719574 at step 22
+Logged Loss/train: 1.0123823881149292 at step 23
+Logged Loss/train: 1.0514448881149292 at step 24
+Logged Loss/train: 1.0358198881149292 at step 25
+Logged Loss/train: 1.0436323881149292 at step 26
+Logged Loss/train: 1.0280073881149292 at step 27
+Logged Loss/train: 1.0201948881149292 at step 28
+Logged Loss/train: 0.965507447719574 at step 29
+Logged Loss/train: 1.0592573881149292 at step 30
+Batch 30 completed in 1.26 seconds (0.02 minutes)
