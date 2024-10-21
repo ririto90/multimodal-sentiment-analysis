@@ -1,0 +1,1084 @@
+Number of GPUs available: 2
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-20/sub-5/003_Oct-20-2024_11:55_PM
+/home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-20/sub-5/003_Oct-20-2024_11:55_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_name: mfcchfusion
+>>> dataset: mvsa-mts
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f5938e5db20>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> num_epoch: 10
+>>> batch_size: 128
+>>> log_step: 30
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> n_head: 8
+>>> roberta_text_feature_dim: 768
+>>> roberta_topic_feature_dim: 50
+>>> resnet_feature_dim: 2048
+>>> densenet_feature_dim: 1024
+>>> common_dim: 512
+>>> num_classes: 3
+>>> model_class: <class 'models.mfcchfusion.MFCCHFUSION'>
+Preparing mvsa-mts dataset...
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/train.tsv: 276.50 seconds (4.61 minutes)
+The number of problematic samples: 402
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/val.tsv: 92.28 seconds (1.54 minutes)
+The number of problematic samples: 136
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/test.tsv: 88.63 seconds (1.48 minutes)
+The number of problematic samples: 142
+Total Training Samples: 19600
+Number of Training Samples: 11760
+Number of Development Samples: 3920
+Number of Test Samples: 3920
+Number of unique sentiment classes: 3
+building model
+Using 2 GPUs
+n_trainable_params: 7600131, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch 0 completed in 4.14 seconds (0.07 minutes)
+max_dev_f1: 0, max_test_f1: 0
+loss: 2.847349, dev_acc: 47.83% (0.478316), dev_f1: 32.23% (0.322269), test_acc: 44.21% (0.442092), test_f1: 30.61% (0.306133)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 66.021622, dev_acc: 22.60% (0.226020), dev_f1: 21.53% (0.215257), test_acc: 17.47% (0.174745), test_f1: 16.16% (0.161639)
+Batch 60 completed in 1.22 seconds (0.02 minutes)
+loss: 12.604080, dev_acc: 51.99% (0.519898), dev_f1: 26.23% (0.262340), test_acc: 53.47% (0.534694), test_f1: 28.80% (0.287950)
+Batch 90 completed in 1.22 seconds (0.02 minutes)
+max_dev_f1: 0.3222688095899805, max_test_f1: 0.30613323597146547
+loss: 9.602826, dev_acc: 49.23% (0.492347), dev_f1: 32.87% (0.328734), test_acc: 49.57% (0.495663), test_f1: 31.63% (0.316292)
+Epoch 0 completed in 307.61 seconds (5.13 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 1.49 seconds (0.02 minutes)
+loss: 19.433456, dev_acc: 43.34% (0.433418), dev_f1: 27.90% (0.279036), test_acc: 42.88% (0.428827), test_f1: 27.48% (0.274763)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+max_dev_f1: 0.328733906717888, max_test_f1: 0.31629173973627805
+loss: 16.676441, dev_acc: 43.95% (0.439541), dev_f1: 33.69% (0.336881), test_acc: 41.35% (0.413520), test_f1: 31.55% (0.315451)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 15.734797, dev_acc: 52.27% (0.522704), dev_f1: 25.51% (0.255131), test_acc: 53.72% (0.537245), test_f1: 26.48% (0.264791)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 10.835633, dev_acc: 35.33% (0.353316), dev_f1: 26.79% (0.267889), test_acc: 34.77% (0.347704), test_f1: 29.80% (0.297969)
+Epoch 1 completed in 307.99 seconds (5.13 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 5.306457, dev_acc: 48.34% (0.483418), dev_f1: 32.26% (0.322551), test_acc: 47.73% (0.477296), test_f1: 35.90% (0.358993)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 12.062453, dev_acc: 50.59% (0.505867), dev_f1: 25.13% (0.251268), test_acc: 52.24% (0.522449), test_f1: 25.94% (0.259413)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 7.506544, dev_acc: 50.36% (0.503571), dev_f1: 30.81% (0.308051), test_acc: 51.22% (0.512245), test_f1: 27.41% (0.274112)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 3.185179, dev_acc: 49.18% (0.491837), dev_f1: 30.26% (0.302554), test_acc: 49.80% (0.497959), test_f1: 30.99% (0.309886)
+Epoch 2 completed in 310.14 seconds (5.17 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 3.659256, dev_acc: 49.18% (0.491837), dev_f1: 30.26% (0.302554), test_acc: 51.12% (0.511224), test_f1: 30.67% (0.306708)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 6.966491, dev_acc: 41.05% (0.410459), dev_f1: 26.99% (0.269877), test_acc: 41.84% (0.418367), test_f1: 29.62% (0.296211)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 1.107926, dev_acc: 49.06% (0.490561), dev_f1: 32.23% (0.322333), test_acc: 50.31% (0.503061), test_f1: 32.40% (0.323998)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 5.049823, dev_acc: 41.53% (0.415306), dev_f1: 25.72% (0.257179), test_acc: 42.02% (0.420153), test_f1: 26.43% (0.264262)
+Epoch 3 completed in 310.28 seconds (5.17 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 2.302288, dev_acc: 41.86% (0.418622), dev_f1: 26.88% (0.268777), test_acc: 42.19% (0.421939), test_f1: 26.28% (0.262828)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 3.181744, dev_acc: 40.99% (0.409949), dev_f1: 32.00% (0.319996), test_acc: 42.04% (0.420408), test_f1: 32.87% (0.328714)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 1.729113, dev_acc: 40.56% (0.405612), dev_f1: 27.41% (0.274080), test_acc: 41.86% (0.418622), test_f1: 28.29% (0.282944)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 2.935349, dev_acc: 42.14% (0.421429), dev_f1: 25.54% (0.255406), test_acc: 40.33% (0.403316), test_f1: 23.64% (0.236412)
+Epoch 4 completed in 311.19 seconds (5.19 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 1.060351, dev_acc: 49.95% (0.499490), dev_f1: 32.99% (0.329866), test_acc: 45.66% (0.456633), test_f1: 33.16% (0.331624)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 5.106011, dev_acc: 49.31% (0.493112), dev_f1: 28.56% (0.285559), test_acc: 48.90% (0.489031), test_f1: 29.81% (0.298149)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 10.314571, dev_acc: 41.94% (0.419388), dev_f1: 24.44% (0.244411), test_acc: 35.38% (0.353827), test_f1: 22.67% (0.226668)
+Batch 90 completed in 1.30 seconds (0.02 minutes)
+loss: 6.333324, dev_acc: 41.43% (0.414286), dev_f1: 24.04% (0.240446), test_acc: 40.77% (0.407653), test_f1: 26.29% (0.262867)
+Epoch 5 completed in 310.67 seconds (5.18 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 1.662587, dev_acc: 44.77% (0.447704), dev_f1: 25.43% (0.254328), test_acc: 48.47% (0.484694), test_f1: 24.88% (0.248769)
+Batch 30 completed in 1.24 seconds (0.02 minutes)
+loss: 5.540908, dev_acc: 30.05% (0.300510), dev_f1: 22.01% (0.220137), test_acc: 26.79% (0.267857), test_f1: 21.15% (0.211523)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 3.479240, dev_acc: 50.23% (0.502296), dev_f1: 28.79% (0.287911), test_acc: 52.04% (0.520408), test_f1: 27.08% (0.270752)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 2.308019, dev_acc: 43.04% (0.430357), dev_f1: 33.06% (0.330609), test_acc: 43.90% (0.439031), test_f1: 32.90% (0.328984)
+Epoch 6 completed in 310.09 seconds (5.17 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 1.128400, dev_acc: 43.67% (0.436735), dev_f1: 32.90% (0.328988), test_acc: 43.04% (0.430357), test_f1: 31.79% (0.317866)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 2.747665, dev_acc: 47.76% (0.477551), dev_f1: 31.08% (0.310758), test_acc: 51.02% (0.510204), test_f1: 30.21% (0.302087)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 1.176220, dev_acc: 40.15% (0.401531), dev_f1: 20.61% (0.206085), test_acc: 38.21% (0.382143), test_f1: 19.45% (0.194507)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 3.786096, dev_acc: 42.19% (0.421939), dev_f1: 32.17% (0.321660), test_acc: 42.96% (0.429592), test_f1: 33.76% (0.337634)
+Epoch 7 completed in 310.56 seconds (5.18 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 9.766316, dev_acc: 35.18% (0.351786), dev_f1: 20.97% (0.209733), test_acc: 32.04% (0.320408), test_f1: 21.12% (0.211212)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 7.903902, dev_acc: 52.37% (0.523724), dev_f1: 25.66% (0.256641), test_acc: 51.84% (0.518367), test_f1: 27.98% (0.279830)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 5.801054, dev_acc: 48.09% (0.480867), dev_f1: 32.40% (0.324019), test_acc: 47.60% (0.476020), test_f1: 31.97% (0.319694)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 3.030002, dev_acc: 41.96% (0.419643), dev_f1: 25.45% (0.254469), test_acc: 39.62% (0.396173), test_f1: 23.38% (0.233788)
+Epoch 8 completed in 310.84 seconds (5.18 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+Batch 0 completed in 1.23 seconds (0.02 minutes)
+loss: 4.795097, dev_acc: 41.38% (0.413776), dev_f1: 23.52% (0.235178), test_acc: 39.21% (0.392092), test_f1: 21.67% (0.216682)
+Batch 30 completed in 1.23 seconds (0.02 minutes)
+loss: 3.558327, dev_acc: 35.54% (0.355357), dev_f1: 27.70% (0.276955), test_acc: 34.95% (0.349490), test_f1: 29.06% (0.290567)
+Batch 60 completed in 1.23 seconds (0.02 minutes)
+loss: 3.604622, dev_acc: 41.73% (0.417347), dev_f1: 31.31% (0.313133), test_acc: 43.11% (0.431122), test_f1: 32.83% (0.328311)
+Batch 90 completed in 1.23 seconds (0.02 minutes)
+loss: 2.830129, dev_acc: 45.23% (0.452296), dev_f1: 33.47% (0.334693), test_acc: 47.09% (0.470918), test_f1: 33.43% (0.334318)
+Epoch 9 completed in 310.53 seconds (5.18 minutes)
+Max dev F1: 33.69% (0.336881), Max test F1: 31.55% (0.315451)
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train', 'Loss/val'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Step: 0, Loss: 2.8473494052886963
+Step: 0, Loss: 4.520018577575684
+Step: 0, Loss: 26.36126708984375
+Step: 0, Loss: 24.06351089477539
+Step: 0, Loss: 11.90849781036377
+Step: 0, Loss: 30.701576232910156
+Step: 0, Loss: 27.212722778320312
+Step: 0, Loss: 35.14862060546875
+Step: 0, Loss: 32.894710540771484
+Step: 0, Loss: 15.461264610290527
+Step: 0, Loss: 25.79549789428711
+Step: 0, Loss: 50.1512451171875
+Step: 0, Loss: 31.62554931640625
+Step: 0, Loss: 43.864322662353516
+Step: 0, Loss: 17.822280883789062
+Step: 0, Loss: 4.672710418701172
+Step: 0, Loss: 43.36818313598633
+Step: 0, Loss: 58.479129791259766
+Step: 0, Loss: 26.496234893798828
+Step: 0, Loss: 31.997106552124023
+Step: 0, Loss: 18.66780662536621
+Step: 0, Loss: 26.94792938232422
+Step: 0, Loss: 20.63705825805664
+Step: 0, Loss: 10.518953323364258
+Step: 0, Loss: 17.2625789642334
+Step: 0, Loss: 21.06295394897461
+Step: 0, Loss: 19.18535804748535
+Step: 0, Loss: 33.35932159423828
+Step: 0, Loss: 57.46874237060547
+Step: 0, Loss: 13.282591819763184
+Step: 0, Loss: 66.02162170410156
+Step: 0, Loss: 33.50339889526367
+Step: 0, Loss: 27.320697784423828
+Step: 0, Loss: 10.080419540405273
+Step: 0, Loss: 12.189238548278809
+Step: 0, Loss: 6.263553619384766
+Step: 0, Loss: 16.81714630126953
+Step: 0, Loss: 15.928603172302246
+Step: 0, Loss: 8.266595840454102
+Step: 0, Loss: 15.633271217346191
+Step: 0, Loss: 19.845205307006836
+Step: 0, Loss: 14.825299263000488
+Step: 0, Loss: 25.925966262817383
+Step: 0, Loss: 17.4086856842041
+Step: 0, Loss: 11.837249755859375
+Step: 0, Loss: 22.838899612426758
+Step: 0, Loss: 16.759170532226562
+Step: 0, Loss: 14.437772750854492
+Step: 0, Loss: 44.00665283203125
+Step: 0, Loss: 12.707263946533203
+Step: 0, Loss: 14.030606269836426
+Step: 0, Loss: 14.360065460205078
+Step: 0, Loss: 11.139228820800781
+Step: 0, Loss: 13.350966453552246
+Step: 0, Loss: 6.400269508361816
+Step: 0, Loss: 15.644889831542969
+Step: 0, Loss: 9.842177391052246
+Step: 0, Loss: 23.28837776184082
+Step: 0, Loss: 14.286883354187012
+Step: 0, Loss: 22.617107391357422
+Step: 0, Loss: 12.604080200195312
+Step: 0, Loss: 21.61623764038086
+Step: 0, Loss: 18.5997257232666
+Step: 0, Loss: 14.160177230834961
+Step: 0, Loss: 20.827165603637695
+Step: 0, Loss: 25.41422462463379
+Step: 0, Loss: 13.413297653198242
+Step: 0, Loss: 18.383939743041992
+Step: 0, Loss: 23.562610626220703
+Step: 0, Loss: 6.245713710784912
+Step: 0, Loss: 7.426151275634766
+Step: 0, Loss: 14.909841537475586
+Step: 0, Loss: 7.697567939758301
+Step: 0, Loss: 2.7396745681762695
+Step: 0, Loss: 14.248696327209473
+Step: 0, Loss: 10.6380033493042
+Step: 0, Loss: 7.400995254516602
+Step: 0, Loss: 4.230217456817627
+Step: 0, Loss: 14.774805068969727
+Step: 0, Loss: 26.553796768188477
+Step: 0, Loss: 6.711427688598633
+Step: 0, Loss: 5.300239562988281
+Step: 0, Loss: 17.670063018798828
+Step: 0, Loss: 21.165721893310547
+Step: 0, Loss: 15.22065544128418
+Step: 0, Loss: 17.529726028442383
+Step: 0, Loss: 9.607231140136719
+Step: 0, Loss: 15.251211166381836
+Step: 0, Loss: 7.40474796295166
+Step: 0, Loss: 8.264503479003906
+Step: 0, Loss: 9.602826118469238
+Step: 0, Loss: 17.932401657104492
+Step: 1, Loss: 19.433456420898438
+Step: 1, Loss: 3.8875579833984375
+Step: 1, Loss: 19.562789916992188
+Step: 1, Loss: 5.504459381103516
+Step: 1, Loss: 12.797478675842285
+Step: 1, Loss: 9.28112506866455
+Step: 1, Loss: 5.287210464477539
+Step: 1, Loss: 18.75971031188965
+Step: 1, Loss: 4.576436996459961
+Step: 1, Loss: 7.365603446960449
+Step: 1, Loss: 10.988024711608887
+Step: 1, Loss: 12.150044441223145
+Step: 1, Loss: 17.1964168548584
+Step: 1, Loss: 3.012573719024658
+Step: 1, Loss: 8.082554817199707
+Step: 1, Loss: 14.73514461517334
+Step: 1, Loss: 15.725863456726074
+Step: 1, Loss: 14.612524032592773
+Step: 1, Loss: 3.599587917327881
+Step: 1, Loss: 8.815238952636719
+Step: 1, Loss: 7.118201732635498
+Step: 1, Loss: 12.907115936279297
+Step: 1, Loss: 12.327234268188477
+Step: 1, Loss: 6.326300144195557
+Step: 1, Loss: 12.532024383544922
+Step: 1, Loss: 6.460216999053955
+Step: 1, Loss: 12.777583122253418
+Step: 1, Loss: 6.6791672706604
+Step: 1, Loss: 6.072347164154053
+Step: 1, Loss: 9.264398574829102
+Step: 1, Loss: 16.676441192626953
+Step: 1, Loss: 6.078484058380127
+Step: 1, Loss: 9.32773208618164
+Step: 1, Loss: 4.32561731338501
+Step: 1, Loss: 4.429006099700928
+Step: 1, Loss: 13.084128379821777
+Step: 1, Loss: 15.312276840209961
+Step: 1, Loss: 16.889127731323242
+Step: 1, Loss: 4.207367897033691
+Step: 1, Loss: 10.013107299804688
+Step: 1, Loss: 15.831866264343262
+Step: 1, Loss: 16.204023361206055
+Step: 1, Loss: 11.722020149230957
+Step: 1, Loss: 5.5612874031066895
+Step: 1, Loss: 7.311830520629883
+Step: 1, Loss: 4.818903923034668
+Step: 1, Loss: 5.94389009475708
+Step: 1, Loss: 8.3721923828125
+Step: 1, Loss: 4.619203567504883
+Step: 1, Loss: 7.7319231033325195
+Step: 1, Loss: 6.741039276123047
+Step: 1, Loss: 12.01933479309082
+Step: 1, Loss: 8.086328506469727
+Step: 1, Loss: 12.670039176940918
+Step: 1, Loss: 7.909290790557861
+Step: 1, Loss: 5.944770812988281
+Step: 1, Loss: 7.012526035308838
+Step: 1, Loss: 15.303007125854492
+Step: 1, Loss: 7.914718151092529
+Step: 1, Loss: 8.807531356811523
+Step: 1, Loss: 15.734796524047852
+Step: 1, Loss: 10.139102935791016
+Step: 1, Loss: 3.7231314182281494
+Step: 1, Loss: 6.228792667388916
+Step: 1, Loss: 6.452147006988525
+Step: 1, Loss: 7.025594234466553
+Step: 1, Loss: 6.749547004699707
+Step: 1, Loss: 5.857781410217285
+Step: 1, Loss: 3.8773107528686523
+Step: 1, Loss: 9.358439445495605
+Step: 1, Loss: 7.904934406280518
+Step: 1, Loss: 11.935564041137695
+Step: 1, Loss: 5.785183429718018
+Step: 1, Loss: 10.248376846313477
+Step: 1, Loss: 12.09422779083252
+Step: 1, Loss: 9.053854942321777
+Step: 1, Loss: 6.643248558044434
+Step: 1, Loss: 15.053844451904297
+Step: 1, Loss: 10.082355499267578
+Step: 1, Loss: 5.864089488983154
+Step: 1, Loss: 4.276571750640869
+Step: 1, Loss: 6.317608833312988
+Step: 1, Loss: 8.15150260925293
+Step: 1, Loss: 5.6163458824157715
+Step: 1, Loss: 1.383506417274475
+Step: 1, Loss: 4.520472526550293
+Step: 1, Loss: 6.624256134033203
+Step: 1, Loss: 5.6182451248168945
+Step: 1, Loss: 4.424442291259766
+Step: 1, Loss: 2.314728021621704
+Step: 1, Loss: 10.835633277893066
+Step: 1, Loss: 2.0410966873168945
+Step: 2, Loss: 5.306457042694092
+Step: 2, Loss: 6.28735876083374
+Step: 2, Loss: 3.0548362731933594
+Step: 2, Loss: 8.503619194030762
+Step: 2, Loss: 4.857717990875244
+Step: 2, Loss: 10.68377685546875
+Step: 2, Loss: 7.416051387786865
+Step: 2, Loss: 10.483540534973145
+Step: 2, Loss: 7.8911237716674805
+Step: 2, Loss: 5.782484531402588
+Step: 2, Loss: 7.875433444976807
+Step: 2, Loss: 13.43740463256836
+Step: 2, Loss: 6.217264175415039
+Step: 2, Loss: 4.868528842926025
+Step: 2, Loss: 3.5966010093688965
+Step: 2, Loss: 7.529529094696045
+Step: 2, Loss: 11.94165325164795
+Step: 2, Loss: 12.541034698486328
+Step: 2, Loss: 4.1019086837768555
+Step: 2, Loss: 5.331009864807129
+Step: 2, Loss: 4.533655643463135
+Step: 2, Loss: 11.9459810256958
+Step: 2, Loss: 2.164682149887085
+Step: 2, Loss: 7.03082275390625
+Step: 2, Loss: 14.1432466506958
+Step: 2, Loss: 8.662869453430176
+Step: 2, Loss: 6.346922397613525
+Step: 2, Loss: 10.388481140136719
+Step: 2, Loss: 7.455785751342773
+Step: 2, Loss: 5.342003345489502
+Step: 2, Loss: 12.062453269958496
+Step: 2, Loss: 12.137930870056152
+Step: 2, Loss: 10.030464172363281
+Step: 2, Loss: 8.596355438232422
+Step: 2, Loss: 2.233304262161255
+Step: 2, Loss: 3.837261199951172
+Step: 2, Loss: 3.245046854019165
+Step: 2, Loss: 3.74845027923584
+Step: 2, Loss: 6.524715423583984
+Step: 2, Loss: 7.823391437530518
+Step: 2, Loss: 13.863587379455566
+Step: 2, Loss: 11.099442481994629
+Step: 2, Loss: 9.144365310668945
+Step: 2, Loss: 5.467163562774658
+Step: 2, Loss: 5.911436080932617
+Step: 2, Loss: 7.473691940307617
+Step: 2, Loss: 5.9416584968566895
+Step: 2, Loss: 10.995993614196777
+Step: 2, Loss: 12.197373390197754
+Step: 2, Loss: 5.6065473556518555
+Step: 2, Loss: 3.534844398498535
+Step: 2, Loss: 1.748816967010498
+Step: 2, Loss: 5.486908435821533
+Step: 2, Loss: 3.8713605403900146
+Step: 2, Loss: 5.100430488586426
+Step: 2, Loss: 13.037660598754883
+Step: 2, Loss: 6.2141900062561035
+Step: 2, Loss: 6.911475658416748
+Step: 2, Loss: 3.674423933029175
+Step: 2, Loss: 5.293468952178955
+Step: 2, Loss: 7.50654411315918
+Step: 2, Loss: 2.33711576461792
+Step: 2, Loss: 6.097753524780273
+Step: 2, Loss: 2.9400036334991455
+Step: 2, Loss: 4.394394874572754
+Step: 2, Loss: 7.613173007965088
+Step: 2, Loss: 3.7888545989990234
+Step: 2, Loss: 5.120635509490967
+Step: 2, Loss: 12.602704048156738
+Step: 2, Loss: 2.569826602935791
+Step: 2, Loss: 4.195284366607666
+Step: 2, Loss: 3.8925061225891113
+Step: 2, Loss: 5.685112476348877
+Step: 2, Loss: 8.395450592041016
+Step: 2, Loss: 4.088781833648682
+Step: 2, Loss: 8.159008979797363
+Step: 2, Loss: 3.7035679817199707
+Step: 2, Loss: 3.3524441719055176
+Step: 2, Loss: 5.006593704223633
+Step: 2, Loss: 6.5793304443359375
+Step: 2, Loss: 2.9904427528381348
+Step: 2, Loss: 3.36918568611145
+Step: 2, Loss: 2.384460926055908
+Step: 2, Loss: 3.9176700115203857
+Step: 2, Loss: 2.470869541168213
+Step: 2, Loss: 1.67668616771698
+Step: 2, Loss: 2.9281866550445557
+Step: 2, Loss: 3.6379966735839844
+Step: 2, Loss: 9.424870491027832
+Step: 2, Loss: 6.275511264801025
+Step: 2, Loss: 3.1851789951324463
+Step: 2, Loss: 5.851711273193359
+Step: 3, Loss: 3.6592559814453125
+Step: 3, Loss: 5.606276035308838
+Step: 3, Loss: 4.973790645599365
+Step: 3, Loss: 4.390915393829346
+Step: 3, Loss: 3.2057037353515625
+Step: 3, Loss: 2.226824998855591
+Step: 3, Loss: 4.106135368347168
+Step: 3, Loss: 4.9928998947143555
+Step: 3, Loss: 2.947784185409546
+Step: 3, Loss: 4.043224334716797
+Step: 3, Loss: 2.930914878845215
+Step: 3, Loss: 3.995685338973999
+Step: 3, Loss: 5.734355926513672
+Step: 3, Loss: 5.265806198120117
+Step: 3, Loss: 3.8150222301483154
+Step: 3, Loss: 3.624467372894287
+Step: 3, Loss: 2.861504077911377
+Step: 3, Loss: 7.447246551513672
+Step: 3, Loss: 15.097028732299805
+Step: 3, Loss: 8.851335525512695
+Step: 3, Loss: 11.779632568359375
+Step: 3, Loss: 5.629543781280518
+Step: 3, Loss: 3.9009897708892822
+Step: 3, Loss: 5.434963226318359
+Step: 3, Loss: 6.9600019454956055
+Step: 3, Loss: 3.461646795272827
+Step: 3, Loss: 4.16721248626709
+Step: 3, Loss: 3.797960042953491
+Step: 3, Loss: 3.463454246520996
+Step: 3, Loss: 4.753539085388184
+Step: 3, Loss: 6.966491222381592
+Step: 3, Loss: 2.1585779190063477
+Step: 3, Loss: 3.0921688079833984
+Step: 3, Loss: 6.626626014709473
+Step: 3, Loss: 3.318877935409546
+Step: 3, Loss: 7.674111366271973
+Step: 3, Loss: 4.011663913726807
+Step: 3, Loss: 6.312023162841797
+Step: 3, Loss: 4.647432327270508
+Step: 3, Loss: 1.698150396347046
+Step: 3, Loss: 16.6682186126709
+Step: 3, Loss: 11.00013542175293
+Step: 3, Loss: 10.011663436889648
+Step: 3, Loss: 4.991004467010498
+Step: 3, Loss: 6.89312219619751
+Step: 3, Loss: 4.036638259887695
+Step: 3, Loss: 2.109496831893921
+Step: 3, Loss: 6.132569313049316
+Step: 3, Loss: 4.853629112243652
+Step: 3, Loss: 5.301930904388428
+Step: 3, Loss: 5.210681438446045
+Step: 3, Loss: 5.231858730316162
+Step: 3, Loss: 1.6480621099472046
+Step: 3, Loss: 2.0290980339050293
+Step: 3, Loss: 1.9964187145233154
+Step: 3, Loss: 4.559845447540283
+Step: 3, Loss: 1.620965600013733
+Step: 3, Loss: 1.8963338136672974
+Step: 3, Loss: 1.8170768022537231
+Step: 3, Loss: 2.9600491523742676
+Step: 3, Loss: 1.1079260110855103
+Step: 3, Loss: 0.9887087345123291
+Step: 3, Loss: 1.992825984954834
+Step: 3, Loss: 2.3032684326171875
+Step: 3, Loss: 5.74005126953125
+Step: 3, Loss: 3.5510828495025635
+Step: 3, Loss: 3.9735562801361084
+Step: 3, Loss: 3.2673232555389404
+Step: 3, Loss: 6.451977252960205
+Step: 3, Loss: 9.29890251159668
+Step: 3, Loss: 8.351812362670898
+Step: 3, Loss: 7.941131114959717
+Step: 3, Loss: 1.9740360975265503
+Step: 3, Loss: 3.9571213722229004
+Step: 3, Loss: 6.562704563140869
+Step: 3, Loss: 4.3572998046875
+Step: 3, Loss: 5.080956935882568
+Step: 3, Loss: 3.327205181121826
+Step: 3, Loss: 2.776904344558716
+Step: 3, Loss: 3.6032891273498535
+Step: 3, Loss: 1.7294379472732544
+Step: 3, Loss: 4.559142589569092
+Step: 3, Loss: 6.782535076141357
+Step: 3, Loss: 4.989092826843262
+Step: 3, Loss: 2.6113474369049072
+Step: 3, Loss: 3.126582622528076
+Step: 3, Loss: 3.43992018699646
+Step: 3, Loss: 5.375715732574463
+Step: 3, Loss: 4.754390239715576
+Step: 3, Loss: 2.8792781829833984
+Step: 3, Loss: 5.04982328414917
+Step: 3, Loss: 3.3457579612731934
+Step: 4, Loss: 2.302288055419922
+Step: 4, Loss: 2.575934886932373
+Step: 4, Loss: 3.1298303604125977
+Step: 4, Loss: 5.869176387786865
+Step: 4, Loss: 3.520954132080078
+Step: 4, Loss: 2.2064366340637207
+Step: 4, Loss: 4.167129039764404
+Step: 4, Loss: 6.609221458435059
+Step: 4, Loss: 7.29609489440918
+Step: 4, Loss: 3.0851755142211914
+Step: 4, Loss: 2.252864122390747
+Step: 4, Loss: 1.6170682907104492
+Step: 4, Loss: 4.245308876037598
+Step: 4, Loss: 1.7302672863006592
+Step: 4, Loss: 3.561647653579712
+Step: 4, Loss: 3.5250766277313232
+Step: 4, Loss: 5.613012313842773
+Step: 4, Loss: 5.280942916870117
+Step: 4, Loss: 2.626549482345581
+Step: 4, Loss: 2.8022472858428955
+Step: 4, Loss: 7.422621726989746
+Step: 4, Loss: 2.851956605911255
+Step: 4, Loss: 3.783379077911377
+Step: 4, Loss: 1.6220816373825073
+Step: 4, Loss: 5.012445449829102
+Step: 4, Loss: 5.402862071990967
+Step: 4, Loss: 4.598232269287109
+Step: 4, Loss: 3.075958490371704
+Step: 4, Loss: 4.214616298675537
+Step: 4, Loss: 3.5309524536132812
+Step: 4, Loss: 3.18174409866333
+Step: 4, Loss: 7.392890930175781
+Step: 4, Loss: 2.651336908340454
+Step: 4, Loss: 3.6025991439819336
+Step: 4, Loss: 2.879054546356201
+Step: 4, Loss: 3.0279290676116943
+Step: 4, Loss: 1.2708375453948975
+Step: 4, Loss: 2.939391851425171
+Step: 4, Loss: 5.942773818969727
+Step: 4, Loss: 4.24813175201416
+Step: 4, Loss: 0.9715877771377563
+Step: 4, Loss: 1.4831583499908447
+Step: 4, Loss: 4.25286865234375
+Step: 4, Loss: 5.405892848968506
+Step: 4, Loss: 6.642924785614014
+Step: 4, Loss: 6.256802558898926
+Step: 4, Loss: 5.058212757110596
+Step: 4, Loss: 5.714974880218506
+Step: 4, Loss: 3.8732402324676514
+Step: 4, Loss: 3.6072492599487305
+Step: 4, Loss: 5.089458465576172
+Step: 4, Loss: 3.512943744659424
+Step: 4, Loss: 3.62758469581604
+Step: 4, Loss: 3.4173314571380615
+Step: 4, Loss: 3.567528486251831
+Step: 4, Loss: 2.863459348678589
+Step: 4, Loss: 2.879253387451172
+Step: 4, Loss: 4.305652141571045
+Step: 4, Loss: 3.636779308319092
+Step: 4, Loss: 2.4229869842529297
+Step: 4, Loss: 1.7291131019592285
+Step: 4, Loss: 7.575275897979736
+Step: 4, Loss: 2.7926740646362305
+Step: 4, Loss: 3.8056116104125977
+Step: 4, Loss: 5.7037353515625
+Step: 4, Loss: 5.709755897521973
+Step: 4, Loss: 7.04252815246582
+Step: 4, Loss: 5.074229717254639
+Step: 4, Loss: 2.7672457695007324
+Step: 4, Loss: 2.1993298530578613
+Step: 4, Loss: 4.173567771911621
+Step: 4, Loss: 3.5963616371154785
+Step: 4, Loss: 3.2257275581359863
+Step: 4, Loss: 3.7260689735412598
+Step: 4, Loss: 1.5016943216323853
+Step: 4, Loss: 2.008181571960449
+Step: 4, Loss: 5.156273365020752
+Step: 4, Loss: 5.40300989151001
+Step: 4, Loss: 3.478637218475342
+Step: 4, Loss: 2.759476900100708
+Step: 4, Loss: 1.6734410524368286
+Step: 4, Loss: 1.4536330699920654
+Step: 4, Loss: 1.4921640157699585
+Step: 4, Loss: 2.12540602684021
+Step: 4, Loss: 4.7977094650268555
+Step: 4, Loss: 4.000982761383057
+Step: 4, Loss: 2.035367250442505
+Step: 4, Loss: 4.307693958282471
+Step: 4, Loss: 2.3015148639678955
+Step: 4, Loss: 1.2732123136520386
+Step: 4, Loss: 2.9353485107421875
+Step: 4, Loss: 4.744444370269775
+Step: 5, Loss: 1.0603513717651367
+Step: 5, Loss: 3.0615835189819336
+Step: 5, Loss: 2.2110061645507812
+Step: 5, Loss: 2.593123435974121
+Step: 5, Loss: 3.309040069580078
+Step: 5, Loss: 1.9516355991363525
+Step: 5, Loss: 2.099029064178467
+Step: 5, Loss: 1.550669550895691
+Step: 5, Loss: 8.043803215026855
+Step: 5, Loss: 5.288453578948975
+Step: 5, Loss: 4.545298099517822
+Step: 5, Loss: 3.5905773639678955
+Step: 5, Loss: 6.111471652984619
+Step: 5, Loss: 3.2059261798858643
+Step: 5, Loss: 5.15053653717041
+Step: 5, Loss: 5.197202205657959
+Step: 5, Loss: 7.031857490539551
+Step: 5, Loss: 2.902857780456543
+Step: 5, Loss: 3.032866954803467
+Step: 5, Loss: 3.4234609603881836
+Step: 5, Loss: 2.7010045051574707
+Step: 5, Loss: 8.243815422058105
+Step: 5, Loss: 8.024677276611328
+Step: 5, Loss: 9.841705322265625
+Step: 5, Loss: 9.027385711669922
+Step: 5, Loss: 6.847485542297363
+Step: 5, Loss: 4.9006829261779785
+Step: 5, Loss: 1.3352625370025635
+Step: 5, Loss: 6.491262435913086
+Step: 5, Loss: 3.028066396713257
+Step: 5, Loss: 5.106011390686035
+Step: 5, Loss: 5.801488399505615
+Step: 5, Loss: 2.651215076446533
+Step: 5, Loss: 6.362846374511719
+Step: 5, Loss: 3.277771234512329
+Step: 5, Loss: 4.693307399749756
+Step: 5, Loss: 2.651782989501953
+Step: 5, Loss: 1.4825838804244995
+Step: 5, Loss: 2.365750312805176
+Step: 5, Loss: 2.985888719558716
+Step: 5, Loss: 2.6881885528564453
+Step: 5, Loss: 3.433055877685547
+Step: 5, Loss: 1.5162582397460938
+Step: 5, Loss: 2.992577075958252
+Step: 5, Loss: 2.6986992359161377
+Step: 5, Loss: 5.392468452453613
+Step: 5, Loss: 7.064821720123291
+Step: 5, Loss: 8.283733367919922
+Step: 5, Loss: 2.19382643699646
+Step: 5, Loss: 2.6651298999786377
+Step: 5, Loss: 7.1597161293029785
+Step: 5, Loss: 5.345917701721191
+Step: 5, Loss: 5.787971496582031
+Step: 5, Loss: 3.136845588684082
+Step: 5, Loss: 8.587726593017578
+Step: 5, Loss: 1.690155029296875
+Step: 5, Loss: 4.367455959320068
+Step: 5, Loss: 2.391512870788574
+Step: 5, Loss: 6.298486709594727
+Step: 5, Loss: 4.346242427825928
+Step: 5, Loss: 10.314571380615234
+Step: 5, Loss: 6.619366645812988
+Step: 5, Loss: 7.333059787750244
+Step: 5, Loss: 6.671998977661133
+Step: 5, Loss: 6.0161871910095215
+Step: 5, Loss: 1.9452017545700073
+Step: 5, Loss: 4.144037246704102
+Step: 5, Loss: 4.50144100189209
+Step: 5, Loss: 6.442104339599609
+Step: 5, Loss: 10.990458488464355
+Step: 5, Loss: 8.74380874633789
+Step: 5, Loss: 4.977721214294434
+Step: 5, Loss: 5.411676406860352
+Step: 5, Loss: 9.823339462280273
+Step: 5, Loss: 6.275720596313477
+Step: 5, Loss: 1.9358476400375366
+Step: 5, Loss: 3.64707350730896
+Step: 5, Loss: 5.290977478027344
+Step: 5, Loss: 1.9768683910369873
+Step: 5, Loss: 8.151592254638672
+Step: 5, Loss: 7.941980361938477
+Step: 5, Loss: 2.6948769092559814
+Step: 5, Loss: 1.9397368431091309
+Step: 5, Loss: 5.671722412109375
+Step: 5, Loss: 5.432211399078369
+Step: 5, Loss: 6.546760559082031
+Step: 5, Loss: 3.4336423873901367
+Step: 5, Loss: 4.940764427185059
+Step: 5, Loss: 3.6214308738708496
+Step: 5, Loss: 1.6622947454452515
+Step: 5, Loss: 6.333324432373047
+Step: 5, Loss: 4.8838958740234375
+Step: 6, Loss: 1.6625866889953613
+Step: 6, Loss: 6.964747428894043
+Step: 6, Loss: 3.7706570625305176
+Step: 6, Loss: 8.551937103271484
+Step: 6, Loss: 9.733449935913086
+Step: 6, Loss: 2.6471312046051025
+Step: 6, Loss: 3.525397777557373
+Step: 6, Loss: 4.125654220581055
+Step: 6, Loss: 8.288567543029785
+Step: 6, Loss: 9.93757152557373
+Step: 6, Loss: 11.553321838378906
+Step: 6, Loss: 3.797219753265381
+Step: 6, Loss: 5.773865699768066
+Step: 6, Loss: 5.70989465713501
+Step: 6, Loss: 2.0293924808502197
+Step: 6, Loss: 4.423962116241455
+Step: 6, Loss: 2.4673004150390625
+Step: 6, Loss: 3.6942474842071533
+Step: 6, Loss: 4.122493267059326
+Step: 6, Loss: 2.7873213291168213
+Step: 6, Loss: 3.1852307319641113
+Step: 6, Loss: 5.646533489227295
+Step: 6, Loss: 4.203934192657471
+Step: 6, Loss: 8.085944175720215
+Step: 6, Loss: 3.949425458908081
+Step: 6, Loss: 3.643934488296509
+Step: 6, Loss: 5.108006000518799
+Step: 6, Loss: 2.4836645126342773
+Step: 6, Loss: 3.5269312858581543
+Step: 6, Loss: 2.866417169570923
+Step: 6, Loss: 5.540908336639404
+Step: 6, Loss: 3.621826410293579
+Step: 6, Loss: 3.529235363006592
+Step: 6, Loss: 8.866477966308594
+Step: 6, Loss: 5.581540107727051
+Step: 6, Loss: 2.2915754318237305
+Step: 6, Loss: 1.2148394584655762
+Step: 6, Loss: 4.919522762298584
+Step: 6, Loss: 4.130255699157715
+Step: 6, Loss: 1.6671152114868164
+Step: 6, Loss: 2.649796724319458
+Step: 6, Loss: 2.901318073272705
+Step: 6, Loss: 2.8733057975769043
+Step: 6, Loss: 3.3720993995666504
+Step: 6, Loss: 2.483351230621338
+Step: 6, Loss: 1.8606358766555786
+Step: 6, Loss: 2.425258159637451
+Step: 6, Loss: 5.714853286743164
+Step: 6, Loss: 6.155351161956787
+Step: 6, Loss: 2.607720375061035
+Step: 6, Loss: 1.516844630241394
+Step: 6, Loss: 1.5317631959915161
+Step: 6, Loss: 1.6127139329910278
+Step: 6, Loss: 1.7820374965667725
+Step: 6, Loss: 1.9172616004943848
+Step: 6, Loss: 2.0848658084869385
+Step: 6, Loss: 6.6500163078308105
+Step: 6, Loss: 1.989866018295288
+Step: 6, Loss: 2.581991672515869
+Step: 6, Loss: 3.3155055046081543
+Step: 6, Loss: 3.4792404174804688
+Step: 6, Loss: 2.0760416984558105
+Step: 6, Loss: 2.6128103733062744
+Step: 6, Loss: 1.5457932949066162
+Step: 6, Loss: 2.2055842876434326
+Step: 6, Loss: 3.420922040939331
+Step: 6, Loss: 1.705617070198059
+Step: 6, Loss: 3.2732901573181152
+Step: 6, Loss: 1.6197896003723145
+Step: 6, Loss: 1.5499831438064575
+Step: 6, Loss: 2.910003662109375
+Step: 6, Loss: 7.335394859313965
+Step: 6, Loss: 2.2291712760925293
+Step: 6, Loss: 8.402244567871094
+Step: 6, Loss: 6.760695457458496
+Step: 6, Loss: 4.504499912261963
+Step: 6, Loss: 1.0882419347763062
+Step: 6, Loss: 7.913451194763184
+Step: 6, Loss: 9.66431713104248
+Step: 6, Loss: 3.47859525680542
+Step: 6, Loss: 4.187406539916992
+Step: 6, Loss: 2.2890114784240723
+Step: 6, Loss: 5.6338348388671875
+Step: 6, Loss: 3.360496759414673
+Step: 6, Loss: 6.282446384429932
+Step: 6, Loss: 4.9815497398376465
+Step: 6, Loss: 3.251990556716919
+Step: 6, Loss: 3.4569427967071533
+Step: 6, Loss: 3.6193430423736572
+Step: 6, Loss: 3.0692622661590576
+Step: 6, Loss: 2.3080193996429443
+Step: 6, Loss: 3.4319722652435303
+Step: 7, Loss: 1.1284003257751465
+Step: 7, Loss: 2.6818082332611084
+Step: 7, Loss: 4.270206928253174
+Step: 7, Loss: 2.2606940269470215
+Step: 7, Loss: 2.1428139209747314
+Step: 7, Loss: 5.593217372894287
+Step: 7, Loss: 2.612765312194824
+Step: 7, Loss: 4.917620658874512
+Step: 7, Loss: 3.801557779312134
+Step: 7, Loss: 2.331972360610962
+Step: 7, Loss: 4.998706340789795
+Step: 7, Loss: 5.209772109985352
+Step: 7, Loss: 3.4140543937683105
+Step: 7, Loss: 3.503058910369873
+Step: 7, Loss: 1.8424686193466187
+Step: 7, Loss: 2.481092929840088
+Step: 7, Loss: 2.138895034790039
+Step: 7, Loss: 1.5544958114624023
+Step: 7, Loss: 2.841029167175293
+Step: 7, Loss: 4.665825843811035
+Step: 7, Loss: 2.2595057487487793
+Step: 7, Loss: 1.5405901670455933
+Step: 7, Loss: 2.9115984439849854
+Step: 7, Loss: 2.0230133533477783
+Step: 7, Loss: 5.1703643798828125
+Step: 7, Loss: 4.289270401000977
+Step: 7, Loss: 3.306428909301758
+Step: 7, Loss: 1.5631685256958008
+Step: 7, Loss: 2.222778558731079
+Step: 7, Loss: 2.943650722503662
+Step: 7, Loss: 2.7476654052734375
+Step: 7, Loss: 1.1876529455184937
+Step: 7, Loss: 1.3391072750091553
+Step: 7, Loss: 2.8719420433044434
+Step: 7, Loss: 2.5965640544891357
+Step: 7, Loss: 2.4988820552825928
+Step: 7, Loss: 2.7204177379608154
+Step: 7, Loss: 4.001598358154297
+Step: 7, Loss: 1.2661941051483154
+Step: 7, Loss: 1.34171724319458
+Step: 7, Loss: 1.7978273630142212
+Step: 7, Loss: 4.2518839836120605
+Step: 7, Loss: 1.9254118204116821
+Step: 7, Loss: 2.5004119873046875
+Step: 7, Loss: 2.9532384872436523
+Step: 7, Loss: 2.637716054916382
+Step: 7, Loss: 1.6819887161254883
+Step: 7, Loss: 1.2366821765899658
+Step: 7, Loss: 2.6558501720428467
+Step: 7, Loss: 4.534492015838623
+Step: 7, Loss: 2.3478641510009766
+Step: 7, Loss: 6.212325096130371
+Step: 7, Loss: 2.6464931964874268
+Step: 7, Loss: 4.804513454437256
+Step: 7, Loss: 4.8969292640686035
+Step: 7, Loss: 5.6072916984558105
+Step: 7, Loss: 2.292416572570801
+Step: 7, Loss: 7.119844436645508
+Step: 7, Loss: 2.5397114753723145
+Step: 7, Loss: 3.5599582195281982
+Step: 7, Loss: 1.1762200593948364
+Step: 7, Loss: 2.7406787872314453
+Step: 7, Loss: 2.5972952842712402
+Step: 7, Loss: 2.088111162185669
+Step: 7, Loss: 1.6404423713684082
+Step: 7, Loss: 2.6047208309173584
+Step: 7, Loss: 3.3804192543029785
+Step: 7, Loss: 2.522219181060791
+Step: 7, Loss: 2.816375494003296
+Step: 7, Loss: 6.525876522064209
+Step: 7, Loss: 1.2049822807312012
+Step: 7, Loss: 5.446775436401367
+Step: 7, Loss: 3.5425426959991455
+Step: 7, Loss: 2.09023118019104
+Step: 7, Loss: 7.81636905670166
+Step: 7, Loss: 6.224435806274414
+Step: 7, Loss: 2.3609960079193115
+Step: 7, Loss: 2.242711067199707
+Step: 7, Loss: 3.8184456825256348
+Step: 7, Loss: 4.629042148590088
+Step: 7, Loss: 4.1071391105651855
+Step: 7, Loss: 1.4822548627853394
+Step: 7, Loss: 4.916412353515625
+Step: 7, Loss: 4.268002510070801
+Step: 7, Loss: 3.7209255695343018
+Step: 7, Loss: 3.372297525405884
+Step: 7, Loss: 2.0661747455596924
+Step: 7, Loss: 4.914849758148193
+Step: 7, Loss: 7.342996597290039
+Step: 7, Loss: 3.666057586669922
+Step: 7, Loss: 3.7860958576202393
+Step: 7, Loss: 5.687313556671143
+Step: 8, Loss: 9.766316413879395
+Step: 8, Loss: 4.4914140701293945
+Step: 8, Loss: 4.662460803985596
+Step: 8, Loss: 4.353834629058838
+Step: 8, Loss: 12.095779418945312
+Step: 8, Loss: 13.071272850036621
+Step: 8, Loss: 8.066225051879883
+Step: 8, Loss: 2.276792287826538
+Step: 8, Loss: 9.081344604492188
+Step: 8, Loss: 8.482171058654785
+Step: 8, Loss: 4.8335113525390625
+Step: 8, Loss: 2.6051549911499023
+Step: 8, Loss: 8.685276985168457
+Step: 8, Loss: 11.504011154174805
+Step: 8, Loss: 11.283987998962402
+Step: 8, Loss: 8.855692863464355
+Step: 8, Loss: 4.8913068771362305
+Step: 8, Loss: 6.044210433959961
+Step: 8, Loss: 3.9595754146575928
+Step: 8, Loss: 8.276040077209473
+Step: 8, Loss: 6.012142181396484
+Step: 8, Loss: 11.194792747497559
+Step: 8, Loss: 9.14139175415039
+Step: 8, Loss: 4.258327960968018
+Step: 8, Loss: 6.558602333068848
+Step: 8, Loss: 6.61109733581543
+Step: 8, Loss: 5.692914009094238
+Step: 8, Loss: 4.883237361907959
+Step: 8, Loss: 6.715829372406006
+Step: 8, Loss: 6.207980155944824
+Step: 8, Loss: 7.903902053833008
+Step: 8, Loss: 5.726354122161865
+Step: 8, Loss: 11.60563850402832
+Step: 8, Loss: 14.180699348449707
+Step: 8, Loss: 6.8016252517700195
+Step: 8, Loss: 5.130874156951904
+Step: 8, Loss: 7.357154369354248
+Step: 8, Loss: 13.25371265411377
+Step: 8, Loss: 18.351137161254883
+Step: 8, Loss: 15.094110488891602
+Step: 8, Loss: 9.10991096496582
+Step: 8, Loss: 9.549517631530762
+Step: 8, Loss: 4.328848838806152
+Step: 8, Loss: 5.969857692718506
+Step: 8, Loss: 10.533751487731934
+Step: 8, Loss: 9.480185508728027
+Step: 8, Loss: 2.848085641860962
+Step: 8, Loss: 5.962553977966309
+Step: 8, Loss: 5.113706588745117
+Step: 8, Loss: 2.756765365600586
+Step: 8, Loss: 3.5434939861297607
+Step: 8, Loss: 2.6698317527770996
+Step: 8, Loss: 4.022555351257324
+Step: 8, Loss: 2.0950748920440674
+Step: 8, Loss: 2.6633377075195312
+Step: 8, Loss: 4.269186973571777
+Step: 8, Loss: 2.5972344875335693
+Step: 8, Loss: 1.1151405572891235
+Step: 8, Loss: 5.858307838439941
+Step: 8, Loss: 1.6983367204666138
+Step: 8, Loss: 5.80105447769165
+Step: 8, Loss: 4.213715076446533
+Step: 8, Loss: 4.728832244873047
+Step: 8, Loss: 6.242397785186768
+Step: 8, Loss: 5.445652008056641
+Step: 8, Loss: 3.395352363586426
+Step: 8, Loss: 4.737185478210449
+Step: 8, Loss: 5.817775726318359
+Step: 8, Loss: 5.488487243652344
+Step: 8, Loss: 4.642795562744141
+Step: 8, Loss: 4.6743292808532715
+Step: 8, Loss: 2.7741031646728516
+Step: 8, Loss: 2.462538003921509
+Step: 8, Loss: 2.2253546714782715
+Step: 8, Loss: 3.035658597946167
+Step: 8, Loss: 2.1037166118621826
+Step: 8, Loss: 2.3265302181243896
+Step: 8, Loss: 3.014098644256592
+Step: 8, Loss: 3.2976598739624023
+Step: 8, Loss: 2.9192733764648438
+Step: 8, Loss: 3.442755699157715
+Step: 8, Loss: 3.6272175312042236
+Step: 8, Loss: 3.8945467472076416
+Step: 8, Loss: 2.289374351501465
+Step: 8, Loss: 1.6558387279510498
+Step: 8, Loss: 4.310678005218506
+Step: 8, Loss: 2.60710072517395
+Step: 8, Loss: 4.672549247741699
+Step: 8, Loss: 1.5700830221176147
+Step: 8, Loss: 1.4138119220733643
+Step: 8, Loss: 3.0300021171569824
+Step: 8, Loss: 3.1461024284362793
+Step: 9, Loss: 4.795097351074219
+Step: 9, Loss: 6.249635219573975
+Step: 9, Loss: 3.192715644836426
+Step: 9, Loss: 1.4829659461975098
+Step: 9, Loss: 4.763375282287598
+Step: 9, Loss: 7.529832363128662
+Step: 9, Loss: 10.653223991394043
+Step: 9, Loss: 5.448660850524902
+Step: 9, Loss: 4.067701816558838
+Step: 9, Loss: 4.945803642272949
+Step: 9, Loss: 7.279516220092773
+Step: 9, Loss: 4.5534515380859375
+Step: 9, Loss: 6.112406253814697
+Step: 9, Loss: 2.6598095893859863
+Step: 9, Loss: 2.1451056003570557
+Step: 9, Loss: 3.9994349479675293
+Step: 9, Loss: 5.163931846618652
+Step: 9, Loss: 6.8272013664245605
+Step: 9, Loss: 6.547298431396484
+Step: 9, Loss: 4.150846004486084
+Step: 9, Loss: 6.468451023101807
+Step: 9, Loss: 8.098077774047852
+Step: 9, Loss: 10.164541244506836
+Step: 9, Loss: 8.094508171081543
+Step: 9, Loss: 7.242765426635742
+Step: 9, Loss: 6.1739020347595215
+Step: 9, Loss: 4.892279624938965
+Step: 9, Loss: 6.87701940536499
+Step: 9, Loss: 5.967848300933838
+Step: 9, Loss: 3.353238344192505
+Step: 9, Loss: 3.5583271980285645
+Step: 9, Loss: 6.142143726348877
+Step: 9, Loss: 8.279495239257812
+Step: 9, Loss: 12.65432357788086
+Step: 9, Loss: 13.811970710754395
+Step: 9, Loss: 14.639159202575684
+Step: 9, Loss: 1.5796966552734375
+Step: 9, Loss: 3.507946014404297
+Step: 9, Loss: 8.523826599121094
+Step: 9, Loss: 13.729721069335938
+Step: 9, Loss: 11.27066421508789
+Step: 9, Loss: 11.592684745788574
+Step: 9, Loss: 11.259066581726074
+Step: 9, Loss: 4.054869651794434
+Step: 9, Loss: 2.0946569442749023
+Step: 9, Loss: 10.797138214111328
+Step: 9, Loss: 10.087006568908691
+Step: 9, Loss: 6.8219990730285645
+Step: 9, Loss: 5.152754306793213
+Step: 9, Loss: 8.707073211669922
+Step: 9, Loss: 1.9908198118209839
+Step: 9, Loss: 2.269695520401001
+Step: 9, Loss: 1.9495973587036133
+Step: 9, Loss: 3.942077875137329
+Step: 9, Loss: 3.427875518798828
+Step: 9, Loss: 2.6711668968200684
+Step: 9, Loss: 3.557370662689209
+Step: 9, Loss: 1.5649772882461548
+Step: 9, Loss: 1.235673189163208
+Step: 9, Loss: 5.581366539001465
+Step: 9, Loss: 3.6046223640441895
+Step: 9, Loss: 4.338669776916504
+Step: 9, Loss: 5.464099884033203
+Step: 9, Loss: 2.760359287261963
+Step: 9, Loss: 2.800788402557373
+Step: 9, Loss: 3.371767044067383
+Step: 9, Loss: 2.8583645820617676
+Step: 9, Loss: 4.9178290367126465
+Step: 9, Loss: 5.553616523742676
+Step: 9, Loss: 5.139263153076172
+Step: 9, Loss: 4.303395748138428
+Step: 9, Loss: 7.720900058746338
+Step: 9, Loss: 2.375361919403076
+Step: 9, Loss: 3.4006667137145996
+Step: 9, Loss: 4.376865386962891
+Step: 9, Loss: 2.549680471420288
+Step: 9, Loss: 4.51462984085083
+Step: 9, Loss: 5.99915075302124
+Step: 9, Loss: 2.972400665283203
+Step: 9, Loss: 2.9094040393829346
+Step: 9, Loss: 4.86819314956665
+Step: 9, Loss: 1.7931931018829346
+Step: 9, Loss: 2.09378981590271
+Step: 9, Loss: 2.2979533672332764
+Step: 9, Loss: 6.14540958404541
+Step: 9, Loss: 2.535264253616333
+Step: 9, Loss: 2.2209765911102295
+Step: 9, Loss: 2.0393881797790527
+Step: 9, Loss: 2.3443403244018555
+Step: 9, Loss: 2.6746110916137695
+Step: 9, Loss: 2.8301291465759277
+Step: 9, Loss: 1.486628532409668
+Output File: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-20/sub-5/003_Oct-20-2024_11:55_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-20/sub-5/003_Oct-20-2024_11:55_PM/trainval_loss_curves.png
+Total Completion Time: 59.62 minutes. (0.99 hours) 
