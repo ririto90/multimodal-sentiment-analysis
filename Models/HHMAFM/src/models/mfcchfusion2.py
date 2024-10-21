@@ -1,159 +1,158 @@
-from layers.attention import SelfAttention  # Import the SelfAttention class
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
-# Remove your custom SelfAttention class definition
-
-class CrossAttention(nn.Module):
-    def __init__(self, input_dim1, input_dim2, hidden_dim):
-        super(CrossAttention, self).__init__()
-        self.query = nn.Linear(input_dim1, hidden_dim)
-        self.key = nn.Linear(input_dim2, hidden_dim)
-        self.value = nn.Linear(input_dim2, hidden_dim)
-        self.softmax = nn.Softmax(dim=-1)
-    
-    def forward(self, x1, x2):
-        q = self.query(x1)
-        k = self.key(x2)
-        v = self.value(x2)
-        attention_weights = self.softmax(q @ k.transpose(-2, -1) / (k.size(-1) ** 0.5))
-        attended_output = attention_weights @ v
-        return attended_output
-
-class GatedAdjustment(nn.Module):
-    def __init__(self, input_dim, hidden_dim):
-        super(GatedAdjustment, self).__init__()
-        self.linear = nn.Linear(input_dim, hidden_dim)
-        self.sigmoid = nn.Sigmoid()
-    
-    def forward(self, x):
-        gate = self.sigmoid(self.linear(x))
-        adjusted_output = gate * x
-        return adjusted_output
-
-class CoAttention(nn.Module):
-    def __init__(self, input_dim1, input_dim2, hidden_dim):
-        super(CoAttention, self).__init__()
-        self.query1 = nn.Linear(input_dim1, hidden_dim)
-        self.key1 = nn.Linear(input_dim2, hidden_dim)
-        self.value1 = nn.Linear(input_dim2, hidden_dim)
-        self.query2 = nn.Linear(input_dim2, hidden_dim)
-        self.key2 = nn.Linear(input_dim1, hidden_dim)
-        self.value2 = nn.Linear(input_dim1, hidden_dim)
-        self.softmax = nn.Softmax(dim=-1)
-    
-    def forward(self, x1, x2):
-        # Co-Attention for x1 attending to x2
-        q1 = self.query1(x1)
-        k1 = self.key1(x2)
-        v1 = self.value1(x2)
-        attention_weights1 = self.softmax(q1 @ k1.transpose(-2, -1) / (k1.size(-1) ** 0.5))
-        attended_x1 = attention_weights1 @ v1
-        
-        # Co-Attention for x2 attending to x1
-        q2 = self.query2(x2)
-        k2 = self.key2(x1)
-        v2 = self.value2(x1)
-        attention_weights2 = self.softmax(q2 @ k2.transpose(-2, -1) / (k2.size(-1) ** 0.5))
-        attended_x2 = attention_weights2 @ v2
-        
-        return attended_x1, attended_x2
+from layers.attention import SelfAttention
+from layers.cross_attention import CrossAttention
+from layers.co_attention import CoAttention
 
 class MFCCHFUSION2(nn.Module):
     def __init__(self, opt):
         super(MFCCHFUSION2, self).__init__()
         self.opt = opt
-        
+
         text_dim = 768
         visual_dim = 1000
-        
-        hidden_dim = opt.common_dim  # e.g., 512
-        num_classes = opt.num_classes  # Number of output classes
-        
-        # Self Attention for each individual feature representation using the imported SelfAttention
+
+        hidden_dim = opt.common_dim  # 512
+        num_classes = opt.num_classes  # 3
+
+        # Self-Attention for each individual feature representation
         self.self_attention_text = SelfAttention(
-            embed_dim=text_dim,
+            embed_dim=hidden_dim,
             hidden_dim=hidden_dim,
             n_head=opt.n_head,
             score_function='scaled_dot_product',
             q_len=1,
-            dropout=opt.dropout
+            dropout=opt.dropout_rate
         )
         self.self_attention_topic = SelfAttention(
-            embed_dim=text_dim,
+            embed_dim=hidden_dim,
             hidden_dim=hidden_dim,
             n_head=opt.n_head,
             score_function='scaled_dot_product',
             q_len=1,
-            dropout=opt.dropout
+            dropout=opt.dropout_rate
         )
         self.self_attention_resnet = SelfAttention(
-            embed_dim=visual_dim,
+            embed_dim=hidden_dim,
             hidden_dim=hidden_dim,
             n_head=opt.n_head,
             score_function='scaled_dot_product',
             q_len=1,
-            dropout=opt.dropout
+            dropout=opt.dropout_rate
         )
         self.self_attention_densenet = SelfAttention(
-            embed_dim=visual_dim,
+            embed_dim=hidden_dim,
             hidden_dim=hidden_dim,
             n_head=opt.n_head,
             score_function='scaled_dot_product',
             q_len=1,
-            dropout=opt.dropout
+            dropout=opt.dropout_rate
         )
-        
-        # Gated Adjustment for each representation
-        self.gated_adjustment_text = GatedAdjustment(hidden_dim, hidden_dim)
-        self.gated_adjustment_topic = GatedAdjustment(hidden_dim, hidden_dim)
-        self.gated_adjustment_resnet = GatedAdjustment(hidden_dim, hidden_dim)
-        self.gated_adjustment_densenet = GatedAdjustment(hidden_dim, hidden_dim)
-        
-        # Cross Attention between modalities
-        self.cross_attention_topic_densenet = CrossAttention(hidden_dim, hidden_dim, hidden_dim)
-        self.cross_attention_sentence_resnet = CrossAttention(hidden_dim, hidden_dim, hidden_dim)
-        
-        # Co-Attention between modalities
-        self.co_attention_topic_densenet = CoAttention(hidden_dim, hidden_dim, hidden_dim)
-        self.co_attention_sentence_resnet = CoAttention(hidden_dim, hidden_dim, hidden_dim)
-        
-        # Final classifier
-        self.classifier = nn.Linear(6 * hidden_dim, num_classes)
-    
+
+        # Cross-Attention layers
+        self.cross_attention_text_resnet = CrossAttention(
+            embed_dim_q=hidden_dim,
+            embed_dim_kv=hidden_dim,
+            hidden_dim=hidden_dim,
+            n_head=opt.n_head,
+            score_function='scaled_dot_product',
+            dropout=opt.dropout_rate
+        )
+        self.cross_attention_topic_densenet = CrossAttention(
+            embed_dim_q=hidden_dim,
+            embed_dim_kv=hidden_dim,
+            hidden_dim=hidden_dim,
+            n_head=opt.n_head,
+            score_function='scaled_dot_product',
+            dropout=opt.dropout_rate
+        )
+
+        # **Co-Attention layers**
+        self.co_attention_text_topic = CoAttention(
+            embed_dim1=hidden_dim,
+            embed_dim2=hidden_dim,
+            hidden_dim=hidden_dim,
+            n_head=opt.n_head,
+            score_function='scaled_dot_product',
+            dropout=opt.dropout_rate
+        )
+        self.co_attention_resnet_densenet = CoAttention(
+            embed_dim1=hidden_dim,
+            embed_dim2=hidden_dim,
+            hidden_dim=hidden_dim,
+            n_head=opt.n_head,
+            score_function='scaled_dot_product',
+            dropout=opt.dropout_rate
+        )
+
+        # Define projection layers to a common dimension
+        self.roberta_text_proj = nn.Linear(text_dim, hidden_dim)
+        self.roberta_topic_proj = nn.Linear(text_dim, hidden_dim)
+        self.resnet_proj = nn.Linear(visual_dim, hidden_dim)
+        self.densenet_proj = nn.Linear(visual_dim, hidden_dim)
+
+        # **Adjust the classifier input dimension**
+        self.classifier = nn.Linear(hidden_dim * 4, num_classes)  # Updated to accommodate co-attention outputs
+
     def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features):
-        # Step 1: Self Attention using the imported SelfAttention class
-        text_attended = self.self_attention_text(roberta_text_features)
-        topic_attended = self.self_attention_topic(roberta_topic_features)
-        resnet_attended = self.self_attention_resnet(resnet_features)
-        densenet_attended = self.self_attention_densenet(densenet_features)
-        
-        # Step 2: Gated Adjustment
-        text_adjusted = self.gated_adjustment_text(text_attended)
-        topic_adjusted = self.gated_adjustment_topic(topic_attended)
-        resnet_adjusted = self.gated_adjustment_resnet(resnet_attended)
-        densenet_adjusted = self.gated_adjustment_densenet(densenet_attended)
-        
-        # Step 3: Cross Attention
-        cross_topic_densenet = self.cross_attention_topic_densenet(topic_adjusted, densenet_adjusted)
-        cross_sentence_resnet = self.cross_attention_sentence_resnet(text_adjusted, resnet_adjusted)
-        
-        # Step 4: Co-Attention
-        co_topic_densenet, co_densenet_topic = self.co_attention_topic_densenet(topic_adjusted, densenet_adjusted)
-        co_sentence_resnet, co_resnet_sentence = self.co_attention_sentence_resnet(text_adjusted, resnet_adjusted)
-        
-        # Step 5: Concatenate Cross Attention and Co-Attention outputs (including second outputs)
-        fusion_output = torch.cat((
-            cross_topic_densenet,
-            cross_sentence_resnet,
-            co_topic_densenet,
-            co_sentence_resnet,
-            co_densenet_topic,
-            co_resnet_sentence
-        ), dim=1)
-        
-        # Step 6: Classification
-        output = self.classifier(fusion_output)
-        
-        return output
+        # Project each feature set to the common dimension
+        roberta_text_proj = F.relu(self.roberta_text_proj(roberta_text_features))
+        roberta_topic_proj = F.relu(self.roberta_topic_proj(roberta_topic_features))
+        resnet_proj = F.relu(self.resnet_proj(resnet_features))
+        densenet_proj = F.relu(self.densenet_proj(densenet_features))
+
+        # Add sequence dimension
+        roberta_text_proj = roberta_text_proj.unsqueeze(1)
+        roberta_topic_proj = roberta_topic_proj.unsqueeze(1)
+        resnet_proj = resnet_proj.unsqueeze(1)
+        densenet_proj = densenet_proj.unsqueeze(1)
+
+        # Apply self-attention
+        text_attended = self.self_attention_text(roberta_text_proj).squeeze(1)    
+        topic_attended = self.self_attention_topic(roberta_topic_proj).squeeze(1) 
+        resnet_attended = self.self_attention_resnet(resnet_proj).squeeze(1)      
+        densenet_attended = self.self_attention_densenet(densenet_proj).squeeze(1)
+
+        # Apply cross-attention
+        text_resnet_attended, _ = self.cross_attention_text_resnet(
+            query=text_attended.unsqueeze(1),
+            key=resnet_attended.unsqueeze(1),
+            value=resnet_attended.unsqueeze(1)
+        )
+        topic_densenet_attended, _ = self.cross_attention_topic_densenet(
+            query=topic_attended.unsqueeze(1),
+            key=densenet_attended.unsqueeze(1),
+            value=densenet_attended.unsqueeze(1)
+        )
+
+        # Squeeze the sequence dimension
+        text_resnet_attended = text_resnet_attended.squeeze(1)
+        topic_densenet_attended = topic_densenet_attended.squeeze(1)
+
+        # **Apply co-attention between text and topic**
+        co_attended_text_topic_out1, co_attended_text_topic_out2, _, _ = self.co_attention_text_topic(
+            x1=text_attended.unsqueeze(1),
+            x2=topic_attended.unsqueeze(1)
+        )
+        # Combine the two outputs (you can choose to use one or both)
+        co_attended_text_topic = (co_attended_text_topic_out1 + co_attended_text_topic_out2).squeeze(1) / 2
+
+        # **Apply co-attention between resnet and densenet**
+        co_attended_resnet_densenet_out1, co_attended_resnet_densenet_out2, _, _ = self.co_attention_resnet_densenet(
+            x1=resnet_attended.unsqueeze(1),
+            x2=densenet_attended.unsqueeze(1)
+        )
+        co_attended_resnet_densenet = (co_attended_resnet_densenet_out1 + co_attended_resnet_densenet_out2).squeeze(1) / 2
+
+        # **Concatenate the outputs from cross-attention and co-attention**
+        fusion = torch.cat([
+            text_resnet_attended,
+            topic_densenet_attended,
+            co_attended_text_topic,
+            co_attended_resnet_densenet
+        ], dim=1)
+
+        # Pass the fused features through the classifier
+        out = self.classifier(fusion)
+        return out
