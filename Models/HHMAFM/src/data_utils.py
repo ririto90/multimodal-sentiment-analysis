@@ -374,6 +374,11 @@ class MVSADatasetReader:
         'train': 'Datasets/MVSA-MTS/mvsa-mts-100/train.tsv',
         'dev': 'Datasets/MVSA-MTS/mvsa-mts-100/val.tsv',
         'test': 'Datasets/MVSA-MTS/mvsa-mts-100/test.tsv'
+      },
+      'mvsa-mts-1000': {
+        'train': 'Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv',
+        'dev': 'Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv',
+        'test': 'Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv'
       }
     }
 
