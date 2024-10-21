@@ -37,7 +37,7 @@ class Attention(nn.Module):
         else:
             self.register_parameter('weight', None)
 
-    def forward(self, k, q, memory_len):
+    def forward(self, k, q, memory_len=None):
         if len(q.shape) == 2:  # q_len missing
             q = torch.unsqueeze(q, dim=1)
         if len(k.shape) == 2:  # k_len missing
@@ -73,18 +73,33 @@ class Attention(nn.Module):
         score = F.softmax(score, dim=-1)
         attentions = torch.squeeze(score, dim=1)
         #print(attentions[:2])
-        # create mask based on the sentence lengths
-        mask = Variable(torch.ones(attentions.size())).to(self.device)
-        for i, l in enumerate(memory_len): 
-            if l < k_len:
-                mask[i, l:] = 0
-        # apply mask and renormalize attention scores (weights)
-        masked = attentions * mask
-        #print(masked[:2])
-        #print(masked.shape)
-        _sums = masked.sum(-1)  # sums per row
-        attentions = torch.div(masked, _sums.view(_sums.size(0), 1))
-        #print(attentions[:2])
+        
+        if memory_len is not None:
+            # Existing masking code
+            mask = torch.ones(attentions.size(), device=self.device)
+            for i, l in enumerate(memory_len):
+                if l < k_len:
+                    mask[i, l:] = 0
+            # Apply mask and renormalize attention scores (weights)
+            masked = attentions * mask
+            _sums = masked.sum(-1)  # sums per row
+            attentions = masked / _sums.view(_sums.size(0), 1)
+        else:
+            # No masking needed
+            pass
+        
+        # # create mask based on the sentence lengths
+        # mask = Variable(torch.ones(attentions.size())).to(self.device)
+        # for i, l in enumerate(memory_len): 
+        #     if l < k_len:
+        #         mask[i, l:] = 0
+        # # apply mask and renormalize attention scores (weights)
+        # masked = attentions * mask
+        # #print(masked[:2])
+        # #print(masked.shape)
+        # _sums = masked.sum(-1)  # sums per row
+        # attentions = torch.div(masked, _sums.view(_sums.size(0), 1))
+        # #print(attentions[:2])
         
         score = torch.unsqueeze(attentions, dim=1)
 
