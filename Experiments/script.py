@@ -36,5 +36,5 @@ def plot_tensorboard_loss(log_file):
     print(f'Training and validation loss curves saved to {output_file}')
 
 if __name__ == '__main__':
-    log_file = 'Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-10-20/sub-4/011_Oct-20-2024_10:10_PM-grad-clip/events.out.tfevents.1729476688.skl-a-28.rc.rit.edu.810202.0'
+    log_file = 'Experiments/events.out.tfevents.1729476688.skl-a-28.rc.rit.edu.810202.0'
     plot_tensorboard_loss(log_file)
