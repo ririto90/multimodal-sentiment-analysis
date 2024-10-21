@@ -33,20 +33,6 @@ stop_words = set(stopwords.words('english'))
 
 def print_device(var, var_name):
     print(f"{var_name} is on device: {var.device}")
-    
-def plot_stats(training_loss, validation_loss):
-  model_logs_dir = os.environ.get('MODEL_LOGS_DIR', './plots')
-  # Plotting example (e.g., loss curves)
-  plt.plot(training_loss, label='Training Loss')
-  plt.plot(validation_loss, label='Validation Loss')
-  plt.legend()
-
-  # Save the plot in MODEL_LOGS_DIR
-  plot_path = os.path.join(model_logs_dir, 'loss_plot_epoch_{}.png'.format(epoch))
-  plt.savefig(plot_path)
-
-  # Clear the current plot figure after saving to avoid overlap with future plots
-  plt.clf()
   
 # Function to preprocess the tweet
 def preprocess_tweet(tweet):
@@ -281,7 +267,7 @@ class MVSADatasetReader:
     return text, topics
 
   @staticmethod
-  def __read_data__(fname, tokenizer, path_img, transform, max_seq_len=35):
+  def __read_data__(fname, tokenizer, path_img, transform, max_seq_len=None):
     start_time = time.time()
     print(f'-------------- Loading {fname} ---------------')
     
