@@ -1,23 +1,9 @@
-from layers.attention import SelfAttention
+from layers.attention import SelfAttention  # Import the SelfAttention class
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# class SelfAttention(nn.Module):
-#     def __init__(self, input_dim, hidden_dim):
-#         super(SelfAttention, self).__init__()
-#         self.query = nn.Linear(input_dim, hidden_dim)
-#         self.key = nn.Linear(input_dim, hidden_dim)
-#         self.value = nn.Linear(input_dim, hidden_dim)
-#         self.softmax = nn.Softmax(dim=-1)
-    
-#     def forward(self, x):
-#         q = self.query(x)
-#         k = self.key(x)
-#         v = self.value(x)
-#         attention_weights = self.softmax(q @ k.transpose(-2, -1) / (k.size(-1) ** 0.5))
-#         attended_output = attention_weights @ v
-#         return attended_output
+# Remove your custom SelfAttention class definition
 
 class CrossAttention(nn.Module):
     def __init__(self, input_dim1, input_dim2, hidden_dim):
@@ -137,7 +123,7 @@ class MFCCHFUSION2(nn.Module):
         self.classifier = nn.Linear(6 * hidden_dim, num_classes)
     
     def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features):
-        # Step 1: Self Attention
+        # Step 1: Self Attention using the imported SelfAttention class
         text_attended = self.self_attention_text(roberta_text_features)
         topic_attended = self.self_attention_topic(roberta_topic_features)
         resnet_attended = self.self_attention_resnet(resnet_features)
@@ -158,7 +144,14 @@ class MFCCHFUSION2(nn.Module):
         co_sentence_resnet, co_resnet_sentence = self.co_attention_sentence_resnet(text_adjusted, resnet_adjusted)
         
         # Step 5: Concatenate Cross Attention and Co-Attention outputs (including second outputs)
-        fusion_output = torch.cat((cross_topic_densenet, cross_sentence_resnet, co_topic_densenet, co_sentence_resnet, co_densenet_topic, co_resnet_sentence), dim=1)
+        fusion_output = torch.cat((
+            cross_topic_densenet,
+            cross_sentence_resnet,
+            co_topic_densenet,
+            co_sentence_resnet,
+            co_densenet_topic,
+            co_resnet_sentence
+        ), dim=1)
         
         # Step 6: Classification
         output = self.classifier(fusion_output)

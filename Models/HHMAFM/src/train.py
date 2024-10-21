@@ -277,7 +277,7 @@ if __name__ == '__main__':
     parser.add_argument('--clip_grad', type=float, default=5.0)
     parser.add_argument('--path_image', default='./Datasets/MVSA-MTS/images-indexed', help='path to images')
     parser.add_argument('--crop_size', type=int, default=224)
-    parser.add_argument('--n_heads', type=int, default=8)
+    parser.add_argument('--n_head', type=int, default=8)
     
     parser.add_argument('--roberta_text_feature_dim', type=int, default=768)
     parser.add_argument('--roberta_topic_feature_dim', type=int, default=50)
