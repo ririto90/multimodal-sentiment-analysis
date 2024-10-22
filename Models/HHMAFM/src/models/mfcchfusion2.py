@@ -13,10 +13,10 @@ class MFCCHFUSION2(nn.Module):
         text_dim = 768
         visual_dim = 1000
 
-        hidden_dim = opt.common_dim  # 512
+        hidden_dim = opt.common_dim  # 512, 1024
         num_classes = opt.num_classes  # 3
 
-        # Self-Attention for each individual feature representation
+        # Self-Attention layers
         self.self_attention_text = SelfAttention(
             embed_dim=hidden_dim,
             hidden_dim=hidden_dim,
@@ -68,7 +68,7 @@ class MFCCHFUSION2(nn.Module):
             dropout=opt.dropout_rate
         )
 
-        # **Co-Attention layers**
+        # Co-Attention layers
         self.co_attention_text_topic = CoAttention(
             embed_dim1=hidden_dim,
             embed_dim2=hidden_dim,
@@ -86,17 +86,18 @@ class MFCCHFUSION2(nn.Module):
             dropout=opt.dropout_rate
         )
 
-        # Define projection layers to a common dimension
+        # Projection layers to a common dimension
         self.roberta_text_proj = nn.Linear(text_dim, hidden_dim)
         self.roberta_topic_proj = nn.Linear(text_dim, hidden_dim)
         self.resnet_proj = nn.Linear(visual_dim, hidden_dim)
         self.densenet_proj = nn.Linear(visual_dim, hidden_dim)
 
-        # **Adjust the classifier input dimension**
-        self.classifier = nn.Linear(hidden_dim * 4, num_classes)  # Updated to accommodate co-attention outputs
+        # Adjust classifier input dimension
+        self.classifier = nn.Linear(hidden_dim * 4, num_classes)
 
     def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features):
-        # Project each feature set to the common dimension
+        
+        # Project each feature set to a common dimension
         roberta_text_proj = F.relu(self.roberta_text_proj(roberta_text_features))
         roberta_topic_proj = F.relu(self.roberta_topic_proj(roberta_topic_features))
         resnet_proj = F.relu(self.resnet_proj(resnet_features))
@@ -130,22 +131,22 @@ class MFCCHFUSION2(nn.Module):
         text_resnet_attended = text_resnet_attended.squeeze(1)
         topic_densenet_attended = topic_densenet_attended.squeeze(1)
 
-        # **Apply co-attention between text and topic**
+        # Apply co-attention between text and topic**
         co_attended_text_topic_out1, co_attended_text_topic_out2, _, _ = self.co_attention_text_topic(
             x1=text_attended.unsqueeze(1),
             x2=topic_attended.unsqueeze(1)
         )
-        # Combine the two outputs (you can choose to use one or both)
+        # Combine the two outputs
         co_attended_text_topic = (co_attended_text_topic_out1 + co_attended_text_topic_out2).squeeze(1) / 2
 
-        # **Apply co-attention between resnet and densenet**
+        # Apply co-attention between resnet and densenet**
         co_attended_resnet_densenet_out1, co_attended_resnet_densenet_out2, _, _ = self.co_attention_resnet_densenet(
             x1=resnet_attended.unsqueeze(1),
             x2=densenet_attended.unsqueeze(1)
         )
         co_attended_resnet_densenet = (co_attended_resnet_densenet_out1 + co_attended_resnet_densenet_out2).squeeze(1) / 2
 
-        # **Concatenate the outputs from cross-attention and co-attention**
+        # Concatenate the outputs from cross-attention and co-attention**
         fusion = torch.cat([
             text_resnet_attended,
             topic_densenet_attended,
@@ -153,6 +154,7 @@ class MFCCHFUSION2(nn.Module):
             co_attended_resnet_densenet
         ], dim=1)
 
-        # Pass the fused features through the classifier
+        # Classifier
         out = self.classifier(fusion)
+        
         return out

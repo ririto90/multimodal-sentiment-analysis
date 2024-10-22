@@ -13,7 +13,6 @@ from models.cmhafusion import CMHAFUSION
 from models.mfcchfusion import MFCCHFUSION
 from models.mfcchfusion2 import MFCCHFUSION2
 
-# You can pass log_dir as an argument to Instructor or set it here
 log_dir = os.getenv('NEW_LOGS_DIR')
 if log_dir is None:
     raise ValueError("NEW_LOGS_DIR environment variable is not set")
@@ -39,7 +38,7 @@ if __name__ == '__main__':
     parser.add_argument('--crop_size', type=int, default=224)
     parser.add_argument('--n_head', type=int, default=8)
     
-    parser.add_argument('--common_dim', type=int, default=512)
+    parser.add_argument('--common_dim', type=int, default=1024)
     parser.add_argument('--num_classes', type=int, default=3)
     
     parser.add_argument('--log_dir', default=log_dir, type=str)

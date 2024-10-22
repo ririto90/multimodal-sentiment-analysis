@@ -22,7 +22,7 @@ def main():
         raise ValueError("NEW_LOGS_DIR environment variable is not set")
     print(f"Logs directory: {log_dir}")
   
-    # Define the base hyperparameters
+    # Base Hyperparameters
     base_opt = Namespace(
         rand_seed=8,
         model_name='mmfusion',
@@ -43,15 +43,13 @@ def main():
         common_dim=512,
         num_classes=3,
         log_dir=log_dir
-        # Include any additional parameters required by Instructor
     )
 
-    # Define the hyperparameter grid
+    # Hyperparameter grid
     hyperparameter_grid = {
         'learning_rate': [1e-4, 5e-4],
         'batch_size': [16, 32],
         'dropout_rate': [0.3, 0.5],
-        # Add other hyperparameters as needed
     }
 
     # Generate all combinations
@@ -95,12 +93,10 @@ def main():
         np.random.seed(current_opt.rand_seed)
         torch.manual_seed(current_opt.rand_seed)
 
-        # Optionally, set a unique log_dir for each run
-        log_dir = f"/path/to/logs/run_{idx}"
         ins = Instructor(current_opt)
         ins.run()
 
-        # Access the instance variables directly
+        # Instance variables for performance
         dev_f1 = ins.max_dev_f1
         test_f1 = ins.max_test_f1
 
@@ -112,7 +108,6 @@ def main():
 
         print(f"Dev F1: {dev_f1:.6f}, Test F1: {test_f1:.6f}")
 
-    # After all combinations, analyze results
     # Find the best hyperparameters based on dev_f1
     best_result = max(results, key=lambda x: x['dev_f1'])
     print("\nBest Hyperparameters:")
@@ -121,7 +116,6 @@ def main():
     print(f"Best Dev F1: {best_result['dev_f1']:.6f}")
     print(f"Corresponding Test F1: {best_result['test_f1']:.6f}")
 
-    # Optionally, save results to a file
     output_file = os.path.join(log_dir, 'grid_search_results.json')
     import json
     with open(output_file, 'w') as f:

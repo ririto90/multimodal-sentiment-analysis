@@ -17,14 +17,13 @@ from data_utils import MVSADatasetReader
 from sklearn.metrics import precision_recall_fscore_support
 import matplotlib.pyplot as plt
 
-# Device configuration
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(f'Number of GPUs available: {torch.cuda.device_count()}')
 
 def macro_f1(y_true, y_pred):
     preds = np.argmax(y_pred, axis=-1)
     p_macro, r_macro, f_macro, _ = precision_recall_fscore_support(y_true, preds, average='macro')
-    return f_macro  # Return only f_macro since others are not used
+    return f_macro
 
 class Instructor:
     def __init__(self, opt):
@@ -32,7 +31,7 @@ class Instructor:
         self.max_dev_f1 = 0
         self.max_test_f1 = 0
 
-        # Set up TensorBoard writer
+        # TensorBoard writer
         self.writer = SummaryWriter(log_dir=opt.log_dir)
 
         print('> training arguments:')
@@ -244,14 +243,13 @@ class Instructor:
 
         plt.figure(figsize=(12, 6))
         plt.plot(train_steps, train_losses, label='Training Loss', alpha=0.7)
-        # Change here: Plot validation loss as a line
         plt.plot(val_steps, val_losses, label='Validation Loss', color='orange', alpha=0.7)
 
-        # Calculate steps where epochs end (if needed)
+        # Calculate steps where epochs end
         num_batches_per_epoch = len(self.train_data_loader)
         epoch_end_steps = [num_batches_per_epoch * (epoch + 1) for epoch in range(self.opt.num_epoch)]
 
-        # Add vertical lines at epoch boundaries (optional)
+        # Add vertical lines at epoch boundaries
         for idx, epoch_step in enumerate(epoch_end_steps):
             plt.axvline(x=epoch_step, color='gray', linestyle='--', linewidth=0.8)
             plt.text(epoch_step, max(train_losses)*0.95, f'Epoch {idx+1}', rotation=90,

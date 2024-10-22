@@ -67,7 +67,7 @@ class MMFUSION(nn.Module):
             dropout=opt.dropout_rate
         )
 
-        # Define projection layers to a common dimension
+        # Projection layers to a common dimension
         self.roberta_text_proj = nn.Linear(text_dim, hidden_dim)
         self.roberta_topic_proj = nn.Linear(text_dim, hidden_dim)
         self.resnet_proj = nn.Linear(visual_dim, hidden_dim)
