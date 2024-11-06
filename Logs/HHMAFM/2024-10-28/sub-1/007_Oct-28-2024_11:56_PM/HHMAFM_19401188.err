@@ -1,0 +1,20 @@
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-base and are newly initialized: ['roberta.pooler.dense.weight', 'roberta.pooler.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Downloading: "https://download.pytorch.org/models/resnet152-f82ba261.pth" to /home/rgg2706/.cache/torch/hub/checkpoints/resnet152-f82ba261.pth
+  0%|          | 0.00/230M [00:00<?, ?B/s]  1%|          | 1.19M/230M [00:00<00:19, 12.4MB/s]  8%|▊         | 19.0M/230M [00:00<00:01, 115MB/s]  18%|█▊        | 41.0M/230M [00:00<00:01, 168MB/s] 28%|██▊       | 63.6M/230M [00:00<00:00, 195MB/s] 37%|███▋      | 85.8M/230M [00:00<00:00, 208MB/s] 47%|████▋     | 108M/230M [00:00<00:00, 217MB/s]  57%|█████▋    | 131M/230M [00:00<00:00, 224MB/s] 66%|██████▋   | 153M/230M [00:00<00:00, 227MB/s] 76%|███████▋  | 176M/230M [00:00<00:00, 231MB/s] 86%|████████▌ | 198M/230M [00:01<00:00, 231MB/s] 96%|█████████▌| 220M/230M [00:01<00:00, 232MB/s]100%|██████████| 230M/230M [00:01<00:00, 211MB/s]
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/train.py", line 76, in <module>
+    ins.run()
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor.py", line 150, in run
+    dev_acc, dev_f1, dev_loss = self.evaluate(self.dev_data_loader)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor.py", line 205, in evaluate
+    outputs = self.model(roberta_text_features, roberta_topic_features, 
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: CMHAFUSION.forward() missing 1 required positional argument: 'images'

@@ -8,6 +8,7 @@ import torch
 import torch.nn as nn
 from torchvision import transforms
 import torchvision.models as models
+from torchvision.models import ResNet152_Weights, DenseNet121_Weights
 from transformers import RobertaModel
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
@@ -62,8 +63,9 @@ class Instructor:
         print('Building model')
         
         self.roberta = RobertaModel.from_pretrained('roberta-base')
-        self.resnet = models.resnet152(pretrained=True)
-        self.densenet = models.densenet121(pretrained=True)
+        self.resnet = models.resnet152(weights=ResNet152_Weights.DEFAULT)
+        self.densenet = models.densenet121(weights=DenseNet121_Weights.DEFAULT)
+        self.densenet.classifier = nn.Identity()
         self.model = opt.model_class(opt)
         
         # Use multiple GPUs if available
@@ -133,7 +135,7 @@ class Instructor:
                 roberta_topic_features = self.roberta(**roberta_inputs_topic).last_hidden_state[:, 0, :]
 
                 outputs = self.model(roberta_text_features, roberta_topic_features, 
-                                     resnet_features, densenet_features)
+                                     resnet_features, densenet_features, images)
                 loss = criterion(outputs, targets)
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=self.opt.clip_grad)
@@ -201,7 +203,7 @@ class Instructor:
                 roberta_topic_features = self.roberta(**roberta_inputs_topic).last_hidden_state[:, 0, :]
 
                 outputs = self.model(roberta_text_features, roberta_topic_features, 
-                                     resnet_features, densenet_features)
+                                     resnet_features, densenet_features, images)
 
                 loss = criterion(outputs, targets)
                 total_loss += loss.item() * targets.size(0)

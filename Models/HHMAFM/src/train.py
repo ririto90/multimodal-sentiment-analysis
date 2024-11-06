@@ -10,6 +10,7 @@ import os
 from instructor import Instructor
 from models.mmfusion import MMFUSION
 from models.cmhafusion import CMHAFUSION
+from models.cmhafusion import DMLANFUSION
 from models.mfcchfusion import MFCCHFUSION
 from models.mfcchfusion2 import MFCCHFUSION2
 
@@ -38,7 +39,7 @@ if __name__ == '__main__':
     parser.add_argument('--crop_size', type=int, default=224)
     parser.add_argument('--n_head', type=int, default=8)
     
-    parser.add_argument('--common_dim', type=int, default=1024)
+    parser.add_argument('--hidden_dim', type=int, default=1024)
     parser.add_argument('--num_classes', type=int, default=3)
     
     parser.add_argument('--log_dir', default=log_dir, type=str)
@@ -52,6 +53,7 @@ if __name__ == '__main__':
     model_classes = {
         'mmfusion': MMFUSION,
         'cmhafusion': CMHAFUSION,
+        'dmlanfusion': DMLANFUSION,
         'mfcchfusion': MFCCHFUSION,
         'mfcchfusion2': MFCCHFUSION2,
     }

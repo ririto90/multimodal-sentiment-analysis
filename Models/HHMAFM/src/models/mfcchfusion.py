@@ -154,6 +154,6 @@ class MFCCHFUSION(nn.Module):
             co_attended_resnet_densenet
         ], dim=1)
 
-        # Pass the fused features through the classifier
+        # Classifier
         out = self.classifier(fusion)
         return out
