@@ -105,7 +105,13 @@ class Instructor:
     def run(self):
         criterion = nn.CrossEntropyLoss()
         params = filter(lambda p: p.requires_grad, self.model.parameters())
-        optimizer = self.opt.optimizer(params, lr=self.opt.learning_rate)
+        if self.opt.weight_decay is not None and self.opt.weight_decay > 0:
+            optimizer = self.opt.optimizer(params, lr=self.opt.learning_rate, weight_decay=self.opt.weight_decay)
+            print("Using weight decay")
+        else:
+            optimizer = self.opt.optimizer(params, lr=self.opt.learning_rate)
+            print("No weight decay")
+
 
         global_step = 0
 
@@ -233,8 +239,8 @@ class Instructor:
         print('Available tags:', ea.Tags())
         
         loss_events = ea.Scalars('Loss/train')
-        for event in loss_events:
-            print(f"Step: {event.step}, Loss: {event.value}")
+        # for event in loss_events:
+        #     print(f"Step: {event.step}, Loss: {event.value}")
 
     def plot_tensorboard_loss(self, log_dir=None):
         output_file = os.path.join(log_dir, 'trainval_loss_curves.png')

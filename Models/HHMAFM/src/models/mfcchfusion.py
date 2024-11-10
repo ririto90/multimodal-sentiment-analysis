@@ -10,11 +10,6 @@ class MFCCHFUSION(nn.Module):
         super(MFCCHFUSION, self).__init__()
         self.opt = opt
         self.first_batch = True
-        
-        print("Initialized MFCCHFUSION with dimensions:")
-        print(f"text_dim: {text_dim}")
-        print(f"resnet_dim: {resnet_dim}")
-        print(f"densenet_dim: {densenet_dim}")
 
         hidden_dim = opt.hidden_dim  # 512, 1024
         num_classes = opt.num_classes  # 3
@@ -96,9 +91,12 @@ class MFCCHFUSION(nn.Module):
         )
 
         # Classifier input dimension
-        self.classifier = nn.Linear(hidden_dim * 4, num_classes)
+        fusion_dim = text_dim + 4 * hidden_dim
+        self.classifier = nn.Linear(fusion_dim, num_classes)
 
     def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features, _):
+        
+        text_proj = self.roberta_text_proj(roberta_text_features)
         
         ### Self-attention on original features ###
         text_self_attended = self.self_attention_text(roberta_text_features.unsqueeze(1)).squeeze(1)
@@ -117,13 +115,6 @@ class MFCCHFUSION(nn.Module):
         topic_proj = self.roberta_topic_proj(topic_self_attended)
         resnet_proj = self.resnet_proj(resnet_self_attended)
         densenet_proj = self.densenet_proj(densenet_self_attended)
-        
-        if self.first_batch:
-            print("text_proj shape:", text_proj.shape)
-            print("resnet_proj shape:", resnet_proj.shape)
-            print("topic_proj shape:", topic_proj.shape)
-            print("densenet_proj shape:", densenet_proj.shape)
-            self.first_batch = False
 
         ### Apply Cross-Attention ###
         # Cross-attention (text and resnet)
@@ -159,6 +150,7 @@ class MFCCHFUSION(nn.Module):
 
         # Concatenate the outputs
         fusion = torch.cat([
+            roberta_text_features,
             text_resnet_attended,
             topic_densenet_attended,
             co_attended_text_resnet,

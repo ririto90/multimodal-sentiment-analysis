@@ -32,6 +32,7 @@ def main():
     parser.add_argument('--initializer', type=str, default='xavier_uniform_')
     parser.add_argument('--learning_rate', type=float, default=0.0001)
     parser.add_argument('--dropout_rate', type=float, default=0.5)
+    parser.add_argument('--weight_decay', default=1e-4, type=float)
     parser.add_argument('--num_epoch', type=int, default=8)
     parser.add_argument('--batch_size', type=int, default=16)
     parser.add_argument('--log_step', type=int, default=10)
