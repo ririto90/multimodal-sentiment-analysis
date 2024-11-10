@@ -1,0 +1,30 @@
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-base and are newly initialized: ['roberta.pooler.dense.weight', 'roberta.pooler.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/train.py", line 78, in <module>
+    ins.run()
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor.py", line 137, in run
+    outputs = self.model(roberta_text_features, roberta_topic_features, 
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/models/mfcchfusion2.py", line 119, in forward
+    densenet_attended = self.self_attention_densenet(densenet_features).squeeze(1)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/layers/attention.py", line 109, in forward
+    return super(SelfAttention, self).forward(k, q)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/layers/attention.py", line 52, in forward
+    kx = kx.view(-1, k_len, self.embed_dim)  # (batch_size * n_head, k_len, embed_dim)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[-1, 1, 1000]' is invalid for input of size 524288

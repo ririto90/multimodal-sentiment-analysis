@@ -12,13 +12,12 @@ class MFCCHFUSION2(nn.Module):
 
         fc_dim = 256
         text_dim = 768
-        visual_dim = 1000
+        visual_dim = 1024
         # self_att_score = opt.self_att_score
         # cross_att_score = opt.cross_att_score
         # co_att_score = opt.co_att_score
         
-
-        hidden_dim = opt.common_dim  # 512, 1024
+        hidden_dim = opt.hidden_dim  # 512, 1024
         num_classes = opt.num_classes  # 3
 
         # Self-Attention layers (adjusted embed_dim and hidden_dim)
@@ -105,7 +104,7 @@ class MFCCHFUSION2(nn.Module):
         
         # self.classifier = nn.Linear(hidden_dim * 4, num_classes)
 
-    def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features):
+    def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features, _):
 
         # Add sequence dimension
         roberta_text_features = roberta_text_features.unsqueeze(1)
@@ -167,6 +166,7 @@ class MFCCHFUSION2(nn.Module):
             topic_densenet_attended *
             co_attended_resnet_densenet
         )
+        
         
         fusion = torch.cat([
             mult_1,

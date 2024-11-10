@@ -1,0 +1,67 @@
+SLURM Job ID: 19420521
+Number of GPUs available: 1
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-09/sub-2/011_Nov-09-2024_09:49_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_name: mfcchfusion
+>>> dataset: mvsa-mts
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7ff0fb915580>
+>>> learning_rate: 0.0001
+>>> dropout_rate: 0.5
+>>> num_epoch: 10
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 1024
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-09/sub-2/011_Nov-09-2024_09:49_PM
+>>> model_class: <class 'models.mfcchfusion.MFCCHFUSION'>
+Preparing mvsa-mts dataset...
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/train.tsv: 284.25 seconds (4.74 minutes)
+The number of problematic samples: 402
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/val.tsv: 89.09 seconds (1.48 minutes)
+The number of problematic samples: 136
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts/test.tsv: 86.94 seconds (1.45 minutes)
+The number of problematic samples: 142
+Total Training Samples: 19600
+Number of Training Samples: 11760
+Number of Development Samples: 3920
+Number of Test Samples: 3920
+Number of unique sentiment classes: 3
+Building model
+Initialized MFCCHFUSION with dimensions:
+text_dim: 768
+resnet_dim: 2048
+densenet_dim: 1024
+n_trainable_params: 360217603, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+text_proj shape: torch.Size([64, 1024])
+resnet_proj shape: torch.Size([64, 1024])
+topic_proj shape: torch.Size([64, 1024])
+densenet_proj shape: torch.Size([64, 1024])
+Batch 0 completed in 1.44 seconds (0.02 minutes)
+New best dev_f1: 0.230675 (previous best: 0.000000)
+loss: 1.099491, dev_acc: 52.91% (0.529082), dev_f1: 23.07% (0.230675), test_acc: 53.78% (0.537755), test_f1: 23.31% (0.233134)
+Batch 60 completed in 0.61 seconds (0.01 minutes)
+New best dev_f1: 0.287561 (previous best: 0.230675)
+loss: 0.843373, dev_acc: 54.57% (0.545663), dev_f1: 28.76% (0.287561), test_acc: 54.77% (0.547704), test_f1: 28.28% (0.282848)
+Batch 120 completed in 0.61 seconds (0.01 minutes)
+New best dev_f1: 0.373317 (previous best: 0.287561)
+loss: 0.815619, dev_acc: 57.91% (0.579082), dev_f1: 37.33% (0.373317), test_acc: 58.34% (0.583418), test_f1: 37.45% (0.374512)
+Batch 180 completed in 0.61 seconds (0.01 minutes)
+loss: 0.845247, dev_acc: 51.25% (0.512500), dev_f1: 35.19% (0.351870), test_acc: 51.20% (0.511990), test_f1: 37.36% (0.373556)
+Epoch 0 completed in 222.64 seconds (3.71 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 0.61 seconds (0.01 minutes)
+loss: 0.810036, dev_acc: 56.02% (0.560204), dev_f1: 31.89% (0.318864), test_acc: 57.50% (0.575000), test_f1: 34.10% (0.341033)

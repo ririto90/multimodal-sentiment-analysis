@@ -1,0 +1,12 @@
+Some weights of RobertaModel were not initialized from the model checkpoint at roberta-base and are newly initialized: ['roberta.pooler.dense.weight', 'roberta.pooler.dense.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/train.py", line 77, in <module>
+    ins = Instructor(opt)
+          ^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/HHMAFM/src/instructor.py", line 71, in __init__
+    densenet_dim = self.densenet.classifier.in_features
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1695, in __getattr__
+    raise AttributeError(f"'{type(self).__name__}' object has no attribute '{name}'")
+AttributeError: 'Identity' object has no attribute 'in_features'

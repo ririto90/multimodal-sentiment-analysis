@@ -63,10 +63,17 @@ class Instructor:
         print('Building model')
         
         self.roberta = RobertaModel.from_pretrained('roberta-base')
+        text_dim = self.roberta.config.hidden_size
+        
         self.resnet = models.resnet152(weights=ResNet152_Weights.DEFAULT)
+        resnet_dim = self.resnet.fc.in_features
+        self.resnet.fc = nn.Identity()
+        
         self.densenet = models.densenet121(weights=DenseNet121_Weights.DEFAULT)
+        densenet_dim = self.densenet.classifier.in_features
         self.densenet.classifier = nn.Identity()
-        self.model = opt.model_class(opt)
+        
+        self.model = opt.model_class(opt, text_dim, resnet_dim, densenet_dim)
         
         # Use multiple GPUs if available
         if torch.cuda.device_count() > 1:

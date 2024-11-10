@@ -1,0 +1,755 @@
+SLURM Job ID: 19420518
+Number of GPUs available: 1
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-09/sub-2/009_Nov-09-2024_09:44_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_name: mfcchfusion
+>>> dataset: mvsa-mts-1000
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7fc18c99d580>
+>>> learning_rate: 0.0001
+>>> dropout_rate: 0.5
+>>> num_epoch: 10
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 1024
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-09/sub-2/009_Nov-09-2024_09:44_PM
+>>> model_class: <class 'models.mfcchfusion.MFCCHFUSION'>
+Preparing mvsa-mts-1000 dataset...
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv: 2.99 seconds (0.05 minutes)
+The number of problematic samples: 69
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv: 0.37 seconds (0.01 minutes)
+The number of problematic samples: 10
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv: 0.37 seconds (0.01 minutes)
+The number of problematic samples: 6
+Total Training Samples: 1000
+Number of Training Samples: 800
+Number of Development Samples: 100
+Number of Test Samples: 100
+Number of unique sentiment classes: 3
+Building model
+Initialized MFCCHFUSION with dimensions:
+text_dim: 768
+resnet_dim: 2048
+densenet_dim: 1024
+n_trainable_params: 360217603, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+text_proj shape: torch.Size([64, 1024])
+resnet_proj shape: torch.Size([64, 1024])
+topic_proj shape: torch.Size([64, 1024])
+densenet_proj shape: torch.Size([64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch 0 completed in 1.64 seconds (0.03 minutes)
+New best dev_f1: 0.197183 (previous best: 0.000000)
+loss: 1.100072, dev_acc: 42.00% (0.420000), dev_f1: 19.72% (0.197183), test_acc: 48.00% (0.480000), test_f1: 21.62% (0.216216)
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 32, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([32, 1, 768])
+kx shape after repeat and view: torch.Size([8, 32, 768])
+Batch size: 32, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([32, 1, 768])
+kx shape after repeat and view: torch.Size([8, 32, 768])
+Batch size: 32, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([32, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 32, 2048])
+Batch size: 32, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([32, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 32, 1024])
+Epoch 0 completed in 11.39 seconds (0.19 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch 0 completed in 0.83 seconds (0.01 minutes)
+loss: 0.969331, dev_acc: 42.00% (0.420000), dev_f1: 19.72% (0.197183), test_acc: 48.00% (0.480000), test_f1: 21.62% (0.216216)
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 32, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([32, 1, 768])
+kx shape after repeat and view: torch.Size([8, 32, 768])
+Batch size: 32, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([32, 1, 768])
+kx shape after repeat and view: torch.Size([8, 32, 768])
+Batch size: 32, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([32, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 32, 2048])
+Batch size: 32, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([32, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 32, 1024])
+Epoch 1 completed in 10.48 seconds (0.17 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch 0 completed in 1.05 seconds (0.02 minutes)
+New best dev_f1: 0.232520 (previous best: 0.197183)
+loss: 0.853568, dev_acc: 44.00% (0.440000), dev_f1: 23.25% (0.232520), test_acc: 49.00% (0.490000), test_f1: 27.33% (0.273276)
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 32, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([32, 1, 768])
+kx shape after repeat and view: torch.Size([8, 32, 768])
+Batch size: 32, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([32, 1, 768])
+kx shape after repeat and view: torch.Size([8, 32, 768])
+Batch size: 32, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([32, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 32, 2048])
+Batch size: 32, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([32, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 32, 1024])
+Epoch 2 completed in 11.03 seconds (0.18 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([36, 1, 768])
+kx shape after repeat and view: torch.Size([8, 36, 768])
+Batch size: 36, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([36, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 36, 2048])
+Batch size: 36, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([36, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 36, 1024])
+Batch 0 completed in 0.69 seconds (0.01 minutes)
+New best dev_f1: 0.389814 (previous best: 0.232520)
+loss: 0.700264, dev_acc: 45.00% (0.450000), dev_f1: 38.98% (0.389814), test_acc: 43.00% (0.430000), test_f1: 35.70% (0.356985)
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 768
+k shape before repeat: torch.Size([64, 1, 768])
+kx shape after repeat and view: torch.Size([8, 64, 768])
+Batch size: 64, Sequence length: 1, Embed dim: 2048
+k shape before repeat: torch.Size([64, 1, 2048])
+kx shape after repeat and view: torch.Size([8, 64, 2048])
+Batch size: 64, Sequence length: 1, Embed dim: 1024
+k shape before repeat: torch.Size([64, 1, 1024])
+kx shape after repeat and view: torch.Size([8, 64, 1024])

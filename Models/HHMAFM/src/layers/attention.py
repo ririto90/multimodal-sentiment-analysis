@@ -38,6 +38,20 @@ class Attention(nn.Module):
             self.register_parameter('weight', None)
 
     def forward(self, k, q, memory_len=None):
+        # Adjust for the case where seq_len = 1
+        batch_size = k.size(0)
+        seq_len = k.size(1)
+        
+        # print(f"Batch size: {batch_size}, Sequence length: {seq_len}, Embed dim: {self.embed_dim}")
+        # print(f"k shape before repeat: {k.shape}")
+        
+        if seq_len == 1:
+            kx = k.repeat(1, self.n_head, 1).view(batch_size * self.n_head, seq_len, self.embed_dim)
+            qx = q.repeat(1, self.n_head, 1).view(batch_size * self.n_head, seq_len, self.embed_dim)
+        else:
+            kx = k.repeat(self.n_head, 1, 1).view(self.n_head, -1, self.embed_dim)
+            qx = q.repeat(self.n_head, 1, 1).view(self.n_head, -1, self.embed_dim)
+        
         if len(q.shape) == 2:  # q_len missing
             q = torch.unsqueeze(q, dim=1)
         if len(k.shape) == 2:  # k_len missing
@@ -52,6 +66,7 @@ class Attention(nn.Module):
         # score: (n_head*?, q_len, k_len,)
         # output: (?, q_len, embed_dim,)
         kx = k.repeat(self.n_head, 1, 1).view(self.n_head, -1, self.embed_dim)  # (n_head, ?*k_len, embed_dim)
+        # print(f"kx shape after repeat and view: {kx.shape}")
         qx = q.repeat(self.n_head, 1, 1).view(self.n_head, -1, self.embed_dim)  # (n_head, ?*q_len, embed_dim)
         kx = torch.bmm(kx, self.w_kx).view(-1, k_len, self.hidden_dim)  # (n_head*?, k_len, hidden_dim)
         qx = torch.bmm(qx, self.w_qx).view(-1, q_len, self.hidden_dim)  # (n_head*?, q_len, hidden_dim)

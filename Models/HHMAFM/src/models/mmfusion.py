@@ -12,7 +12,7 @@ class MMFUSION(nn.Module):
         text_dim = 768
         visual_dim = 1000
 
-        hidden_dim = opt.common_dim  # 512
+        hidden_dim = opt.hidden_dim  # 512
         num_classes = opt.num_classes  # 3
 
         # Self Attention for each individual feature representation
@@ -75,7 +75,7 @@ class MMFUSION(nn.Module):
 
         self.classifier = nn.Linear(hidden_dim * 2, num_classes)
         
-    def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features):
+    def forward(self, roberta_text_features, roberta_topic_features, resnet_features, densenet_features, _):
         # Project each feature set to the common dimension
         roberta_text_proj = F.relu(self.roberta_text_proj(roberta_text_features))
         roberta_topic_proj = F.relu(self.roberta_topic_proj(roberta_topic_features))

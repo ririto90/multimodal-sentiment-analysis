@@ -10,7 +10,7 @@ import os
 from instructor import Instructor
 from models.mmfusion import MMFUSION
 from models.cmhafusion import CMHAFUSION
-from models.cmhafusion import DMLANFUSION
+from models.dmlanfusion import DMLANFUSION
 from models.mfcchfusion import MFCCHFUSION
 from models.mfcchfusion2 import MFCCHFUSION2
 
