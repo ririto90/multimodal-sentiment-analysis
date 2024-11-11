@@ -10,9 +10,9 @@ import os
 from instructor import Instructor
 from models.mmfusion import MMFUSION
 from models.cmhafusion import CMHAFUSION
-from models.dmlanfusion import DMLANFUSION
 from models.mfcchfusion import MFCCHFUSION
 from models.mfcchfusion2 import MFCCHFUSION2
+from models.mfcchfusion3 import MFCCHFUSION3
 
 log_dir = os.getenv('NEW_LOGS_DIR')
 if log_dir is None:
@@ -54,9 +54,9 @@ if __name__ == '__main__':
     model_classes = {
         'mmfusion': MMFUSION,
         'cmhafusion': CMHAFUSION,
-        'dmlanfusion': DMLANFUSION,
         'mfcchfusion': MFCCHFUSION,
         'mfcchfusion2': MFCCHFUSION2,
+        'mfcchfusion3': MFCCHFUSION3,
     }
 
     initializers = {

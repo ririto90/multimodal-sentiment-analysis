@@ -85,7 +85,7 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 #SBATCH --time=0-12:00:00           # 12 hours time limit
 #SBATCH --nodes=1                   # # of nodes
 #SBATCH --ntasks=1                  # 1 task (i.e. process)
-#SBATCH --mem=32g                   # Increase RAM to 32GB
+#SBATCH --mem=96g                   # Increase RAM to 32GB
 #SBATCH --gres=gpu:a100:2           # 2 a100 GPUs
 #SBATCH --output=${OUTPUT_PATH}     # Output file
 #SBATCH --error=${ERROR_PATH}       # Error file

@@ -356,15 +356,25 @@ class MVSADatasetReader:
         'dev': 'Datasets/MVSA-MTS/mvsa-mts/val.tsv',
         'test': 'Datasets/MVSA-MTS/mvsa-mts/test.tsv'
       },
-      'mvsa-mts-100': {
-        'train': 'Datasets/MVSA-MTS/mvsa-mts-100/train.tsv',
-        'dev': 'Datasets/MVSA-MTS/mvsa-mts-100/val.tsv',
-        'test': 'Datasets/MVSA-MTS/mvsa-mts-100/test.tsv'
-      },
       'mvsa-mts-1000': {
         'train': 'Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv',
         'dev': 'Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv',
         'test': 'Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv'
+      },
+      'mvsa-mts-undersampled': {
+        'train': 'Datasets/MVSA-MTS/mvsa-mts-undersampled/train.tsv',
+        'dev': 'Datasets/MVSA-MTS/mvsa-mts-undersampled/val.tsv',
+        'test': 'Datasets/MVSA-MTS/mvsa-mts-undersampled/test.tsv'
+      },
+      'mvsa-mts-oversampled': {
+        'train': 'Datasets/MVSA-MTS/mvsa-mts-oversampled/train.tsv',
+        'dev': 'Datasets/MVSA-MTS/mvsa-mts-oversampled/val.tsv',
+        'test': 'Datasets/MVSA-MTS/mvsa-mts-oversampled/test.tsv'
+      },
+      'mvsa-mts-balanced': {
+        'train': 'Datasets/MVSA-MTS/mvsa-mts-balanced/train.tsv',
+        'dev': 'Datasets/MVSA-MTS/mvsa-mts-balanced/val.tsv',
+        'test': 'Datasets/MVSA-MTS/mvsa-mts-balanced/test.tsv'
       }
     }
 
