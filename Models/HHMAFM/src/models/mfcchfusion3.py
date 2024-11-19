@@ -48,7 +48,7 @@ class MFCCHFUSION3(nn.Module):
             dropout=opt.dropout_rate
         )
         
-        # Projection for Cross-Attention to common dimension
+        # Cross- & Co-Attention Projections
         self.roberta_text_proj = nn.Linear(text_dim, hidden_dim)
         self.roberta_topic_proj = nn.Linear(text_dim, hidden_dim)
         self.resnet_proj = nn.Linear(resnet_dim, hidden_dim)
@@ -114,7 +114,7 @@ class MFCCHFUSION3(nn.Module):
         # resnet_proj = F.relu(self.resnet_proj(resnet_self_attended))
         # densenet_proj = F.relu(self.densenet_proj(densenet_self_attended))
         
-        # Project to common hidden dimension (without activation)
+        # Project to common hidden dimension
         text_proj = self.roberta_text_proj(text_self_attended)
         topic_proj = self.roberta_topic_proj(topic_self_attended)
         resnet_proj = self.resnet_proj(resnet_self_attended)

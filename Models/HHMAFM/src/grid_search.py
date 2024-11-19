@@ -26,7 +26,7 @@ def main():
     # Parse command-line arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--rand_seed', type=int, default=8)
-    parser.add_argument('--model_name', type=str, default='mmfusion')
+    parser.add_argument('--model_fusion', type=str, default='mmfusion')
     parser.add_argument('--dataset', type=str, default='mvsa-mts')
     parser.add_argument('--optimizer', type=str, default='adam')
     parser.add_argument('--initializer', type=str, default='xavier_uniform_')
@@ -50,7 +50,7 @@ def main():
     # Base Hyperparameters
     base_opt = Namespace(
         rand_seed=args.rand_seed,
-        model_name=args.model_name,
+        model_fusion=args.model_fusion,
         dataset=args.dataset,
         optimizer=args.optimizer,
         initializer=args.initializer,
@@ -111,7 +111,7 @@ def main():
             'sgd': torch.optim.SGD,
         }
 
-        current_opt.model_class = model_classes[current_opt.model_name]
+        current_opt.model_class = model_classes[current_opt.model_fusion]
         current_opt.initializer = initializers[current_opt.initializer]
         current_opt.optimizer = optimizers[current_opt.optimizer]
 

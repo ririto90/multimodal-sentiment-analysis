@@ -1,0 +1,151 @@
+HHMAFM_mfcchfusion4_mvsa-mts-oversampled_lr0.0005_dr0.1
+SLURM Job ID: 19424950
+Number of GPUs available: 2
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-11/sub-4/003_Nov-11-2024_08:59_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: mfcchfusion4
+>>> dataset: mvsa-mts-oversampled
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f74753b9620>
+>>> learning_rate: 0.0005
+>>> dropout_rate: 0.1
+>>> weight_decay: 0.0
+>>> num_epoch: 10
+>>> batch_size: 128
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 1024
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-11/sub-4/003_Nov-11-2024_08:59_PM
+>>> model_class: <class 'models.mfcchfusion4.MFCCHFUSION4'>
+Preparing mvsa-mts-oversampled dataset...
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-oversampled/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-oversampled/train.tsv: 389.26 seconds (6.49 minutes)
+The number of problematic samples: 900
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-oversampled/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-oversampled/val.tsv: 90.77 seconds (1.51 minutes)
+The number of problematic samples: 325
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-oversampled/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-oversampled/test.tsv: 93.72 seconds (1.56 minutes)
+The number of problematic samples: 296
+Total Training Samples: 36108
+Number of Training Samples: 21664
+Number of Development Samples: 7222
+Number of Test Samples: 7222
+Number of unique sentiment classes: 3
+Building model
+Using 2 GPUs
+n_trainable_params: 360213763, n_nontrainable_params: 0
+No weight decay
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch 0 completed in 4.09 seconds (0.07 minutes)
+New best dev_f1: 0.168495 (previous best: 0.000000)
+loss: 1.286494, dev_acc: 33.49% (0.334949), dev_f1: 16.85% (0.168495), test_acc: 34.34% (0.343395), test_f1: 17.04% (0.170429)
+Batch 60 completed in 1.52 seconds (0.03 minutes)
+loss: 3.551574, dev_acc: 33.58% (0.335780), dev_f1: 16.76% (0.167582), test_acc: 32.55% (0.325533), test_f1: 16.37% (0.163724)
+Batch 120 completed in 1.83 seconds (0.03 minutes)
+New best dev_f1: 0.509189 (previous best: 0.168495)
+loss: 1.105857, dev_acc: 50.62% (0.506231), dev_f1: 50.92% (0.509189), test_acc: 49.34% (0.493354), test_f1: 49.69% (0.496945)
+Epoch 0 completed in 563.11 seconds (9.39 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.942918, dev_acc: 48.86% (0.488646), dev_f1: 47.84% (0.478446), test_acc: 48.81% (0.488092), test_f1: 47.86% (0.478573)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.548872 (previous best: 0.509189)
+loss: 0.819066, dev_acc: 54.44% (0.544448), dev_f1: 54.89% (0.548872), test_acc: 53.92% (0.539186), test_f1: 54.24% (0.542427)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.567681 (previous best: 0.548872)
+loss: 0.869874, dev_acc: 57.75% (0.577541), dev_f1: 56.77% (0.567681), test_acc: 56.65% (0.566464), test_f1: 55.61% (0.556126)
+Epoch 1 completed in 574.45 seconds (9.57 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+Batch 0 completed in 1.97 seconds (0.03 minutes)
+loss: 0.823668, dev_acc: 54.92% (0.549155), dev_f1: 51.22% (0.512244), test_acc: 54.17% (0.541678), test_f1: 50.41% (0.504139)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.876031, dev_acc: 58.42% (0.584187), dev_f1: 56.47% (0.564683), test_acc: 57.81% (0.578095), test_f1: 55.78% (0.557809)
+Batch 120 completed in 1.54 seconds (0.03 minutes)
+loss: 0.838799, dev_acc: 58.09% (0.580864), dev_f1: 55.94% (0.559398), test_acc: 57.59% (0.575879), test_f1: 55.30% (0.552990)
+Epoch 2 completed in 576.22 seconds (9.60 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.849883, dev_acc: 56.76% (0.567571), dev_f1: 54.92% (0.549227), test_acc: 56.48% (0.564802), test_f1: 54.72% (0.547214)
+Batch 60 completed in 1.52 seconds (0.03 minutes)
+New best dev_f1: 0.571503 (previous best: 0.567681)
+loss: 0.841629, dev_acc: 58.45% (0.584464), dev_f1: 57.15% (0.571503), test_acc: 58.11% (0.581141), test_f1: 56.82% (0.568198)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+New best dev_f1: 0.579472 (previous best: 0.571503)
+loss: 0.853016, dev_acc: 59.55% (0.595541), dev_f1: 57.95% (0.579472), test_acc: 58.36% (0.583633), test_f1: 56.88% (0.568833)
+Epoch 3 completed in 576.79 seconds (9.61 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 1.037089, dev_acc: 55.77% (0.557740), dev_f1: 54.60% (0.545969), test_acc: 55.51% (0.555109), test_f1: 54.22% (0.542180)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.581874 (previous best: 0.579472)
+loss: 0.974198, dev_acc: 57.74% (0.577402), dev_f1: 58.19% (0.581874), test_acc: 57.42% (0.574218), test_f1: 57.81% (0.578139)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.671449, dev_acc: 58.86% (0.588618), dev_f1: 57.37% (0.573683), test_acc: 58.53% (0.585295), test_f1: 57.12% (0.571245)
+Epoch 4 completed in 576.59 seconds (9.61 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+Batch 0 completed in 1.52 seconds (0.03 minutes)
+loss: 1.082876, dev_acc: 58.79% (0.587926), dev_f1: 57.70% (0.576996), test_acc: 58.60% (0.585987), test_f1: 57.56% (0.575644)
+Batch 60 completed in 2.09 seconds (0.03 minutes)
+loss: 0.766933, dev_acc: 56.55% (0.565494), dev_f1: 51.31% (0.513126), test_acc: 56.01% (0.560094), test_f1: 50.81% (0.508140)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.603095 (previous best: 0.581874)
+loss: 0.841655, dev_acc: 60.02% (0.600249), dev_f1: 60.31% (0.603095), test_acc: 59.54% (0.595403), test_f1: 59.75% (0.597479)
+Epoch 5 completed in 575.49 seconds (9.59 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.838599, dev_acc: 59.53% (0.595264), dev_f1: 59.02% (0.590239), test_acc: 58.81% (0.588064), test_f1: 58.37% (0.583653)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.794768, dev_acc: 58.21% (0.582110), dev_f1: 56.01% (0.560093), test_acc: 57.66% (0.576572), test_f1: 55.55% (0.555505)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.870829, dev_acc: 60.05% (0.600526), dev_f1: 59.37% (0.593712), test_acc: 60.02% (0.600249), test_f1: 59.33% (0.593292)
+Epoch 6 completed in 576.86 seconds (9.61 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.762624, dev_acc: 59.75% (0.597480), dev_f1: 58.74% (0.587435), test_acc: 59.64% (0.596372), test_f1: 58.63% (0.586275)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.842054, dev_acc: 59.42% (0.594157), dev_f1: 58.28% (0.582819), test_acc: 58.42% (0.584187), test_f1: 57.27% (0.572720)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.762488, dev_acc: 55.72% (0.557186), dev_f1: 55.57% (0.555684), test_acc: 54.98% (0.549848), test_f1: 54.91% (0.549063)
+Epoch 7 completed in 576.60 seconds (9.61 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.737665, dev_acc: 59.82% (0.598172), dev_f1: 57.40% (0.573997), test_acc: 59.07% (0.590695), test_f1: 56.76% (0.567599)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.792340, dev_acc: 59.24% (0.592357), dev_f1: 59.54% (0.595399), test_acc: 59.19% (0.591941), test_f1: 59.52% (0.595193)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.888052, dev_acc: 59.40% (0.594018), dev_f1: 57.74% (0.577450), test_acc: 59.25% (0.592495), test_f1: 57.62% (0.576169)
+Epoch 8 completed in 577.04 seconds (9.62 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.848829, dev_acc: 60.47% (0.604680), dev_f1: 59.93% (0.599306), test_acc: 59.26% (0.592634), test_f1: 58.72% (0.587177)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.811524, dev_acc: 57.89% (0.578926), dev_f1: 57.43% (0.574295), test_acc: 58.75% (0.587510), test_f1: 58.32% (0.583203)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.966019, dev_acc: 57.42% (0.574218), dev_f1: 53.33% (0.533293), test_acc: 56.37% (0.563694), test_f1: 52.12% (0.521203)
+Epoch 9 completed in 576.76 seconds (9.61 minutes)
+RESULT: Max Dev F1: 0.603095, Max Test F1: 0.597479
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-11/sub-4/003_Nov-11-2024_08:59_PM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train', 'Loss/val'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-11/sub-4/003_Nov-11-2024_08:59_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-11/sub-4/003_Nov-11-2024_08:59_PM/trainval_loss_curves.png
+Total Completion Time: 106.56 minutes. (1.78 hours) 

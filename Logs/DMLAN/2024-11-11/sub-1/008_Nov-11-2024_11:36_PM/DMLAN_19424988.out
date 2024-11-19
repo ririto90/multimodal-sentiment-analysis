@@ -1,0 +1,108 @@
+SLURM Job ID: 19424988
+Number of GPUs available: 1
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/DMLAN/2024-11-11/sub-1/008_Nov-11-2024_11:36_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: dmlanfusion
+>>> dataset: mvsa-mts-1000
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f81e1d654e0>
+>>> learning_rate: 0.0001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 10
+>>> batch_size: 128
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 1024
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/DMLAN/2024-11-11/sub-1/008_Nov-11-2024_11:36_PM
+>>> model_class: <class 'models.dmlanfusion.DMLANFUSION'>
+Preparing mvsa-mts-1000 dataset...
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv: 3.17 seconds (0.05 minutes)
+The number of problematic samples: 0
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv: 1.05 seconds (0.02 minutes)
+The number of problematic samples: 0
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv: 1.21 seconds (0.02 minutes)
+The number of problematic samples: 1
+Total Training Samples: 970
+Number of Training Samples: 582
+Number of Development Samples: 194
+Number of Test Samples: 194
+Number of unique sentiment classes: 3
+Building model
+n_trainable_params: 1577960, n_nontrainable_params: 0
+No weight decay
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch 0 completed in 1.04 seconds (0.02 minutes)
+New best dev_f1: 0.342924 (previous best: 0.000000)
+loss: 1.107780, dev_acc: 42.78% (0.427835), dev_f1: 34.29% (0.342924), test_acc: 40.72% (0.407216), test_f1: 34.03% (0.340253)
+Epoch 0 completed in 2.90 seconds (0.05 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+loss: 1.031813, dev_acc: 41.24% (0.412371), dev_f1: 30.74% (0.307399), test_acc: 41.75% (0.417526), test_f1: 30.72% (0.307193)
+Epoch 1 completed in 1.68 seconds (0.03 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+loss: 0.940045, dev_acc: 44.85% (0.448454), dev_f1: 33.31% (0.333088), test_acc: 42.78% (0.427835), test_f1: 31.59% (0.315899)
+Epoch 2 completed in 1.59 seconds (0.03 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+loss: 0.954165, dev_acc: 45.88% (0.458763), dev_f1: 33.00% (0.330011), test_acc: 51.03% (0.510309), test_f1: 35.84% (0.358388)
+Epoch 3 completed in 1.60 seconds (0.03 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+loss: 0.889698, dev_acc: 45.88% (0.458763), dev_f1: 34.26% (0.342561), test_acc: 44.85% (0.448454), test_f1: 33.10% (0.330964)
+Epoch 4 completed in 1.62 seconds (0.03 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+New best dev_f1: 0.345889 (previous best: 0.342924)
+loss: 0.735216, dev_acc: 45.88% (0.458763), dev_f1: 34.59% (0.345889), test_acc: 42.27% (0.422680), test_f1: 31.06% (0.310586)
+Epoch 5 completed in 1.77 seconds (0.03 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+loss: 0.676786, dev_acc: 40.72% (0.407216), dev_f1: 31.73% (0.317319), test_acc: 46.39% (0.463918), test_f1: 37.37% (0.373662)
+Epoch 6 completed in 1.79 seconds (0.03 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+loss: 0.730761, dev_acc: 41.24% (0.412371), dev_f1: 31.41% (0.314052), test_acc: 42.78% (0.427835), test_f1: 36.62% (0.366207)
+Epoch 7 completed in 1.42 seconds (0.02 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+New best dev_f1: 0.371073 (previous best: 0.345889)
+loss: 0.645930, dev_acc: 41.24% (0.412371), dev_f1: 37.11% (0.371073), test_acc: 41.24% (0.412371), test_f1: 37.44% (0.374432)
+Epoch 8 completed in 1.38 seconds (0.02 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+Batch 0 completed in 0.15 seconds (0.00 minutes)
+New best dev_f1: 0.376367 (previous best: 0.371073)
+loss: 0.647647, dev_acc: 43.30% (0.432990), dev_f1: 37.64% (0.376367), test_acc: 41.75% (0.417526), test_f1: 37.39% (0.373853)
+Epoch 9 completed in 1.37 seconds (0.02 minutes)
+RESULT: Max Dev F1: 0.376367, Max Test F1: 0.373853
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/DMLAN/2024-11-11/sub-1/008_Nov-11-2024_11:36_PM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train', 'Loss/val'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/DMLAN/2024-11-11/sub-1/008_Nov-11-2024_11:36_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/DMLAN/2024-11-11/sub-1/008_Nov-11-2024_11:36_PM/trainval_loss_curves.png
+Total Completion Time: 0.95 minutes. (0.02 hours) 

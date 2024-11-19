@@ -13,6 +13,7 @@ from models.cmhafusion import CMHAFUSION
 from models.mfcchfusion import MFCCHFUSION
 from models.mfcchfusion2 import MFCCHFUSION2
 from models.mfcchfusion3 import MFCCHFUSION3
+from models.mfcchfusion4 import MFCCHFUSION4
 
 log_dir = os.getenv('NEW_LOGS_DIR')
 if log_dir is None:
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     start_time = time.time()
     parser = argparse.ArgumentParser()
     parser.add_argument('--rand_seed', default=8, type=int)
-    parser.add_argument('--model_name', default='mmfusion', type=str)
+    parser.add_argument('--model_fusion', default='mmfusion', type=str)
     parser.add_argument('--dataset', default='mvsa-mts-100', type=str)
     parser.add_argument('--optimizer', default='adam', type=str)
     parser.add_argument('--initializer', default='xavier_uniform_', type=str)
@@ -57,6 +58,7 @@ if __name__ == '__main__':
         'mfcchfusion': MFCCHFUSION,
         'mfcchfusion2': MFCCHFUSION2,
         'mfcchfusion3': MFCCHFUSION3,
+        'mfcchfusion4': MFCCHFUSION4,
     }
 
     initializers = {
@@ -71,7 +73,7 @@ if __name__ == '__main__':
         'sgd': torch.optim.SGD,
     }
 
-    opt.model_class = model_classes[opt.model_name]
+    opt.model_class = model_classes[opt.model_fusion]
     opt.initializer = initializers[opt.initializer]
     opt.optimizer = optimizers[opt.optimizer]
 

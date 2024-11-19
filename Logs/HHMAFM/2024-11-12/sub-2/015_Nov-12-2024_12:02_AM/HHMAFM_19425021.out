@@ -1,0 +1,427 @@
+HHMAFM_mfcchfusion3_mvsa-mts-oversampled_lr0.0005_dr0.5
+SLURM Job ID: 19425021
+Number of GPUs available: 2
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-12/sub-2/015_Nov-12-2024_12:02_AM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: mfcchfusion3
+>>> dataset: mvsa-mts-oversampled
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7ff985281620>
+>>> learning_rate: 0.0005
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_epoch: 40
+>>> batch_size: 128
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./Datasets/MVSA-MTS/images-indexed
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 1024
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-12/sub-2/015_Nov-12-2024_12:02_AM
+>>> model_class: <class 'models.mfcchfusion3.MFCCHFUSION3'>
+Preparing mvsa-mts-oversampled dataset...
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-oversampled/train.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-oversampled/train.tsv: 435.31 seconds (7.26 minutes)
+The number of problematic samples: 900
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-oversampled/val.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-oversampled/val.tsv: 110.78 seconds (1.85 minutes)
+The number of problematic samples: 325
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-oversampled/test.tsv ---------------
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-oversampled/test.tsv: 107.97 seconds (1.80 minutes)
+The number of problematic samples: 296
+Total Training Samples: 36108
+Number of Training Samples: 21664
+Number of Development Samples: 7222
+Number of Test Samples: 7222
+Number of unique sentiment classes: 3
+Building model
+Using 2 GPUs
+n_trainable_params: 360213763, n_nontrainable_params: 0
+No weight decay
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch 0 completed in 3.91 seconds (0.07 minutes)
+New best dev_f1: 0.165296 (previous best: 0.000000)
+loss: 1.089934, dev_acc: 32.97% (0.329687), dev_f1: 16.53% (0.165296), test_acc: 33.11% (0.331072), test_f1: 16.58% (0.165817)
+Batch 60 completed in 1.50 seconds (0.03 minutes)
+New best dev_f1: 0.298604 (previous best: 0.165296)
+loss: 5.883388, dev_acc: 38.62% (0.386181), dev_f1: 29.86% (0.298604), test_acc: 38.87% (0.388673), test_f1: 29.69% (0.296865)
+Batch 120 completed in 1.97 seconds (0.03 minutes)
+New best dev_f1: 0.522612 (previous best: 0.298604)
+loss: 1.132646, dev_acc: 53.63% (0.536278), dev_f1: 52.26% (0.522612), test_acc: 53.32% (0.533232), test_f1: 51.86% (0.518606)
+Epoch 0 completed in 570.38 seconds (9.51 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.962617, dev_acc: 48.27% (0.482692), dev_f1: 46.56% (0.465561), test_acc: 47.54% (0.475353), test_f1: 45.75% (0.457523)
+Batch 60 completed in 1.54 seconds (0.03 minutes)
+loss: 0.801012, dev_acc: 51.08% (0.510800), dev_f1: 50.65% (0.506461), test_acc: 50.93% (0.509277), test_f1: 50.36% (0.503555)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+New best dev_f1: 0.537896 (previous best: 0.522612)
+loss: 0.896147, dev_acc: 55.77% (0.557740), dev_f1: 53.79% (0.537896), test_acc: 54.86% (0.548601), test_f1: 52.85% (0.528501)
+Epoch 1 completed in 580.52 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.992026, dev_acc: 51.09% (0.510939), dev_f1: 45.58% (0.455779), test_acc: 50.55% (0.505539), test_f1: 45.33% (0.453257)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.577043 (previous best: 0.537896)
+loss: 0.900827, dev_acc: 57.62% (0.576156), dev_f1: 57.70% (0.577043), test_acc: 56.78% (0.567848), test_f1: 56.89% (0.568903)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.839005, dev_acc: 58.32% (0.583218), dev_f1: 57.04% (0.570433), test_acc: 57.55% (0.575464), test_f1: 56.25% (0.562513)
+Epoch 2 completed in 580.17 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+New best dev_f1: 0.585729 (previous best: 0.577043)
+loss: 0.882530, dev_acc: 58.79% (0.587926), dev_f1: 58.57% (0.585729), test_acc: 58.94% (0.589449), test_f1: 58.76% (0.587630)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+loss: 0.841624, dev_acc: 57.55% (0.575464), dev_f1: 56.03% (0.560305), test_acc: 56.88% (0.568818), test_f1: 55.31% (0.553104)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+New best dev_f1: 0.588411 (previous best: 0.585729)
+loss: 0.887607, dev_acc: 60.07% (0.600665), dev_f1: 58.84% (0.588411), test_acc: 59.48% (0.594849), test_f1: 58.33% (0.583306)
+Epoch 3 completed in 581.42 seconds (9.69 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 1.069121, dev_acc: 53.23% (0.532263), dev_f1: 52.17% (0.521735), test_acc: 52.35% (0.523539), test_f1: 51.11% (0.511095)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.884728, dev_acc: 54.65% (0.546525), dev_f1: 54.74% (0.547352), test_acc: 54.75% (0.547494), test_f1: 54.78% (0.547777)
+Batch 120 completed in 1.54 seconds (0.03 minutes)
+New best dev_f1: 0.593714 (previous best: 0.588411)
+loss: 0.725692, dev_acc: 60.27% (0.602742), dev_f1: 59.37% (0.593714), test_acc: 58.79% (0.587926), test_f1: 57.81% (0.578054)
+Epoch 4 completed in 581.18 seconds (9.69 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+Batch 0 completed in 1.56 seconds (0.03 minutes)
+loss: 0.990709, dev_acc: 58.09% (0.580864), dev_f1: 58.41% (0.584136), test_acc: 57.28% (0.572833), test_f1: 57.64% (0.576360)
+Batch 60 completed in 1.55 seconds (0.03 minutes)
+New best dev_f1: 0.604206 (previous best: 0.593714)
+loss: 0.746107, dev_acc: 60.76% (0.607588), dev_f1: 60.42% (0.604206), test_acc: 59.61% (0.596095), test_f1: 59.26% (0.592559)
+Batch 120 completed in 1.54 seconds (0.03 minutes)
+loss: 0.841879, dev_acc: 59.21% (0.592080), dev_f1: 59.42% (0.594212), test_acc: 58.82% (0.588203), test_f1: 58.99% (0.589901)
+Epoch 5 completed in 580.45 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+Batch 0 completed in 1.55 seconds (0.03 minutes)
+loss: 0.804661, dev_acc: 57.39% (0.573941), dev_f1: 57.34% (0.573447), test_acc: 57.98% (0.579756), test_f1: 57.94% (0.579380)
+Batch 60 completed in 1.55 seconds (0.03 minutes)
+loss: 0.841218, dev_acc: 59.48% (0.594849), dev_f1: 58.45% (0.584526), test_acc: 58.89% (0.588895), test_f1: 57.83% (0.578304)
+Batch 120 completed in 1.57 seconds (0.03 minutes)
+loss: 0.922316, dev_acc: 60.74% (0.607449), dev_f1: 60.00% (0.600032), test_acc: 59.91% (0.599142), test_f1: 59.13% (0.591256)
+Epoch 6 completed in 580.09 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+Batch 0 completed in 1.96 seconds (0.03 minutes)
+loss: 0.810642, dev_acc: 59.48% (0.594849), dev_f1: 58.01% (0.580052), test_acc: 59.29% (0.592911), test_f1: 57.83% (0.578326)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.942974, dev_acc: 59.82% (0.598172), dev_f1: 60.02% (0.600214), test_acc: 58.40% (0.584049), test_f1: 58.64% (0.586435)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.774158, dev_acc: 56.73% (0.567294), dev_f1: 56.46% (0.564630), test_acc: 56.00% (0.559956), test_f1: 55.73% (0.557270)
+Epoch 7 completed in 582.14 seconds (9.70 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+Batch 0 completed in 1.56 seconds (0.03 minutes)
+loss: 0.863155, dev_acc: 59.03% (0.590280), dev_f1: 58.05% (0.580519), test_acc: 58.43% (0.584326), test_f1: 57.42% (0.574177)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.885395, dev_acc: 54.87% (0.548740), dev_f1: 54.97% (0.549668), test_acc: 55.05% (0.550540), test_f1: 55.03% (0.550270)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.783703, dev_acc: 58.58% (0.585849), dev_f1: 57.09% (0.570898), test_acc: 58.53% (0.585295), test_f1: 57.08% (0.570784)
+Epoch 8 completed in 580.46 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.752593, dev_acc: 60.63% (0.606342), dev_f1: 59.75% (0.597484), test_acc: 59.48% (0.594849), test_f1: 58.59% (0.585908)
+Batch 60 completed in 1.94 seconds (0.03 minutes)
+loss: 0.809938, dev_acc: 59.64% (0.596372), dev_f1: 59.13% (0.591295), test_acc: 60.33% (0.603295), test_f1: 59.83% (0.598325)
+Batch 120 completed in 1.55 seconds (0.03 minutes)
+loss: 0.913618, dev_acc: 59.93% (0.599280), dev_f1: 57.38% (0.573806), test_acc: 59.22% (0.592218), test_f1: 56.67% (0.566682)
+Epoch 9 completed in 580.25 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 10
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.751293, dev_acc: 57.34% (0.573387), dev_f1: 55.66% (0.556609), test_acc: 57.56% (0.575602), test_f1: 55.83% (0.558315)
+Batch 60 completed in 1.54 seconds (0.03 minutes)
+loss: 0.786159, dev_acc: 59.76% (0.597618), dev_f1: 57.79% (0.577861), test_acc: 58.64% (0.586403), test_f1: 56.44% (0.564371)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.784788, dev_acc: 57.98% (0.579756), dev_f1: 57.72% (0.577196), test_acc: 58.34% (0.583356), test_f1: 58.13% (0.581303)
+Epoch 10 completed in 581.95 seconds (9.70 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 11
+Batch 0 completed in 1.57 seconds (0.03 minutes)
+loss: 0.703191, dev_acc: 60.69% (0.606896), dev_f1: 60.15% (0.601466), test_acc: 60.09% (0.600942), test_f1: 59.62% (0.596203)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.695411, dev_acc: 58.90% (0.589034), dev_f1: 58.84% (0.588425), test_acc: 58.13% (0.581279), test_f1: 58.07% (0.580746)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.736794, dev_acc: 57.67% (0.576710), dev_f1: 57.56% (0.575628), test_acc: 58.36% (0.583633), test_f1: 58.20% (0.581977)
+Epoch 11 completed in 580.56 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 12
+Batch 0 completed in 1.57 seconds (0.03 minutes)
+loss: 0.789732, dev_acc: 60.86% (0.608557), dev_f1: 59.21% (0.592131), test_acc: 60.11% (0.601080), test_f1: 58.45% (0.584498)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+loss: 0.799516, dev_acc: 58.13% (0.581279), dev_f1: 58.17% (0.581726), test_acc: 57.98% (0.579756), test_f1: 58.05% (0.580518)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.859443, dev_acc: 59.36% (0.593603), dev_f1: 58.77% (0.587651), test_acc: 59.21% (0.592080), test_f1: 58.62% (0.586243)
+Epoch 12 completed in 580.83 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 13
+Batch 0 completed in 1.94 seconds (0.03 minutes)
+loss: 0.842722, dev_acc: 58.83% (0.588341), dev_f1: 59.34% (0.593354), test_acc: 58.78% (0.587787), test_f1: 59.31% (0.593127)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+New best dev_f1: 0.612578 (previous best: 0.604206)
+loss: 0.922671, dev_acc: 61.85% (0.618527), dev_f1: 61.26% (0.612578), test_acc: 61.74% (0.617419), test_f1: 61.11% (0.611067)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.880995, dev_acc: 59.73% (0.597341), dev_f1: 59.60% (0.596038), test_acc: 59.26% (0.592634), test_f1: 59.19% (0.591869)
+Epoch 13 completed in 580.49 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 14
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.815605, dev_acc: 57.10% (0.571033), dev_f1: 56.43% (0.564262), test_acc: 57.28% (0.572833), test_f1: 56.75% (0.567508)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.788307, dev_acc: 53.53% (0.535309), dev_f1: 52.94% (0.529431), test_acc: 53.05% (0.530462), test_f1: 52.40% (0.524025)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.765161, dev_acc: 60.33% (0.603295), dev_f1: 59.83% (0.598256), test_acc: 59.89% (0.598865), test_f1: 59.39% (0.593916)
+Epoch 14 completed in 580.87 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 15
+Batch 0 completed in 1.57 seconds (0.03 minutes)
+loss: 0.829631, dev_acc: 60.69% (0.606896), dev_f1: 59.78% (0.597793), test_acc: 60.40% (0.603988), test_f1: 59.46% (0.594562)
+Batch 60 completed in 1.54 seconds (0.03 minutes)
+loss: 0.615519, dev_acc: 59.97% (0.599695), dev_f1: 59.91% (0.599129), test_acc: 60.11% (0.601080), test_f1: 60.05% (0.600520)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.955719, dev_acc: 61.76% (0.617557), dev_f1: 60.83% (0.608295), test_acc: 61.66% (0.616588), test_f1: 60.73% (0.607339)
+Epoch 15 completed in 580.25 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 16
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.964150, dev_acc: 56.85% (0.568541), dev_f1: 57.32% (0.573190), test_acc: 57.49% (0.574910), test_f1: 57.92% (0.579249)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+New best dev_f1: 0.612678 (previous best: 0.612578)
+loss: 0.704720, dev_acc: 61.60% (0.616034), dev_f1: 61.27% (0.612678), test_acc: 61.31% (0.613127), test_f1: 60.96% (0.609644)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.833962, dev_acc: 60.11% (0.601080), dev_f1: 60.13% (0.601252), test_acc: 60.73% (0.607311), test_f1: 60.76% (0.607588)
+Epoch 16 completed in 580.14 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 17
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.842413, dev_acc: 59.12% (0.591249), dev_f1: 58.08% (0.580797), test_acc: 59.86% (0.598588), test_f1: 58.93% (0.589303)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.631839, dev_acc: 59.76% (0.597618), dev_f1: 58.61% (0.586147), test_acc: 59.89% (0.598865), test_f1: 58.82% (0.588168)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.772358, dev_acc: 57.06% (0.570618), dev_f1: 57.52% (0.575155), test_acc: 57.49% (0.574910), test_f1: 57.92% (0.579179)
+Epoch 17 completed in 580.94 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 18
+Batch 0 completed in 1.52 seconds (0.03 minutes)
+loss: 0.765218, dev_acc: 61.34% (0.613403), dev_f1: 60.74% (0.607425), test_acc: 61.33% (0.613265), test_f1: 60.80% (0.607952)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.747652, dev_acc: 60.92% (0.609250), dev_f1: 59.05% (0.590457), test_acc: 60.54% (0.605372), test_f1: 58.68% (0.586790)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.752292, dev_acc: 58.16% (0.581556), dev_f1: 56.22% (0.562233), test_acc: 58.71% (0.587095), test_f1: 56.77% (0.567735)
+Epoch 18 completed in 580.77 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 19
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.900582, dev_acc: 58.82% (0.588203), dev_f1: 58.94% (0.589409), test_acc: 59.24% (0.592357), test_f1: 59.39% (0.593879)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+loss: 0.753984, dev_acc: 60.73% (0.607311), dev_f1: 59.79% (0.597905), test_acc: 60.36% (0.603572), test_f1: 59.40% (0.593991)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.760524, dev_acc: 60.34% (0.603434), dev_f1: 60.01% (0.600124), test_acc: 60.30% (0.603019), test_f1: 59.96% (0.599633)
+Epoch 19 completed in 581.42 seconds (9.69 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 20
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.765311, dev_acc: 61.44% (0.614373), dev_f1: 60.99% (0.609868), test_acc: 61.44% (0.614373), test_f1: 61.00% (0.609964)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.759373, dev_acc: 61.04% (0.610357), dev_f1: 61.23% (0.612331), test_acc: 61.66% (0.616588), test_f1: 61.87% (0.618748)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.773205, dev_acc: 60.38% (0.603849), dev_f1: 58.00% (0.579981), test_acc: 59.97% (0.599695), test_f1: 57.62% (0.576211)
+Epoch 20 completed in 581.21 seconds (9.69 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 21
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.900557, dev_acc: 59.22% (0.592218), dev_f1: 59.23% (0.592253), test_acc: 60.18% (0.601772), test_f1: 60.20% (0.602023)
+Batch 60 completed in 1.55 seconds (0.03 minutes)
+loss: 0.737055, dev_acc: 53.99% (0.539878), dev_f1: 53.82% (0.538155), test_acc: 54.72% (0.547217), test_f1: 54.51% (0.545124)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.731672, dev_acc: 61.05% (0.610496), dev_f1: 60.18% (0.601766), test_acc: 61.15% (0.611465), test_f1: 60.31% (0.603134)
+Epoch 21 completed in 580.49 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 22
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.965584, dev_acc: 60.61% (0.606065), dev_f1: 59.14% (0.591402), test_acc: 60.77% (0.607726), test_f1: 59.23% (0.592273)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+loss: 0.872514, dev_acc: 56.67% (0.566741), dev_f1: 56.55% (0.565501), test_acc: 56.54% (0.565356), test_f1: 56.43% (0.564311)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.652573, dev_acc: 59.15% (0.591526), dev_f1: 59.37% (0.593694), test_acc: 59.08% (0.590834), test_f1: 59.41% (0.594068)
+Epoch 22 completed in 580.78 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 23
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.841323, dev_acc: 54.94% (0.549432), dev_f1: 54.91% (0.549088), test_acc: 54.97% (0.549709), test_f1: 54.85% (0.548453)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.688662, dev_acc: 61.60% (0.616034), dev_f1: 60.95% (0.609508), test_acc: 61.56% (0.615619), test_f1: 60.92% (0.609196)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.612808 (previous best: 0.612678)
+loss: 0.749974, dev_acc: 62.24% (0.622404), dev_f1: 61.28% (0.612808), test_acc: 61.84% (0.618388), test_f1: 60.87% (0.608748)
+Epoch 23 completed in 580.63 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 24
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.865919, dev_acc: 59.82% (0.598172), dev_f1: 58.55% (0.585451), test_acc: 59.50% (0.594988), test_f1: 58.22% (0.582204)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.602963, dev_acc: 58.49% (0.584880), dev_f1: 58.35% (0.583514), test_acc: 59.17% (0.591664), test_f1: 59.03% (0.590349)
+Batch 120 completed in 1.53 seconds (0.03 minutes)
+loss: 0.786711, dev_acc: 60.58% (0.605788), dev_f1: 59.00% (0.589959), test_acc: 60.25% (0.602465), test_f1: 58.75% (0.587520)
+Epoch 24 completed in 580.07 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 25
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.855934, dev_acc: 59.30% (0.593049), dev_f1: 59.17% (0.591702), test_acc: 60.20% (0.602049), test_f1: 60.10% (0.600993)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.569617, dev_acc: 53.86% (0.538632), dev_f1: 53.29% (0.532920), test_acc: 54.38% (0.543755), test_f1: 53.79% (0.537851)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+New best dev_f1: 0.614776 (previous best: 0.612808)
+loss: 0.736192, dev_acc: 61.98% (0.619773), dev_f1: 61.48% (0.614776), test_acc: 61.96% (0.619634), test_f1: 61.45% (0.614515)
+Epoch 25 completed in 581.05 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 26
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.741022, dev_acc: 60.73% (0.607311), dev_f1: 60.37% (0.603697), test_acc: 61.46% (0.614650), test_f1: 61.17% (0.611694)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.671255, dev_acc: 60.63% (0.606342), dev_f1: 60.16% (0.601572), test_acc: 60.87% (0.608696), test_f1: 60.34% (0.603386)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.694328, dev_acc: 55.79% (0.557879), dev_f1: 56.04% (0.560417), test_acc: 56.70% (0.567017), test_f1: 56.91% (0.569060)
+Epoch 26 completed in 578.88 seconds (9.65 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 27
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.798498, dev_acc: 53.74% (0.537386), dev_f1: 52.77% (0.527691), test_acc: 55.14% (0.551371), test_f1: 54.18% (0.541824)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.638859, dev_acc: 60.47% (0.604680), dev_f1: 60.46% (0.604568), test_acc: 61.23% (0.612296), test_f1: 61.24% (0.612361)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.784566, dev_acc: 58.65% (0.586541), dev_f1: 57.00% (0.569962), test_acc: 58.58% (0.585849), test_f1: 56.81% (0.568131)
+Epoch 27 completed in 581.39 seconds (9.69 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 28
+Batch 0 completed in 1.56 seconds (0.03 minutes)
+loss: 0.724950, dev_acc: 57.95% (0.579479), dev_f1: 56.40% (0.564011), test_acc: 59.18% (0.591803), test_f1: 57.79% (0.577851)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.858861, dev_acc: 59.43% (0.594295), dev_f1: 58.35% (0.583542), test_acc: 60.37% (0.603711), test_f1: 59.53% (0.595312)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.842692, dev_acc: 59.28% (0.592772), dev_f1: 59.72% (0.597245), test_acc: 59.36% (0.593603), test_f1: 59.84% (0.598428)
+Epoch 28 completed in 580.04 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 29
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 1.094956, dev_acc: 55.79% (0.557879), dev_f1: 56.08% (0.560751), test_acc: 55.88% (0.558848), test_f1: 56.10% (0.561025)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.626911, dev_acc: 60.44% (0.604403), dev_f1: 58.10% (0.580960), test_acc: 60.41% (0.604126), test_f1: 58.06% (0.580643)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.679981, dev_acc: 56.80% (0.567987), dev_f1: 56.43% (0.564263), test_acc: 57.89% (0.578926), test_f1: 57.44% (0.574445)
+Epoch 29 completed in 580.06 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 30
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.878996, dev_acc: 59.97% (0.599695), dev_f1: 57.90% (0.578991), test_acc: 60.14% (0.601357), test_f1: 58.02% (0.580155)
+Batch 60 completed in 1.55 seconds (0.03 minutes)
+loss: 0.745877, dev_acc: 59.37% (0.593741), dev_f1: 59.17% (0.591666), test_acc: 60.59% (0.605926), test_f1: 60.35% (0.603468)
+Batch 120 completed in 1.55 seconds (0.03 minutes)
+loss: 0.771467, dev_acc: 59.36% (0.593603), dev_f1: 57.70% (0.577009), test_acc: 59.76% (0.597618), test_f1: 58.12% (0.581203)
+Epoch 30 completed in 581.10 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 31
+Batch 0 completed in 1.53 seconds (0.03 minutes)
+loss: 0.953021, dev_acc: 53.41% (0.534063), dev_f1: 52.79% (0.527877), test_acc: 53.89% (0.538909), test_f1: 53.42% (0.534182)
+Batch 60 completed in 1.54 seconds (0.03 minutes)
+loss: 0.604300, dev_acc: 60.20% (0.602049), dev_f1: 59.92% (0.599163), test_acc: 60.80% (0.608003), test_f1: 60.51% (0.605094)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.598473, dev_acc: 57.53% (0.575325), dev_f1: 57.92% (0.579237), test_acc: 57.89% (0.578926), test_f1: 58.26% (0.582576)
+Epoch 31 completed in 581.18 seconds (9.69 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 32
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.758775, dev_acc: 60.77% (0.607726), dev_f1: 59.62% (0.596181), test_acc: 60.77% (0.607726), test_f1: 59.55% (0.595500)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.761421, dev_acc: 60.26% (0.602603), dev_f1: 58.25% (0.582511), test_acc: 60.25% (0.602465), test_f1: 58.11% (0.581069)
+Batch 120 completed in 1.55 seconds (0.03 minutes)
+loss: 0.843642, dev_acc: 58.24% (0.582387), dev_f1: 58.11% (0.581129), test_acc: 58.46% (0.584603), test_f1: 58.43% (0.584264)
+Epoch 32 completed in 579.76 seconds (9.66 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 33
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.766655, dev_acc: 59.78% (0.597757), dev_f1: 58.96% (0.589563), test_acc: 60.25% (0.602465), test_f1: 59.44% (0.594422)
+Batch 60 completed in 1.51 seconds (0.03 minutes)
+loss: 0.629753, dev_acc: 61.19% (0.611880), dev_f1: 60.11% (0.601080), test_acc: 61.62% (0.616173), test_f1: 60.62% (0.606215)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.698873, dev_acc: 61.06% (0.610634), dev_f1: 60.42% (0.604217), test_acc: 61.88% (0.618804), test_f1: 61.24% (0.612392)
+Epoch 33 completed in 581.06 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 34
+Batch 0 completed in 1.52 seconds (0.03 minutes)
+loss: 0.889320, dev_acc: 60.84% (0.608419), dev_f1: 59.17% (0.591745), test_acc: 60.38% (0.603849), test_f1: 58.67% (0.586717)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+New best dev_f1: 0.615101 (previous best: 0.614776)
+loss: 0.745461, dev_acc: 61.58% (0.615757), dev_f1: 61.51% (0.615101), test_acc: 61.87% (0.618665), test_f1: 61.83% (0.618345)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.690469, dev_acc: 60.08% (0.600803), dev_f1: 60.46% (0.604567), test_acc: 60.73% (0.607311), test_f1: 61.12% (0.611196)
+Epoch 34 completed in 580.31 seconds (9.67 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 35
+Batch 0 completed in 1.54 seconds (0.03 minutes)
+loss: 0.979535, dev_acc: 60.02% (0.600249), dev_f1: 60.09% (0.600947), test_acc: 60.79% (0.607865), test_f1: 60.90% (0.609024)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.861805, dev_acc: 59.26% (0.592634), dev_f1: 59.28% (0.592846), test_acc: 59.06% (0.590557), test_f1: 59.06% (0.590565)
+Batch 120 completed in 1.56 seconds (0.03 minutes)
+loss: 0.707663, dev_acc: 60.37% (0.603711), dev_f1: 59.95% (0.599517), test_acc: 60.97% (0.609665), test_f1: 60.58% (0.605767)
+Epoch 35 completed in 579.88 seconds (9.66 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 36
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.837106, dev_acc: 61.37% (0.613680), dev_f1: 61.11% (0.611107), test_acc: 60.94% (0.609388), test_f1: 60.65% (0.606538)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+loss: 0.708778, dev_acc: 57.92% (0.579202), dev_f1: 54.63% (0.546280), test_acc: 57.60% (0.576018), test_f1: 54.25% (0.542468)
+Batch 120 completed in 1.54 seconds (0.03 minutes)
+loss: 0.684275, dev_acc: 59.53% (0.595264), dev_f1: 59.55% (0.595505), test_acc: 60.12% (0.601218), test_f1: 60.12% (0.601203)
+Epoch 36 completed in 579.41 seconds (9.66 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 37
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 0.935930, dev_acc: 59.30% (0.593049), dev_f1: 58.77% (0.587681), test_acc: 59.91% (0.599142), test_f1: 59.35% (0.593471)
+Batch 60 completed in 1.55 seconds (0.03 minutes)
+loss: 0.564627, dev_acc: 60.19% (0.601911), dev_f1: 59.89% (0.598900), test_acc: 60.12% (0.601218), test_f1: 59.83% (0.598349)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.683233, dev_acc: 59.04% (0.590418), dev_f1: 59.48% (0.594792), test_acc: 60.16% (0.601634), test_f1: 60.64% (0.606433)
+Epoch 37 completed in 580.66 seconds (9.68 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 38
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 1.063186, dev_acc: 56.01% (0.560094), dev_f1: 55.77% (0.557657), test_acc: 55.43% (0.554279), test_f1: 55.20% (0.551958)
+Batch 60 completed in 1.53 seconds (0.03 minutes)
+loss: 0.607491, dev_acc: 61.45% (0.614511), dev_f1: 60.96% (0.609624), test_acc: 60.97% (0.609665), test_f1: 60.42% (0.604197)
+Batch 120 completed in 1.51 seconds (0.03 minutes)
+loss: 0.726561, dev_acc: 61.16% (0.611603), dev_f1: 59.33% (0.593292), test_acc: 61.31% (0.613127), test_f1: 59.41% (0.594143)
+Epoch 38 completed in 579.60 seconds (9.66 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 39
+Batch 0 completed in 1.51 seconds (0.03 minutes)
+loss: 1.083924, dev_acc: 60.94% (0.609388), dev_f1: 61.19% (0.611895), test_acc: 62.38% (0.623788), test_f1: 62.55% (0.625500)
+Batch 60 completed in 1.56 seconds (0.03 minutes)
+loss: 0.929762, dev_acc: 57.48% (0.574772), dev_f1: 57.01% (0.570061), test_acc: 58.93% (0.589310), test_f1: 58.42% (0.584213)
+Batch 120 completed in 1.55 seconds (0.03 minutes)
+loss: 0.717989, dev_acc: 58.17% (0.581695), dev_f1: 54.15% (0.541503), test_acc: 57.53% (0.575325), test_f1: 53.49% (0.534943)
+Epoch 39 completed in 580.94 seconds (9.68 minutes)
+RESULT: Max Dev F1: 0.615101, Max Test F1: 0.618345
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-12/sub-2/015_Nov-12-2024_12:02_AM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train', 'Loss/val'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-12/sub-2/015_Nov-12-2024_12:02_AM/trainval_loss_curves.png
+Training and validation loss curves saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/HHMAFM/2024-11-12/sub-2/015_Nov-12-2024_12:02_AM/trainval_loss_curves.png
+Total Completion Time: 398.96 minutes. (6.65 hours) 

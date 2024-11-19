@@ -82,18 +82,18 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 #SBATCH --job-name=${MODEL_NAME}    # Name of your job
 #SBATCH --account=multisass         # Your Slurm account
 #SBATCH --partition=tier3           # Run on tier3
-#SBATCH --time=0-12:00:00           # 12 hours time limit
+#SBATCH --time=2-00:00:00           # 12 hours time limit
 #SBATCH --nodes=1                   # # of nodes
 #SBATCH --ntasks=1                  # 1 task (i.e. process)
 #SBATCH --mem=96g                   # Increase RAM to 32GB
-#SBATCH --gres=gpu:a100:2           # 2 a100 GPUs
+#SBATCH --gres=gpu:a100:4           # 2 a100 GPUs
 #SBATCH --output=${OUTPUT_PATH}     # Output file
 #SBATCH --error=${ERROR_PATH}       # Error file
 
 # Load necessary environment
 spack env activate default-nlp-x86_64-24072401
 
-# Set the environment variable (explicitly within the script) for access within the python script environment
+# Set the environment variables
 export NEW_LOGS_DIR="${NEW_LOG_DIR}"
 export REPO_DIR="${REPO_DIR}"
 
