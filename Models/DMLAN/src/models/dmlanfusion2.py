@@ -4,9 +4,9 @@ import torch.nn.functional as F
 from layers.channelattention import ChannelAttention
 from layers.spatialattention import SpatialAttention
 
-class DMLANFUSION(nn.Module):
+class DMLANFUSION2(nn.Module):
     def __init__(self, opt, text_feature_dim, image_feature_dim):
-        super(DMLANFUSION, self).__init__()
+        super(DMLANFUSION2, self).__init__()
         self.opt = opt
 
         # ------------------- Channel & Spatial Attention ------------------- #
