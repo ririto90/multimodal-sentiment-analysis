@@ -159,20 +159,20 @@ class MVSADatasetReader:
     def __init__(self, transform, dataset='mvsa-mts', max_seq_len=40, path_image='./images'):
         print("Preparing {0} dataset...".format(dataset))
         fname = {
-            'mvsa-mts': {
-                'train': 'Datasets/MVSA-MTS/mvsa-mts/train.tsv',
-                'dev': 'Datasets/MVSA-MTS/mvsa-mts/val.tsv',
-                'test': 'Datasets/MVSA-MTS/mvsa-mts/test.tsv'
+            'mvsa-mts-v3': {
+                'train': 'Datasets/MVSA-MTS/mvsa-mts-v3/train.tsv',
+                'val': 'Datasets/MVSA-MTS/mvsa-mts-v3/val.tsv',
+                'test': 'Datasets/MVSA-MTS/mvsa-mts-v3/test.tsv'
             },
-            'mvsa-mts-1000': {
-                'train': 'Datasets/MVSA-MTS/mvsa-mts-1000/train.tsv',
-                'dev': 'Datasets/MVSA-MTS/mvsa-mts-1000/val.tsv',
-                'test': 'Datasets/MVSA-MTS/mvsa-mts-1000/test.tsv'
+            'mvsa-mts-v3-1000': {
+                'train': 'Datasets/MVSA-MTS/mvsa-mts-v3-1000/train.tsv',
+                'val': 'Datasets/MVSA-MTS/mvsa-mts-v3-1000/val.tsv',
+                'test': 'Datasets/MVSA-MTS/mvsa-mts-v3-1000/test.tsv'
             }
         }
         text = MVSADatasetReader.__read_text__([
             fname[dataset]['train'],
-            fname[dataset]['dev'],
+            fname[dataset]['val'],
             fname[dataset]['test']
         ])
         tokenizer = Tokenizer(max_seq_len=max_seq_len)
@@ -184,21 +184,21 @@ class MVSADatasetReader:
         
         train_data, train_classes = MVSADatasetReader.__read_data__(
             fname[dataset]['train'], tokenizer, path_image, transform, max_seq_len)
-        dev_data, dev_classes = MVSADatasetReader.__read_data__(
-            fname[dataset]['dev'], tokenizer, path_image, transform, max_seq_len)
+        val_data, val_classes = MVSADatasetReader.__read_data__(
+            fname[dataset]['val'], tokenizer, path_image, transform, max_seq_len)
         test_data, test_classes = MVSADatasetReader.__read_data__(
             fname[dataset]['test'], tokenizer, path_image, transform, max_seq_len)
         
         self.train_data = MVSADataset(train_data)
-        self.dev_data = MVSADataset(dev_data)
+        self.val_data = MVSADataset(val_data)
         self.test_data = MVSADataset(test_data)
         
-        all_unique_classes = train_classes.union(dev_classes).union(test_classes)
+        all_unique_classes = train_classes.union(val_classes).union(test_classes)
         self.num_classes = len(all_unique_classes)
-        total_training_samples = len(train_data) + len(dev_data) + len(test_data)
+        total_training_samples = len(train_data) + len(val_data) + len(test_data)
         
         print(f'Total Training Samples: {total_training_samples}')
         print(f'Number of Training Samples: {len(train_data)}')
-        print(f'Number of Development Samples: {len(dev_data)}')
+        print(f'Number of Validation Samples: {len(val_data)}')
         print(f'Number of Test Samples: {len(test_data)}')
         print(f"Number of unique sentiment classes: {self.num_classes}")

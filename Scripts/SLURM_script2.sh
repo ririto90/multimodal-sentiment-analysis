@@ -1,8 +1,8 @@
 #!/bin/bash
 
 fusion='dmlanfusion' # 'dmlan'
-dataset='mvsa-mts' # 'mvsa-mts' 'mvsa-mts-1000'
-lr='0.0005'
+dataset='mvsa-mts-v3-1000' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
+lr='0.001'
 dr='0.5'
 
 

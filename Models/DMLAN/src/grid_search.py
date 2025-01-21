@@ -36,7 +36,7 @@ def main():
     parser.add_argument('--max_seq_len', type=int, default=64)
     parser.add_argument('--polarities_dim', type=int, default=3)
     parser.add_argument('--clip_grad', type=float, default=5.0)
-    parser.add_argument('--path_image', type=str, default='./Datasets/MVSA-MTS/images-indexed')
+    parser.add_argument('--path_image', type=str, default='./Datasets/MVSA-MTS/images')
     parser.add_argument('--crop_size', type=int, default=224)
     parser.add_argument('--n_head', type=int, default=8)
     parser.add_argument('--hidden_dim', type=int, default=1024)
@@ -118,23 +118,23 @@ def main():
         ins.run()
 
         # Instance variables for performance
-        dev_f1 = ins.max_dev_f1
+        val_f1 = ins.max_val_f1
         test_f1 = ins.max_test_f1
 
         results.append({
             'hyperparams': params,
-            'dev_f1': dev_f1,
+            'val_f1': val_f1,
             'test_f1': test_f1,
         })
 
-        print(f"Dev F1: {dev_f1:.6f}, Test F1: {test_f1:.6f}")
+        print(f"Val F1: {val_f1:.6f}, Test F1: {test_f1:.6f}")
 
-    # Find the best hyperparameters based on dev_f1
-    best_result = max(results, key=lambda x: x['dev_f1'])
+    # Find the best hyperparameters based on val_f1
+    best_result = max(results, key=lambda x: x['val_f1'])
     print("\nBest Hyperparameters:")
     for key, value in best_result['hyperparams'].items():
         print(f"{key}: {value}")
-    print(f"Best Dev F1: {best_result['dev_f1']:.6f}")
+    print(f"Best Val F1: {best_result['val_f1']:.6f}")
     print(f"Corresponding Test F1: {best_result['test_f1']:.6f}")
 
     output_file = os.path.join(log_dir, 'grid_search_results.json')

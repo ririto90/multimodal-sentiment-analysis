@@ -28,7 +28,7 @@ def macro_f1(y_true, y_pred):
 class Instructor:
     def __init__(self, opt):
         self.opt = opt
-        self.max_dev_f1 = 0
+        self.max_val_f1 = 0
         self.max_test_f1 = 0
 
         # TensorBoard writer
@@ -56,7 +56,7 @@ class Instructor:
 
         self.train_data_loader = DataLoader(dataset=mvsa_dataset.train_data, 
                                             batch_size=opt.batch_size, shuffle=True)
-        self.dev_data_loader = DataLoader(dataset=mvsa_dataset.dev_data, 
+        self.val_data_loader = DataLoader(dataset=mvsa_dataset.val_data, 
                                           batch_size=opt.batch_size, shuffle=False)
         self.test_data_loader = DataLoader(dataset=mvsa_dataset.test_data, 
                                            batch_size=opt.batch_size, shuffle=False)
@@ -169,21 +169,21 @@ class Instructor:
                 batch_end_time = time.time()
 
                 if i_batch % self.opt.log_step == 0:
-                    dev_acc, dev_f1, dev_loss = self.evaluate(self.dev_data_loader)
+                    val_acc, val_f1, val_loss = self.evaluate(self.val_data_loader)
                     test_acc, test_f1, test_loss = self.evaluate(self.test_data_loader)
 
-                    self.writer.add_scalar('Loss/val', dev_loss, global_step)
+                    self.writer.add_scalar('Loss/val', val_loss, global_step)
 
                     print(f'Batch {i_batch} completed in {batch_end_time - batch_start_time:.2f} seconds '
                           f'({(batch_end_time - batch_start_time) / 60:.2f} minutes)')
 
-                    if dev_f1 > self.max_dev_f1:
-                        print(f"New best dev_f1: {dev_f1:.6f} (previous best: {self.max_dev_f1:.6f})")
-                        self.max_dev_f1 = dev_f1
+                    if val_f1 > self.max_val_f1:
+                        print(f"New best val_f1: {val_f1:.6f} (previous best: {self.max_val_f1:.6f})")
+                        self.max_val_f1 = val_f1
                         self.max_test_f1 = test_f1
 
-                    print(f'loss: {loss.item():.6f}, dev_acc: {dev_acc * 100:.2f}% ({dev_acc:.6f}), '
-                          f'dev_f1: {dev_f1 * 100:.2f}% ({dev_f1:.6f}), test_acc: {test_acc * 100:.2f}% '
+                    print(f'loss: {loss.item():.6f}, val_acc: {val_acc * 100:.2f}% ({val_acc:.6f}), '
+                          f'val_f1: {val_f1 * 100:.2f}% ({val_f1:.6f}), test_acc: {test_acc * 100:.2f}% '
                           f'({test_acc:.6f}), test_f1: {test_f1 * 100:.2f}% ({test_f1:.6f})')
 
             epoch_end_time = time.time()
@@ -193,7 +193,7 @@ class Instructor:
         # Flush the SummaryWriter to ensure all logs are saved to disk
         self.writer.flush()
 
-        print(f"RESULT: Max Dev F1: {self.max_dev_f1:.6f}, Max Test F1: {self.max_test_f1:.6f}")
+        print(f"RESULT: Max Val F1: {self.max_val_f1:.6f}, Max Test F1: {self.max_test_f1:.6f}")
         print("Training complete. Generating confusion matrix on the test set.")
 
         test_acc, test_f1, test_loss, true_labels, pred_probs = self.evaluate(self.test_data_loader, return_labels=True)
