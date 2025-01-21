@@ -1,0 +1,65 @@
+Number of GPUs available: 0
+Logs directory: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-21/sub-3/001_Jan-21-2025_03:22_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: dmlanfusion
+>>> dataset: mvsa-mts-v3-100
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x10cedd4e0>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 2
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: /Users/roneng100/Datasets/MVSA-MTS/images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 768
+>>> num_classes: 3
+>>> log_dir: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-21/sub-3/001_Jan-21-2025_03:22_PM
+>>> model_class: <class 'models.dmlanfusion.DMLANFUSION'>
+Preparing mvsa-mts-v3-100 dataset...
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-100/train.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-100/train.tsv: 0.51 seconds (0.01 minutes)
+The number of problematic samples: 0
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-100/val.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-100/val.tsv: 0.06 seconds (0.00 minutes)
+The number of problematic samples: 0
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-100/test.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-100/test.tsv: 0.06 seconds (0.00 minutes)
+The number of problematic samples: 0
+Total Training Samples: 100
+Number of Training Samples: 80
+Number of Validation Samples: 10
+Number of Test Samples: 10
+Number of unique sentiment classes: 3
+Building model
+n_trainable_params: 1446888, n_nontrainable_params: 0
+No weight decay
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch 0 completed in 6.65 seconds (0.11 minutes)
+New best val_f1: 0.153846 (previous best: 0.000000)
+loss: 1.099687, val_acc: 30.00% (0.300000), val_f1: 15.38% (0.153846), test_acc: 30.00% (0.300000), test_f1: 16.67% (0.166667)
+Epoch 0 completed in 10.50 seconds (0.17 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 7.24 seconds (0.12 minutes)
+New best val_f1: 0.157407 (previous best: 0.153846)
+loss: 0.932597, val_acc: 20.00% (0.200000), val_f1: 15.74% (0.157407), test_acc: 20.00% (0.200000), test_f1: 12.12% (0.121212)
+Epoch 1 completed in 11.14 seconds (0.19 minutes)
+RESULT: Max Val F1: 0.157407, Max Test F1: 0.121212
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-21/sub-3/001_Jan-21-2025_03:22_PM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train', 'Loss/val'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-21/sub-3/001_Jan-21-2025_03:22_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-21/sub-3/001_Jan-21-2025_03:22_PM/trainval_loss_curves.png
+Total Completion Time: 0.81 minutes. (0.01 hours) 
