@@ -33,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_seq_len', default=64, type=int)
     parser.add_argument('--polarities_dim', default=3, type=int)
     parser.add_argument('--clip_grad', type=float, default=5.0)
-    parser.add_argument('--path_image', default='./Datasets/MVSA-MTS/images', help='path to images')
+    parser.add_argument('--path_image', default='/Users/roneng100/Datasets/MVSA-MTS/images')
     parser.add_argument('--crop_size', type=int, default=224)
     parser.add_argument('--n_head', type=int, default=8)
     
