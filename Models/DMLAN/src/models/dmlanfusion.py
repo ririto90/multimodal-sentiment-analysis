@@ -52,7 +52,6 @@ class DMLANFUSION(nn.Module):
         max_pool_proj = self.channel_mlp(max_pool)
 
         channel_attention = F.relu(avg_pool_proj + max_pool_proj).unsqueeze(2).unsqueeze(3)
-        # Apply channel attention
         channel_refined_feature = image_features * channel_attention  # [batch_size, C, H, W]
 
         # Spatial Attention
