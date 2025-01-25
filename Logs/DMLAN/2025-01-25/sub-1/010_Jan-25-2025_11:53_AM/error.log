@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/train.py", line 73, in <module>
+    ins = Instructor(opt)
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/instructor.py", line 53, in __init__
+    mvsa_dataset = MVSADatasetReader(transform, path_image=opt.path_image, dataset=opt.dataset,
+                                     max_seq_len=opt.max_seq_len)
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/data_utils.py", line 192, in __init__
+    embedding_matrix = build_embedding_matrix(tokenizer.word2idx, embed_dim=embed_dim, type='glove')
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/data_utils.py", line 46, in build_embedding_matrix
+    word_vec = load_word_vec(fname, word2idx=word2idx)
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/data_utils.py", line 33, in load_word_vec
+    fin = open(path, 'r', encoding='utf-8', newline='\n', errors='ignore')
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/ronengold/Datasets/util_models/glove.twitter.27B/glove.twitter.27B.200d.txt'
+/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/tempfile.py:936: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/13/_kqy4dm103x9f8nk0jq0nbmr0000gn/T/tmp3omrnpoh'>
+  _warnings.warn(warn_message, ResourceWarning)

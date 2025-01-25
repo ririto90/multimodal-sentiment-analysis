@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/train.py", line 74, in <module>
+    ins.run()
+    ~~~~~~~^^
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/instructor.py", line 189, in run
+    test_acc, test_f1, test_loss = self.evaluate(self.test_data_loader)
+                                   ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/instructor.py", line 235, in evaluate
+    lstm_output, (h_n, c_n) = self.lstm(embedded_text)
+                              ~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/modules/rnn.py", line 1123, in forward
+    result = _VF.lstm(
+        input,
+    ...<7 lines>...
+        self.batch_first,
+    )
+KeyboardInterrupt
+/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/tempfile.py:936: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/13/_kqy4dm103x9f8nk0jq0nbmr0000gn/T/tmpome79nkn'>
+  _warnings.warn(warn_message, ResourceWarning)

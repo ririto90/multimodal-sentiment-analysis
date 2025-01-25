@@ -1,0 +1,43 @@
+/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/data_utils.py:46: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/ronengold/Datasets/util_models/glove.twitter.27B/glove.twitter.27B.200d.txt' mode='r' encoding='utf-8'>
+  word_vec = load_word_vec(fname, word2idx=word2idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=Inception_V3_Weights.IMAGENET1K_V1`. You can also use `weights=Inception_V3_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Downloading: "https://download.pytorch.org/models/inception_v3_google-0cc3c7bd.pth" to /Users/ronengold/.cache/torch/hub/checkpoints/inception_v3_google-0cc3c7bd.pth
+  0%|          | 0.00/104M [00:00<?, ?B/s]  4%|▎         | 3.88M/104M [00:00<00:02, 40.4MB/s]  7%|▋         | 7.75M/104M [00:00<00:03, 28.5MB/s] 10%|█         | 10.8M/104M [00:00<00:04, 24.0MB/s] 13%|█▎        | 13.2M/104M [00:00<00:04, 23.1MB/s] 15%|█▌        | 15.6M/104M [00:00<00:04, 21.9MB/s] 17%|█▋        | 17.8M/104M [00:00<00:04, 19.6MB/s] 19%|█▉        | 19.8M/104M [00:00<00:04, 18.5MB/s] 21%|██        | 21.6M/104M [00:01<00:05, 16.6MB/s] 22%|██▏       | 23.2M/104M [00:01<00:05, 14.6MB/s] 24%|██▍       | 24.8M/104M [00:01<00:06, 12.6MB/s] 25%|██▌       | 26.2M/104M [00:01<00:06, 13.2MB/s] 27%|██▋       | 28.1M/104M [00:01<00:05, 14.7MB/s] 29%|██▉       | 30.4M/104M [00:01<00:04, 16.8MB/s] 32%|███▏      | 33.0M/104M [00:01<00:03, 19.4MB/s] 35%|███▍      | 36.1M/104M [00:01<00:03, 22.8MB/s] 38%|███▊      | 39.9M/104M [00:02<00:02, 27.2MB/s] 42%|████▏     | 43.9M/104M [00:02<00:02, 31.4MB/s] 46%|████▌     | 47.8M/104M [00:02<00:01, 33.8MB/s] 49%|████▉     | 51.1M/104M [00:02<00:01, 33.6MB/s] 53%|█████▎    | 55.2M/104M [00:02<00:01, 36.2MB/s] 57%|█████▋    | 59.4M/104M [00:02<00:01, 38.0MB/s] 61%|██████    | 63.5M/104M [00:02<00:01, 39.3MB/s] 65%|██████▌   | 67.6M/104M [00:02<00:00, 40.4MB/s] 69%|██████▉   | 71.5M/104M [00:02<00:00, 40.3MB/s] 73%|███████▎  | 75.6M/104M [00:02<00:00, 40.9MB/s] 77%|███████▋  | 79.8M/104M [00:03<00:00, 41.6MB/s] 81%|████████  | 83.9M/104M [00:03<00:00, 41.9MB/s] 85%|████████▍ | 88.0M/104M [00:03<00:00, 42.0MB/s] 89%|████████▊ | 92.1M/104M [00:03<00:00, 41.3MB/s] 93%|█████████▎| 96.1M/104M [00:03<00:00, 41.4MB/s] 96%|█████████▋| 100M/104M [00:03<00:00, 41.7MB/s] 100%|██████████| 104M/104M [00:03<00:00, 29.5MB/s]
+Traceback (most recent call last):
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/train.py", line 74, in <module>
+    ins.run()
+    ~~~~~~~^^
+  File "/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/instructor.py", line 161, in run
+    loss = criterion(outputs, targets)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/modules/loss.py", line 1293, in forward
+    return F.cross_entropy(
+           ~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<4 lines>...
+        label_smoothing=self.label_smoothing,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/site-packages/torch/nn/functional.py", line 3479, in cross_entropy
+    return torch._C._nn.cross_entropy_loss(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        input,
+        ^^^^^^
+    ...<4 lines>...
+        label_smoothing,
+        ^^^^^^^^^^^^^^^^
+    )
+    ^
+RuntimeError: Expected target size [24, 3], got [24]
+/opt/homebrew/Caskroom/miniconda/base/envs/ml/lib/python3.13/tempfile.py:936: ResourceWarning: Implicitly cleaning up <TemporaryDirectory '/var/folders/13/_kqy4dm103x9f8nk0jq0nbmr0000gn/T/tmpf5qnxhqq'>
+  _warnings.warn(warn_message, ResourceWarning)

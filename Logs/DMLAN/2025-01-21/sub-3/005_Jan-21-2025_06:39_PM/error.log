@@ -1,0 +1,28 @@
+<frozen importlib._bootstrap>:488: DeprecationWarning: Type google.protobuf.pyext._message.ScalarMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+<frozen importlib._bootstrap>:488: DeprecationWarning: Type google.protobuf.pyext._message.MessageMapContainer uses PyType_Spec with a metaclass that has custom tp_new. This is deprecated and will no longer be allowed in Python 3.14.
+/Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/data_utils.py:46: ResourceWarning: unclosed file <_io.TextIOWrapper name='/Users/roneng100/Datasets/util_models/glove.twitter.27B/glove.twitter.27B.200d.txt' mode='r' encoding='utf-8'>
+  word_vec = load_word_vec(fname, word2idx=word2idx)
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/local/Caskroom/miniconda/base/envs/ml/lib/python3.12/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/usr/local/Caskroom/miniconda/base/envs/ml/lib/python3.12/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=Inception_V3_Weights.IMAGENET1K_V1`. You can also use `weights=Inception_V3_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Traceback (most recent call last):
+  File "/Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/train.py", line 76, in <module>
+    ins.run()
+  File "/Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/instructor.py", line 172, in run
+    val_acc, val_f1, val_loss = self.evaluate(self.val_data_loader)
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/instructor.py", line 227, in evaluate
+    outputs = self.model(text_features, image_features)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Caskroom/miniconda/base/envs/ml/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/Caskroom/miniconda/base/envs/ml/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Models/DMLAN/src/models/dmlanfusion2.py", line 55, in forward
+    tf = text_features[:, -1, :]
+         ~~~~~~~~~~~~~^^^^^^^^^^
+IndexError: too many indices for tensor of dimension 2

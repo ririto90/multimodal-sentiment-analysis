@@ -1,0 +1,74 @@
+Number of GPUs available: 0
+Logs directory: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/010_Jan-22-2025_12:15_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: dmlanfusion
+>>> dataset: mvsa-mts-v3-30
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x111db14e0>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 2
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: /Users/roneng100/Datasets/MVSA-MTS/images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 768
+>>> num_classes: 3
+>>> log_dir: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/010_Jan-22-2025_12:15_PM
+>>> counter: 0
+>>> model_class: <class 'models.dmlanfusion.DMLANFUSION'>
+Preparing mvsa-mts-v3-30 dataset...
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv: 0.20 seconds (0.00 minutes)
+The number of problematic samples: 0
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv: 0.02 seconds (0.00 minutes)
+The number of problematic samples: 0
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv: 0.02 seconds (0.00 minutes)
+The number of problematic samples: 0
+Total Training Samples: 30
+Number of Training Samples: 24
+Number of Validation Samples: 3
+Number of Test Samples: 3
+Number of unique sentiment classes: 3
+Building model
+n_trainable_params: 1446888, n_nontrainable_params: 0
+No weight decay
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+0
+torch.Size([24, 64, 1536]) torch.Size([24, 2048, 8, 8])
+24 2048 8 8
+torch.Size([24, 2048]) torch.Size([24, 2048])
+torch.Size([24, 2048]) torch.Size([24, 2048])
+torch.Size([24, 2048, 1, 1])
+torch.Size([24, 2048, 8, 8])
+1
+Batch 0 completed in 3.73 seconds (0.06 minutes)
+New best val_f1: 0.166667 (previous best: 0.000000)
+loss: 1.090096, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 0 completed in 4.99 seconds (0.08 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 3.47 seconds (0.06 minutes)
+New best val_f1: 0.555556 (previous best: 0.166667)
+loss: 1.030866, val_acc: 66.67% (0.666667), val_f1: 55.56% (0.555556), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 1 completed in 5.16 seconds (0.09 minutes)
+RESULT: Max Val F1: 0.555556, Max Test F1: 0.166667
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/010_Jan-22-2025_12:15_PM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train', 'Loss/val'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/010_Jan-22-2025_12:15_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/010_Jan-22-2025_12:15_PM/trainval_loss_curves.png
+Total Completion Time: 0.64 minutes. (0.01 hours) 

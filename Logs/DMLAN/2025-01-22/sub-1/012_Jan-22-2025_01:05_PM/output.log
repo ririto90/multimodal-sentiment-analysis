@@ -1,0 +1,55 @@
+Number of GPUs available: 0
+Logs directory: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/012_Jan-22-2025_01:05_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: dmlanfusion
+>>> dataset: mvsa-mts-v3-30
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x1130294e0>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 2
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: /Users/roneng100/Datasets/MVSA-MTS/images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 768
+>>> num_classes: 3
+>>> log_dir: /Users/roneng100/Library/Mobile Documents/com~apple~CloudDocs/Repositories/multimodal-sentiment-analysis-main/Logs/DMLAN/2025-01-22/sub-1/012_Jan-22-2025_01:05_PM
+>>> counter: 0
+>>> model_class: <class 'models.dmlanfusion.DMLANFUSION'>
+Preparing mvsa-mts-v3-30 dataset...
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv: 0.16 seconds (0.00 minutes)
+The number of problematic samples: 0
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv: 0.02 seconds (0.00 minutes)
+The number of problematic samples: 0
+-------------- Loading /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv ---------------
+Time taken to load /Users/roneng100/Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv: 0.02 seconds (0.00 minutes)
+The number of problematic samples: 0
+Total Training Samples: 30
+Number of Training Samples: 24
+Number of Validation Samples: 3
+Number of Test Samples: 3
+Number of unique sentiment classes: 3
+Building model
+n_trainable_params: 2233831, n_nontrainable_params: 0
+No weight decay
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+0
+text_features: torch.Size([24, 64, 1536]) image_features: torch.Size([24, 2048, 8, 8])
+batch_size: 24 C: 2048 H: 8 W: 8
+avg_pool: torch.Size([24, 2048]) max_pool: torch.Size([24, 2048])
+avg_pool_proj: torch.Size([24, 2048]) max_pool_proj: torch.Size([24, 2048])
+channel_attention: torch.Size([24, 2048, 1, 1])
+channel_refined_feature: torch.Size([24, 2048, 8, 8])

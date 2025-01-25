@@ -9,7 +9,6 @@ import os
 
 from instructor import Instructor
 from models.dmlanfusion import DMLANFUSION
-from models.dmlanfusion2 import DMLANFUSION2
 
 log_dir = os.getenv('NEW_LOGS_DIR')
 if log_dir is None:
@@ -34,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--max_seq_len', default=64, type=int)
     parser.add_argument('--polarities_dim', default=3, type=int)
     parser.add_argument('--clip_grad', type=float, default=5.0)
-    parser.add_argument('--path_image', default='/Users/roneng100/Datasets/MVSA-MTS/images')
+    parser.add_argument('--path_image', default='/Users/ronengold/Datasets/MVSA-MTS/images')
     parser.add_argument('--crop_size', type=int, default=224)
     parser.add_argument('--n_head', type=int, default=8)
     
@@ -42,6 +41,8 @@ if __name__ == '__main__':
     parser.add_argument('--num_classes', type=int, default=3)
     
     parser.add_argument('--log_dir', default=log_dir, type=str)
+    
+    parser.add_argument('--counter', default=0, type=int)
 
     opt = parser.parse_args()
 
@@ -50,8 +51,7 @@ if __name__ == '__main__':
     torch.manual_seed(opt.rand_seed)
 
     model_classes = {
-        'dmlanfusion': DMLANFUSION,
-        'dmlanfusion2': DMLANFUSION2
+        'dmlanfusion': DMLANFUSION
     }
 
     initializers = {

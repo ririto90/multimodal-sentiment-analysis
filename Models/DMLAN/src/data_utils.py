@@ -30,19 +30,19 @@ def preprocess_tweet(tweet):
     return tokens
 
 def load_word_vec(path, word2idx=None):
-    fin = open(path, 'r', encoding='utf-8', newline='\n', errors='ignore')
     word_vec = {}
-    for line in fin:
-        tokens = line.rstrip().split(' ')
-        if word2idx is None or tokens[0] in word2idx:
-            word_vec[tokens[0]] = np.asarray(tokens[1:], dtype='float32')
+    with open(path, 'r', encoding='utf-8', newline='\n', errors='ignore') as fin:
+        for line in fin:
+            tokens = line.rstrip().split(' ')
+            if word2idx is None or tokens[0] in word2idx:
+                word_vec[tokens[0]] = np.asarray(tokens[1:], dtype='float32')
     return word_vec
 
 def build_embedding_matrix(word2idx, embed_dim, type):
     embedding_matrix_file_name = '{0}_{1}_embedding_matrix.dat'.format(str(embed_dim), type)
     print('loading word vectors...')
     embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))
-    fname = 'Models/util_models/glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
+    fname = '/Users/ronengold/Datasets/util_models/glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
     word_vec = load_word_vec(fname, word2idx=word2idx)
     print('building embedding_matrix:', embedding_matrix_file_name)
     for word, i in word2idx.items():
@@ -156,18 +156,28 @@ class MVSADatasetReader:
         print('The number of problematic samples:', sample_error)
         return data, num_classes
 
-    def __init__(self, transform, dataset='mvsa-mts', max_seq_len=40, path_image='./images'):
+    def __init__(self, transform, path_image, dataset='mvsa-mts', max_seq_len=40):
         print("Preparing {0} dataset...".format(dataset))
         fname = {
             'mvsa-mts-v3': {
-                'train': 'Datasets/MVSA-MTS/mvsa-mts-v3/train.tsv',
-                'val': 'Datasets/MVSA-MTS/mvsa-mts-v3/val.tsv',
-                'test': 'Datasets/MVSA-MTS/mvsa-mts-v3/test.tsv'
+                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3/train.tsv',
+                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3/val.tsv',
+                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3/test.tsv'
+            },
+            'mvsa-mts-v3-30': {
+                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv',
+                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv',
+                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv'
+            },
+            'mvsa-mts-v3-100': {
+                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-100/train.tsv',
+                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-100/val.tsv',
+                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-100/test.tsv'
             },
             'mvsa-mts-v3-1000': {
-                'train': 'Datasets/MVSA-MTS/mvsa-mts-v3-1000/train.tsv',
-                'val': 'Datasets/MVSA-MTS/mvsa-mts-v3-1000/val.tsv',
-                'test': 'Datasets/MVSA-MTS/mvsa-mts-v3-1000/test.tsv'
+                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-1000/train.tsv',
+                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-1000/val.tsv',
+                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-1000/test.tsv'
             }
         }
         text = MVSADatasetReader.__read_text__([

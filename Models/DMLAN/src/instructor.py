@@ -7,8 +7,8 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torchvision import transforms
-import torchvision.models as models
 from torch.utils.data import DataLoader
+from torchvision.models import inception_v3, Inception_V3_Weights
 from torch.utils.tensorboard import SummaryWriter
 from tensorboard.backend.event_processing import event_accumulator
 
@@ -22,7 +22,12 @@ print(f'Number of GPUs available: {torch.cuda.device_count()}')
 
 def macro_f1(y_true, y_pred):
     preds = np.argmax(y_pred, axis=-1)
-    p_macro, r_macro, f_macro, _ = precision_recall_fscore_support(y_true, preds, average='macro')
+    p_macro, r_macro, f_macro, _ = precision_recall_fscore_support(
+        y_true, 
+        preds, 
+        average='macro',
+        zero_division=0
+    )
     return f_macro
 
 class Instructor:
@@ -50,8 +55,8 @@ class Instructor:
         ])
 
         # Load dataset
-        mvsa_dataset = MVSADatasetReader(transform, dataset=opt.dataset, 
-                                         max_seq_len=opt.max_seq_len, path_image=opt.path_image)
+        mvsa_dataset = MVSADatasetReader(transform, path_image=opt.path_image, dataset=opt.dataset, 
+                                         max_seq_len=opt.max_seq_len)
         opt.num_classes = mvsa_dataset.num_classes
 
         self.train_data_loader = DataLoader(dataset=mvsa_dataset.train_data, 
@@ -76,7 +81,10 @@ class Instructor:
         text_feature_dim = opt.hidden_dim * 2  # Because of bidirectional LSTM
 
         # Initialize Inception V3 for images
-        self.inception = models.inception_v3(pretrained=True, aux_logits=True)
+        self.inception = inception_v3(
+            weights=Inception_V3_Weights.DEFAULT,
+            aux_logits=True
+        )
         self.inception.Mixed_7c.register_forward_hook(self.save_feature_maps)
         self.inception.fc = nn.Identity()  # Remove the final classification layer
         self.feature_maps = None  # Placeholder to store feature maps
@@ -145,7 +153,10 @@ class Instructor:
                 optimizer.zero_grad()
                 text_indices = sample_batched['text_indices'].to(device)
                 images = sample_batched['image'].to(device)
-                targets = sample_batched['polarity'].to(device)
+                targets = sample_batched['polarity'].to(device).long()
+                
+                if self.opt.counter == 0:
+                    print("targets.shape:", targets.shape, "targets.dtype:", targets.dtype)
 
                 # Text processing through embedding and LSTM
                 embedded_text = self.embedding(text_indices)
@@ -158,6 +169,11 @@ class Instructor:
                 image_features = self.feature_maps  # Feature maps from Mixed_7c layer
 
                 outputs = self.model(text_features, image_features)
+                
+                if self.opt.counter == 1:
+                    print("outputs.shape:", outputs.shape)
+                    print("outputs.dtype:", outputs.dtype)
+                
                 loss = criterion(outputs, targets)
                 loss.backward()
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=self.opt.clip_grad)
@@ -212,7 +228,7 @@ class Instructor:
             for i_batch, sample_batched in enumerate(data_loader):
                 text_indices = sample_batched['text_indices'].to(device)
                 images = sample_batched['image'].to(device)
-                targets = sample_batched['polarity'].to(device)
+                targets = sample_batched['polarity'].to(device).long()
 
                 # Text processing
                 embedded_text = self.embedding(text_indices)
