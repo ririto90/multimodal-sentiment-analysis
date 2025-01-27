@@ -7,14 +7,16 @@ class DMLANFUSION(nn.Module):
     def __init__(self, opt, text_feature_dim, image_feature_dim):
         super(DMLANFUSION, self).__init__()
         self.opt = opt
+        
+        # 1x1 conv to reduce channels from 2048 -> 256
+        self.conv_reduce = nn.Conv2d(in_channels=2048, out_channels=256, kernel_size=1, bias=False)
 
         self.channel_pool_avg = nn.AdaptiveAvgPool2d(1)
         self.channel_pool_max = nn.AdaptiveMaxPool2d(1)
-        reduction_ratio = 16
         self.channel_mlp = nn.Sequential(
-            nn.Linear(image_feature_dim, image_feature_dim // reduction_ratio),
+            nn.Linear(256, 256),
             nn.ReLU(),
-            nn.Linear(image_feature_dim // reduction_ratio, image_feature_dim)
+            nn.Linear(256, 256)
         )
 
         self.spatial_conv = nn.Conv2d(2, 1, kernel_size=7, padding=3)
@@ -31,6 +33,11 @@ class DMLANFUSION(nn.Module):
     def forward(self, text_features, image_features):
         # text_features: [batch_size, seq_len, text_feature_dim]
         # image_features: [batch_size, C, H, W]
+        
+        # Step 1: Reduce 2048 -> 256 channels
+        image_features = self.conv_reduce(image_features)  
+        # Now image_features: [batch_size, 256, H, W]
+        
         if self.opt.counter == 0:
             print(self.opt.counter)
             print("text_features:", text_features.shape, "image_features:", image_features.shape)
@@ -40,8 +47,8 @@ class DMLANFUSION(nn.Module):
             print("batch_size:", batch_size, "C:", C, "H:", H, "W:", W)
 
         ### Channel Attention ###
-        avg_pool = self.channel_pool_avg(image_features).view(batch_size, C)
-        max_pool = self.channel_pool_max(image_features).view(batch_size, C)
+        avg_pool = self.channel_pool_avg(image_features).view(batch_size, C)  # [batch_size, 256]
+        max_pool = self.channel_pool_max(image_features).view(batch_size, C)  # [batch_size, 256]
         if self.opt.counter == 0:
             print("avg_pool:", avg_pool.shape, "max_pool:", max_pool.shape)
 
