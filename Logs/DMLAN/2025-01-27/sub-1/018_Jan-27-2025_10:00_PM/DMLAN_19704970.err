@@ -1,0 +1,31 @@
+/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/jupyter_client/connect.py:20: DeprecationWarning: Jupyter is migrating its paths to use standard platformdirs
+given by the platformdirs library.  To remove this warning and
+see the appropriate new directories, set the environment variable
+`JUPYTER_PLATFORM_DIRS=1` and then run `jupyter --paths`.
+The use of platformdirs will be the default in `jupyter_core` v6
+  from jupyter_core.paths import jupyter_data_dir, jupyter_runtime_dir, secure_write
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/DMLAN/src/train.py", line 74, in <module>
+    ins.run()
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/DMLAN/src/instructor.py", line 168, in run
+    outputs = self.model(text_features, image_features)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/DMLAN/src/models/dmlanfusion.py", line 97, in forward
+    t_f_proj = self.text_proj(t_f)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/view/lib/python3.11/site-packages/torch/nn/modules/linear.py", line 114, in forward
+    return F.linear(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (24x512 and 1536x256)
