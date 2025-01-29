@@ -1,118 +1,102 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from layers.attention import SelfAttention
 
 class DMLANFUSION(nn.Module):
-    def __init__(self, opt, text_feature_dim, image_feature_dim):
-        super(DMLANFUSION, self).__init__()
+    def __init__(self, opt):
+        super().__init__()
         self.opt = opt
-        
-        # 1x1 conv to reduce channels from 2048 -> 256
-        self.conv_reduce = nn.Conv2d(in_channels=2048, out_channels=256, kernel_size=1, bias=False)
 
-        self.channel_pool_avg = nn.AdaptiveAvgPool2d(1)
-        self.channel_pool_max = nn.AdaptiveMaxPool2d(1)
-        self.channel_mlp = nn.Sequential(
-            nn.Linear(256, 256),
-            nn.ReLU(),
-            nn.Linear(256, 256)
+        self.hidden_dim = opt.hidden_dim
+        self.text_feature_dim = 1536
+        self.image_feature_dim = 2048
+
+        self.channel_downsample = nn.Conv2d(
+            in_channels=self.image_feature_dim,
+            out_channels=self.hidden_dim,
+            kernel_size=1, stride=1, bias=False
         )
 
-        self.spatial_conv = nn.Conv2d(2, 1, kernel_size=7, padding=3)
+        # Channel Attention
+        reduction_ratio = 8
+        hidden_dim_ca = self.hidden_dim // reduction_ratio
+        self.mlp_avg = nn.Sequential(
+            nn.Linear(self.hidden_dim, hidden_dim_ca, bias=False),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_dim_ca, self.hidden_dim, bias=False),
+        )
+        self.mlp_max = nn.Sequential(
+            nn.Linear(self.hidden_dim, hidden_dim_ca, bias=False),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_dim_ca, self.hidden_dim, bias=False),
+        )
+        self.global_avg_pool = nn.AdaptiveAvgPool2d(1)
+        self.global_max_pool = nn.AdaptiveMaxPool2d(1)
 
-        d_model = 256
-        self.text_projection = nn.Linear(text_feature_dim, d_model)
-        self.image_projection = nn.Linear(image_feature_dim, d_model)
+        # Spatial Attention
+        self.conv_spatial = nn.Conv2d(
+            in_channels=2,
+            out_channels=1,
+            kernel_size=7,
+            padding=3,
+            bias=False
+        )
 
-        self.W_mf = nn.Linear(d_model, 1)
-        self.self_attention = SelfAttention(embed_dim=d_model * 2, n_head=4, score_function='scaled_dot_product')
+        # 4) Text Projection: 1536 -> 256
+        self.text_proj = nn.Linear(self.text_feature_dim, self.hidden_dim, bias=False)
 
-        self.classifier = nn.Linear(d_model * 2, opt.num_classes)
+        # 5) Fusion
+        self.fusion_linear = nn.Linear(self.hidden_dim, self.hidden_dim, bias=True)
+
+        self.final_dim = self.hidden_dim * 2
+        self.classifier = nn.Linear(self.final_dim, opt.num_classes)
 
     def forward(self, text_features, image_features):
-        # text_features: [batch_size, seq_len, text_feature_dim]
-        # image_features: [batch_size, C, H, W]
-        
-        # Step 1: Reduce 2048 -> 256 channels
-        image_features = self.conv_reduce(image_features)  
-        # Now image_features: [batch_size, 256, H, W]
-        
-        if self.opt.counter == 0:
-            print(self.opt.counter)
-            print("text_features:", text_features.shape, "image_features:", image_features.shape)
+        # text_features => [B, 1536]
+        # image_features => [B, 2048, H, W]
 
-        batch_size, C, H, W = image_features.size()
-        if self.opt.counter == 0:
-            print("batch_size:", batch_size, "C:", C, "H:", H, "W:", W)
+        # Downsample image
+        M_common = self.channel_downsample(image_features)  # => [B, 256, H, W]
 
-        ### Channel Attention ###
-        avg_pool = self.channel_pool_avg(image_features).view(batch_size, C)  # [batch_size, 256]
-        max_pool = self.channel_pool_max(image_features).view(batch_size, C)  # [batch_size, 256]
-        if self.opt.counter == 0:
-            print("avg_pool:", avg_pool.shape, "max_pool:", max_pool.shape)
+        # Channel Attention
+        avg_out = self.global_avg_pool(M_common).view(M_common.size(0), -1)
+        max_out = self.global_max_pool(M_common).view(M_common.size(0), -1)
+        channel_attn = F.relu(self.mlp_avg(avg_out) + self.mlp_max(max_out), inplace=True)
+        channel_attn = channel_attn.unsqueeze(2).unsqueeze(3)
+        F_channel = M_common * channel_attn
 
-        avg_pool_proj = self.channel_mlp(avg_pool)
-        max_pool_proj = self.channel_mlp(max_pool)
-        if self.opt.counter == 0:
-            print("avg_pool_proj:", avg_pool_proj.shape, "max_pool_proj:", max_pool_proj.shape)
+        # Spatial Attention
+        avg_spatial = torch.mean(F_channel, dim=1, keepdim=True)
+        max_spatial, _ = torch.max(F_channel, dim=1, keepdim=True)
+        spatial_cat = torch.cat([avg_spatial, max_spatial], dim=1)
+        spatial_attn = F.relu(self.conv_spatial(spatial_cat), inplace=True)
+        F_bi = F_channel * spatial_attn
 
-        channel_attention = F.relu(avg_pool_proj + max_pool_proj).unsqueeze(2).unsqueeze(3)
-        if self.opt.counter == 0:
-            print("channel_attention:", channel_attention.shape)
-            
-        channel_refined_feature = image_features * channel_attention
-        if self.opt.counter == 0:
-            print("channel_refined_feature:", channel_refined_feature.shape)
+        # Flatten
+        B, C, H, W = F_bi.shape
+        v_f = F_bi.view(B, C, H*W).permute(0, 2, 1)
 
-        ### Spatial Attention ###
-        avg_pool_spatial = torch.mean(channel_refined_feature, dim=1, keepdim=True)  # [batch_size, 1, H, W]
-        max_pool_spatial, _ = torch.max(channel_refined_feature, dim=1, keepdim=True)  # [batch_size, 1, H, W]
-        
-        spatial_pool = torch.cat([avg_pool_spatial, max_pool_spatial], dim=1)  # [batch_size, 2, H, W]
+        # Project text (1536 -> 256)
+        t_f_proj = self.text_proj(text_features)
 
-        spatial_attention = F.relu(self.spatial_conv(spatial_pool))  # [batch_size, 1, H, W]
-        
-        # Apply spatial attention
-        bi_attentive_features = channel_refined_feature * spatial_attention  # [batch_size, C, H, W]
+        t_f_expanded = t_f_proj.unsqueeze(1).expand(-1, v_f.size(1), -1)
 
-        # Flatten spatial dimensions
-        num_regions = H * W
-        flattened_visual_features = bi_attentive_features.view(batch_size, C, num_regions).permute(0, 2, 1)  # [batch_size, m, C]
+        # Fusion
+        vf_times_tf = v_f * t_f_expanded
+        mf = torch.tanh(self.fusion_linear(vf_times_tf))
 
-        # Project image features
-        projected_visual_features = self.image_projection(flattened_visual_features)  # [batch_size, m, d_model]
+        # G) Visual attention [B, N, 1]
+        attn_scores = torch.sum(mf, dim=-1)
+        alpha_f = F.softmax(attn_scores, dim=1).unsqueeze(-1)
 
-        projected_text_features = self.text_projection(text_features)  # [batch_size, seq_len, d_model]
+        # Weighted sum [B, 256]
+        s_f = torch.sum(alpha_f * t_f_expanded, dim=1)
+        # Average-pool [B, 256]
+        v_f_pooled = torch.mean(v_f, dim=1)
 
-        ### Joint Attended Multimodal Learning ###
+        # H) Concatenate [B, 512]
+        Jf = torch.cat([s_f, v_f_pooled], dim=-1)
 
-        # Process visual features
-        avg_visual_features = torch.mean(projected_visual_features, dim=1)
-        expanded_avg_visual_features = avg_visual_features.unsqueeze(1)
-
-        # Combine text and visual features
-        joint_features = projected_text_features * expanded_avg_visual_features
-
-        # Compute attention scores
-        joint_attention_logits = torch.tanh(self.W_mf(joint_features))
-        attention_scores = F.softmax(joint_attention_logits.squeeze(2), dim=1).unsqueeze(2)
-
-        # Compute attended text features
-        attended_text_features = torch.sum(attention_scores * projected_text_features, dim=1)
-
-        # Combine attended text and visual features
-        mean_visual_features = torch.mean(projected_visual_features, dim=1)
-        joint_features = torch.cat([attended_text_features, mean_visual_features], dim=1)
-
-        # Apply self-attention
-        attended_multimodal_features = self.self_attention(joint_features)
-        attended_multimodal_features = attended_multimodal_features.squeeze(1)
-
-        # Classification
-        logits = self.classifier(attended_multimodal_features)
-            
-        self.opt.counter += 1
-        if self.opt.counter < 3:
-            print(self.opt.counter)
+        # I) Classify [B, num_classes]
+        logits = self.classifier(Jf)
         return logits
