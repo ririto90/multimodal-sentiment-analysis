@@ -55,7 +55,7 @@ class Instructor:
         ])
 
         # Load dataset
-        mvsa_dataset = MVSADatasetReader(transform, path_image=opt.path_image, dataset=opt.dataset, 
+        mvsa_dataset = MVSADatasetReader(transform, dataset=opt.dataset, 
                                          max_seq_len=opt.max_seq_len)
         opt.num_classes = mvsa_dataset.num_classes
 
@@ -76,9 +76,8 @@ class Instructor:
         self.embedding.weight.requires_grad = False  # Freeze embeddings if needed
 
         # Add LSTM layer
-        self.lstm = nn.LSTM(input_size=embedding_dim, hidden_size=opt.hidden_dim, 
+        self.lstm = nn.LSTM(input_size=embedding_dim, hidden_size=768, 
                             num_layers=opt.num_layers, batch_first=True, bidirectional=True)
-        text_feature_dim = opt.hidden_dim * 2  # Because of bidirectional LSTM
 
         # Initialize Inception V3 for images
         self.inception = inception_v3(
@@ -93,10 +92,11 @@ class Instructor:
         for param in self.inception.parameters():
             param.requires_grad = False
 
-        # Update model initialization
         # Adjust image_feature_dim according to the feature maps' dimensions
-        image_feature_dim = 2048  # This may vary depending on the feature map
-        self.model = opt.model_class(opt, text_feature_dim, image_feature_dim)
+        self.model = opt.model_class(opt)
+        self.opt.counter += 1
+        if self.opt.counter < 3:
+            print(self.opt.counter)
 
         # Use multiple GPUs if available
         if torch.cuda.device_count() > 1:
@@ -161,7 +161,7 @@ class Instructor:
                 # Text processing through embedding and LSTM
                 embedded_text = self.embedding(text_indices)
                 lstm_output, (h_n, c_n) = self.lstm(embedded_text)
-                text_features = lstm_output
+                text_features = lstm_output[:, -1, :]
 
                 # Image processing through Inception V3
                 self.feature_maps = None  # Reset feature maps
@@ -173,6 +173,9 @@ class Instructor:
                 if self.opt.counter == 1:
                     print("outputs.shape:", outputs.shape)
                     print("outputs.dtype:", outputs.dtype)
+                self.opt.counter += 1
+                if self.opt.counter < 3:
+                    print(self.opt.counter)
                 
                 loss = criterion(outputs, targets)
                 loss.backward()

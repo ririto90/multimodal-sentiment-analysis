@@ -69,10 +69,10 @@ def main():
 
     # Hyperparameter grid
     hyperparameter_grid = {
-        'learning_rate': [1e-3, 1e-4, 1e-5,
-                          3e-3, 3e-4, 3e-5,
-                          5e-3, 5e-4, 5e-5],
-        'dropout_rate': [0.1, 0.3, 0.5],
+        # 'learning_rate': [1e-3, 1e-4, 1e-5,
+        #                   3e-3, 3e-4, 3e-5,
+        #                   5e-3, 5e-4, 5e-5],
+        # 'dropout_rate': [0.1, 0.3, 0.5],
         'hidden_dim': [512, 768, 1024]
     }
 

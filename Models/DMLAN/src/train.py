@@ -1,15 +1,17 @@
 # train.py
 
+import os
+import sys
 import argparse
 import random
 import numpy as np
 import time
 import torch
-import os
 
 from instructor import Instructor
 from models.dmlanfusion import DMLANFUSION
 
+print("Python PATH:", sys.path)
 log_dir = os.getenv('NEW_LOGS_DIR')
 if log_dir is None:
     raise ValueError("NEW_LOGS_DIR environment variable is not set")
@@ -33,11 +35,11 @@ if __name__ == '__main__':
     parser.add_argument('--max_seq_len', default=64, type=int)
     parser.add_argument('--polarities_dim', default=3, type=int)
     parser.add_argument('--clip_grad', type=float, default=5.0)
-    parser.add_argument('--path_image', default='/Users/ronengold/Datasets/MVSA-MTS/images')
+    parser.add_argument('--path_image', default='./images')
     parser.add_argument('--crop_size', type=int, default=224)
     parser.add_argument('--n_head', type=int, default=8)
     
-    parser.add_argument('--hidden_dim', type=int, default=768)
+    parser.add_argument('--hidden_dim', type=int, default=256)
     parser.add_argument('--num_classes', type=int, default=3)
     
     parser.add_argument('--log_dir', default=log_dir, type=str)

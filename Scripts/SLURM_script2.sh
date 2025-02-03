@@ -1,9 +1,20 @@
 #!/bin/bash
 
-fusion='dmlanfusion2' # 'dmlanfusion' 'dmlanfusion2'
-dataset='mvsa-mts-v3-1000' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
+#Model
+MODEL_NAME='DMLAN'
+
+# Model Variables
+fusion='dmlanfusion' # 'dmlanfusion' 'dmlanfusion2'
+dataset='mvsa-mts-v3' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
 lr='0.001'
 dr='0.5'
+
+batch_size='64'
+epochs=5
+
+# Slurm Variables
+partition='tier3' # 'tier3'
+memory='256' # '64' '128' '256'
 
 
 REPO_DIR="${HOME}/Multimodal-Sentiment-Analysis"
@@ -84,11 +95,11 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 
 #SBATCH --job-name=${MODEL_NAME}    # Name of your job
 #SBATCH --account=multisass    # Your Slurm account
-#SBATCH --partition=tier3      # Run on tier3
-#SBATCH --time=0-06:00:00       # 4 hours time limit
+#SBATCH --partition=${partition}      # Run on tier3
+#SBATCH --time=0-12:00:00       # 4 hours time limit
 #SBATCH --nodes=1              # Number of nodes
 #SBATCH --ntasks=1             # 1 task (i.e., process)
-#SBATCH --mem=64g              # Increase RAM to 32GB
+#SBATCH --mem=${memory}g         # Increase RAM to 32GB
 #SBATCH --gres=gpu:a100:1      # 1 a100 GPU
 #SBATCH --output=${OUTPUT_PATH}# Output file
 #SBATCH --error=${ERROR_PATH}  # Error file
@@ -112,8 +123,8 @@ PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME}/src/ \\
 python -u -Wd Models/${MODEL_NAME}/src/train.py \\
     --model_fusion "\${fusion}" \\
     --dataset "\${dataset}" \\
-    --num_epoch 20 \\
-    --batch_size 64 \\
+    --num_epoch 200 \\
+    --batch_size 256 \\
     --log_step 60 \\
     --learning_rate "\${lr}" \\
     --dropout_rate "\${dr}" \\

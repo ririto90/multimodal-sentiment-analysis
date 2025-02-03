@@ -3,7 +3,7 @@
 REPOSITORY='/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories'
 
 fusion='dmlanfusion' # 'dmlan'
-dataset='mvsa-mts-v3-30' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
+dataset='mvsa-mts-v3' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
 lr='0.001'
 dr='0.5'
 

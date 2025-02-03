@@ -1,6 +1,7 @@
 # data_utils.py
 
 import os
+import sys
 import time
 import pickle
 import numpy as np
@@ -13,6 +14,16 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import string
+
+# project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+# if project_root not in sys.path:
+#     sys.path.insert(0, project_root)
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+from Project.settings import DATASET_PATHS, IMAGE_PATH
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -42,7 +53,7 @@ def build_embedding_matrix(word2idx, embed_dim, type):
     embedding_matrix_file_name = '{0}_{1}_embedding_matrix.dat'.format(str(embed_dim), type)
     print('loading word vectors...')
     embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))
-    fname = '/Users/ronengold/Datasets/util_models/glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
+    fname = 'Datasets/util_models/glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
     word_vec = load_word_vec(fname, word2idx=word2idx)
     print('building embedding_matrix:', embedding_matrix_file_name)
     for word, i in word2idx.items():
@@ -122,7 +133,7 @@ class MVSADatasetReader:
         return text
 
     @staticmethod
-    def __read_data__(fname, tokenizer, path_img, transform, max_seq_len=None):
+    def __read_data__(fname, tokenizer, transform, max_seq_len, path_img):
         start_time = time.time()
         print(f'-------------- Loading {fname} ---------------')
         data = []
@@ -156,57 +167,42 @@ class MVSADatasetReader:
         print('The number of problematic samples:', sample_error)
         return data, num_classes
 
-    def __init__(self, transform, path_image, dataset='mvsa-mts', max_seq_len=40):
-        print("Preparing {0} dataset...".format(dataset))
-        fname = {
-            'mvsa-mts-v3': {
-                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3/train.tsv',
-                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3/val.tsv',
-                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3/test.tsv'
-            },
-            'mvsa-mts-v3-30': {
-                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv',
-                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv',
-                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv'
-            },
-            'mvsa-mts-v3-100': {
-                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-100/train.tsv',
-                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-100/val.tsv',
-                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-100/test.tsv'
-            },
-            'mvsa-mts-v3-1000': {
-                'train': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-1000/train.tsv',
-                'val': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-1000/val.tsv',
-                'test': '/Users/ronengold/Datasets/MVSA-MTS/mvsa-mts-v3-1000/test.tsv'
-            }
-        }
-        text = MVSADatasetReader.__read_text__([
-            fname[dataset]['train'],
-            fname[dataset]['val'],
-            fname[dataset]['test']
-        ])
+    def __init__(self, transform, paths=DATASET_PATHS, path_image=IMAGE_PATH, dataset='mvsa-mts', max_seq_len=40):
+        
+        # Dataset Paths
+        dataset_paths = DATASET_PATHS.get(dataset)
+        if dataset_paths is None:
+            raise ValueError(f"Dataset {dataset} not found in DATASET_PATHS")
+        train_path = dataset_paths["train"]
+        val_path   = dataset_paths["val"]
+        test_path  = dataset_paths["test"]
+        print(f"Loading dataset '{dataset}':\n  Train path: {train_path}\n  Validation path: {val_path}\n  Test path: {test_path}")
+        
+        # Tokenizer
+        text = MVSADatasetReader.__read_text__([train_path, val_path, test_path])
         tokenizer = Tokenizer(max_seq_len=max_seq_len)
         tokenizer.fit_on_text(text.lower())
         self.tokenizer = tokenizer
-        embed_dim = 200  # You can choose 50, 100, 200, or 300 based on GloVe files
+        
+        # Embedding Matrix
+        embed_dim = 200
         embedding_matrix = build_embedding_matrix(tokenizer.word2idx, embed_dim=embed_dim, type='glove')
         self.embedding_matrix = embedding_matrix
         
-        train_data, train_classes = MVSADatasetReader.__read_data__(
-            fname[dataset]['train'], tokenizer, path_image, transform, max_seq_len)
-        val_data, val_classes = MVSADatasetReader.__read_data__(
-            fname[dataset]['val'], tokenizer, path_image, transform, max_seq_len)
-        test_data, test_classes = MVSADatasetReader.__read_data__(
-            fname[dataset]['test'], tokenizer, path_image, transform, max_seq_len)
+        # Load Dataset Splits
+        train_data, train_classes = MVSADatasetReader.__read_data__(train_path, tokenizer, transform, max_seq_len, path_image)
+        val_data, val_classes     = MVSADatasetReader.__read_data__(val_path, tokenizer, transform, max_seq_len, path_image)
+        test_data, test_classes   = MVSADatasetReader.__read_data__(test_path, tokenizer, transform, max_seq_len, path_image)
         
+        # Dataset Loaders
         self.train_data = MVSADataset(train_data)
         self.val_data = MVSADataset(val_data)
         self.test_data = MVSADataset(test_data)
         
+        # Unique Classes & Total Training Samples
         all_unique_classes = train_classes.union(val_classes).union(test_classes)
         self.num_classes = len(all_unique_classes)
         total_training_samples = len(train_data) + len(val_data) + len(test_data)
-        
         print(f'Total Training Samples: {total_training_samples}')
         print(f'Number of Training Samples: {len(train_data)}')
         print(f'Number of Validation Samples: {len(val_data)}')

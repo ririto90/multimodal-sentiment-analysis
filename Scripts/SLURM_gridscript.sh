@@ -99,11 +99,11 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 #SBATCH --job-name=${model}    # Name of your job
 #SBATCH --account=multisass    # Your Slurm account
 #SBATCH --partition=tier3      # Run on tier3
-#SBATCH --time=0-12:00:00       # 4 hours time limit
+#SBATCH --time=0-08:00:00       # 4 hours time limit
 #SBATCH --nodes=1              # Number of nodes
 #SBATCH --ntasks=1             # 1 task (i.e., process)
-#SBATCH --mem=96g              # Increase RAM to 32GB
-#SBATCH --gres=gpu:a100:2      # 1 a100 GPU
+#SBATCH --mem=192g              # Increase RAM to 32GB
+#SBATCH --gres=gpu:a100:1      # 1 a100 GPU
 #SBATCH --output=${OUTPUT_PATH}# Output file
 #SBATCH --error=${ERROR_PATH}  # Error file
 
@@ -123,12 +123,12 @@ PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${model}/src/ \\
 python -u -Wd Models/${model}/src/train.py \\
     --model_fusion "\${fusion}" \\
     --dataset "\${dataset}" \\
-    --num_epoch 40 \\
-    --batch_size 128 \\
+    --num_epoch 70 \\
+    --batch_size 256 \\
     --log_step 60 \\
     --learning_rate "\${lr}" \\
     --dropout_rate "\${dr}" \\
-    --hidden_dim 768 \\
+    --hidden_dim "\${hidden_dim}" \\
     --weight_decay 0 
 EOT
 

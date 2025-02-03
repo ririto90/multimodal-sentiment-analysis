@@ -56,7 +56,7 @@ class DMLANFUSION(nn.Module):
         # image_features => [B, 2048, H, W]
 
         # Downsample image
-        M_common = self.channel_downsample(image_features)  # => [B, 256, H, W]
+        M_common = self.channel_downsample(image_features)
 
         # Channel Attention
         avg_out = self.global_avg_pool(M_common).view(M_common.size(0), -1)
