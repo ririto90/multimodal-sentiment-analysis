@@ -23,7 +23,7 @@ project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..
 if project_root not in sys.path:
     sys.path.insert(0, project_root)
 
-from Project.settings import DATASET_PATHS, IMAGE_PATH
+from Project.settings import DATASET_PATHS, IMAGE_PATH, GLOVE_BASE_PATH
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
@@ -49,11 +49,11 @@ def load_word_vec(path, word2idx=None):
                 word_vec[tokens[0]] = np.asarray(tokens[1:], dtype='float32')
     return word_vec
 
-def build_embedding_matrix(word2idx, embed_dim, type):
+def build_embedding_matrix(word2idx, embed_dim, type, glove=GLOVE_BASE_PATH):
     embedding_matrix_file_name = '{0}_{1}_embedding_matrix.dat'.format(str(embed_dim), type)
     print('loading word vectors...')
     embedding_matrix = np.zeros((len(word2idx) + 2, embed_dim))
-    fname = 'Datasets/util_models/glove.twitter.27B/glove.twitter.27B.' + str(embed_dim) + 'd.txt'
+    fname = glove + 'glove.twitter.27B.' + str(embed_dim) + 'd.txt'
     word_vec = load_word_vec(fname, word2idx=word2idx)
     print('building embedding_matrix:', embedding_matrix_file_name)
     for word, i in word2idx.items():

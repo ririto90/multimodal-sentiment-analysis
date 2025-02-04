@@ -1,9 +1,11 @@
 #!/bin/bash
 
+MODEL_NAME='DMLAN'
+
 REPOSITORY='/Users/ronengold/Library/Mobile Documents/com~apple~CloudDocs/Repositories'
 
-fusion='dmlanfusion' # 'dmlan'
-dataset='mvsa-mts-v3' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
+fusion='dmlanfusion2' # 'dmlan'
+dataset='mvsa-mts-v3-30' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
 lr='0.001'
 dr='0.5'
 
@@ -87,7 +89,7 @@ dr="${dr}"
 # Run the main script
 cd "${REPO_DIR}"
 
-PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME}/src/ \
+PYTHONPATH="$PYTHONPATH:${REPO_DIR}" \
 python -u -Wd "${REPO_DIR}/Models/${MODEL_NAME}/src/train.py" \
     --model_fusion "${fusion}" \
     --dataset "${dataset}" \
