@@ -3,7 +3,7 @@
 MODEL_NAME='DMLAN'
 
 # Model Variables
-fusion='dmlanfusion' # 'dmlanfusion' 'dmlanfusion2'
+fusion='dmlanfusion2' # 'dmlanfusion' 'dmlanfusion2'
 dataset='mvsa-mts-v3-30' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
 lr='0.001'
 dr='0.5'

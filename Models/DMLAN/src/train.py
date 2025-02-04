@@ -10,6 +10,8 @@ import torch
 
 from instructor import Instructor
 from models.dmlanfusion import DMLANFUSION
+from models.dmlanfusion2 import DMLANFUSION2
+
 
 print("Python PATH:", sys.path)
 log_dir = os.getenv('NEW_LOGS_DIR')
@@ -53,7 +55,8 @@ if __name__ == '__main__':
     torch.manual_seed(opt.rand_seed)
 
     model_classes = {
-        'dmlanfusion': DMLANFUSION
+        'dmlanfusion': DMLANFUSION,
+        'dmlanfusion2': DMLANFUSION2
     }
 
     initializers = {
