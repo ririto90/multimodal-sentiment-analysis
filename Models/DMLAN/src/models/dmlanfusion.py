@@ -91,6 +91,7 @@ class DMLANFUSION(nn.Module):
 
         # Weighted sum [B, 256]
         s_f = torch.sum(alpha_f * t_f_expanded, dim=1)
+        
         # Average-pool [B, 256]
         v_f_pooled = torch.mean(v_f, dim=1)
 
