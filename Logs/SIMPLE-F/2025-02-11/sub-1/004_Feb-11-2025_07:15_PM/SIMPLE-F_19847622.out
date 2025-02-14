@@ -1,0 +1,59 @@
+SLURM Job ID: 19847622
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-F/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-F/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F/2025-02-11/sub-1/004_Feb-11-2025_07:15_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: simplefusion
+>>> dataset: mvsa-mts-v3
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f4641f75440>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 100
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 20
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F/2025-02-11/sub-1/004_Feb-11-2025_07:15_PM
+>>> counter: 0
+>>> model_class: <class 'models.simplefusion.SimpleFusion'>
+Loading dataset 'mvsa-mts-v3':
+  Train path: Datasets/MVSA-MTS/mvsa-mts-v3/train.tsv
+Validation path: Datasets/MVSA-MTS/mvsa-mts-v3/val.tsv
+  Test path: Datasets//MVSA-MTS/mvsa-mts-v3/test.tsv
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3/train.tsv ---------------
+[DEBUG] index: 706
+[DEBUG] image_path: 706
+[DEBUG] raw_text: PC Party, #Youth, #Education,Opportunity,#RenewableResources, Proudly #Canada's PCs #elxn42 http://t.co/NSwTddCHS8
+[DEBUG] processed_str: pc party opportunity proudly pcs
+[DEBUG] text_indices: [2 3 4 5 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0]
+[DEBUG] polarity: 2
+[DEBUG] index: 2699
+[DEBUG] image_path: 2699
+[DEBUG] raw_text: Running through the 6 wit my woes #ComeTogether #BlueJays #inthe6
+[DEBUG] processed_str: running through the wit my woes
+[DEBUG] text_indices: [ 7  8  9 10 11 12  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 1
+[DEBUG] index: 15657
+[DEBUG] image_path: 15657
+[DEBUG] raw_text: #TruckTuesday | | support@innovativeautoworx.com | 403.242.2767 | #Trucks #YYC #Calgary | http://t.co/ruwEqCd3LT
+[DEBUG] processed_str: support
+[DEBUG] text_indices: [13  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 0
+[DEBUG] index: 13219
+[DEBUG] image_path: 13219
+[DEBUG] raw_text: I dont even care how ridiculous this looks #OTRAToronto is officially tomorrow and I am more than ready @onedirection
+[DEBUG] processed_str: i dont even care how ridiculous this looks is officially tomorrow and i am more than ready onedirection
+[DEBUG] text_indices: [14 15 16 17 18 19 20 21 22 23 24 25 14 26 27 28 29 30  0  0]
+[DEBUG] polarity: 0

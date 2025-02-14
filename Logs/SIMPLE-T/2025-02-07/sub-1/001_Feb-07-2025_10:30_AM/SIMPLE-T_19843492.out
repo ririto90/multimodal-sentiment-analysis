@@ -1,0 +1,175 @@
+SLURM Job ID: 19843492
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-T/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-T/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-07/sub-1/001_Feb-07-2025_10:30_AM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: simpletext
+>>> dataset: mvsa-mts-v3
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7faec0831440>
+>>> learning_rate: 0.0005
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 200
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-07/sub-1/001_Feb-07-2025_10:30_AM
+>>> counter: 0
+>>> model_class: <class 'models.simpletext.SimpleText'>
+Loading dataset 'mvsa-mts-v3':
+  Train path: Datasets//MVSA-MTS/mvsa-mts-v3/train.tsv
+Validation path: Datasets//MVSA-MTS/mvsa-mts-v3/val.tsv
+  Test path: Datasets//MVSA-MTS/mvsa-mts-v3/test.tsv
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading Datasets//MVSA-MTS/mvsa-mts-v3/train.tsv ---------------
+[DEBUG] raw_text: pc party, #youth, #education,opportunity,#renewableresources, proudly #canada's pcs #elxn42 http://t.co/nswtddchs8
+[DEBUG] text_indices: [ 2  3  4  5  6  7  8  9 10  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: running through the 6 wit my woes #cometogether #bluejays #inthe6
+[DEBUG] text_indices: [11 12 13 14 15 16 17 18 19 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 1
+[DEBUG] raw_text: #trucktuesday | | support@innovativeautoworx.com | 403.242.2767 | #trucks #yyc #calgary | http://t.co/ruweqcd3lt
+[DEBUG] text_indices: [21 22 22 23 22 24 22 25 26 27 22 28  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 0
+[DEBUG] raw_text: i dont even care how ridiculous this looks #otratoronto is officially tomorrow and i am more than ready @onedirection
+[DEBUG] text_indices: [29 30 31 32 33 34 35 36 37 38 39 40 41 29 42 43 44 45 46  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 0
+Time taken to load Datasets//MVSA-MTS/mvsa-mts-v3/train.tsv: 0.49 seconds(0.01 minutes)
+Train classes: [0, 1, 2], count=3
+[DEBUG] First 5 samples from train_data:
+pc party, #youth, #education,opportunity,#renewableresources, proudly #canada's pcs #elxn42 http://t.co/nswtddchs8 2
+running through the 6 wit my woes #cometogether #bluejays #inthe6 1
+#trucktuesday | | support@innovativeautoworx.com | 403.242.2767 | #trucks #yyc #calgary | http://t.co/ruweqcd3lt 0
+i dont even care how ridiculous this looks #otratoronto is officially tomorrow and i am more than ready @onedirection 0
+#automotive alert: manufacturing controls... | nexteer automotive | #saginaw, mi #auto http://t.co/en5uq7jzdl 2
+[DEBUG] Train label distribution:
+{0: 3522, 1: 3468, 2: 6631}
+-------------- Loading Datasets//MVSA-MTS/mvsa-mts-v3/val.tsv ---------------
+[DEBUG] raw_text: ***steven thinking about the life he just left behind with his beloved, sam. should he have stayed?...to be continued
+[DEBUG] text_indices: [40162  2690  1193    13  1285   884   496  1983   981   213   324 40163
+ 26627   842   884   616 40164    72 34059     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: thanks for an amazing summer #yyc,53 organizations engaged youth in 350 projects to contribute 20000 volunteer hours!
+[DEBUG] text_indices: [  848    59   741   117   985 40165 22299 32591  3840    63 32476  5997
+   130 40166 40167 10226 40168     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: hsr fares go up on tuesday. tickets (new issue) are $2.15. don't be overcharged! #hamont #hsr https://t.co/zbxytmcy1o
+[DEBUG] text_indices: [19936 33376   593   292   100 18529   787 40169 40170   866 40171   725
+    72 40172   262  6707 33378     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 1
+[DEBUG] raw_text: @calum5sos just saw this on my instagram feed and instantly thought of you #jetblackheart #sheskindahotvma
+[DEBUG] text_indices: [ 3533   496  2315    35   100    16  6963  6450    41 38093   554   145
+   456  2617   329     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 0
+Time taken to load Datasets//MVSA-MTS/mvsa-mts-v3/val.tsv: 0.06 seconds(0.00 minutes)
+Val classes: [0, 1, 2], count=3
+[DEBUG] First 5 samples from train_data:
+***steven thinking about the life he just left behind with his beloved, sam. should he have stayed?...to be continued 2
+thanks for an amazing summer #yyc,53 organizations engaged youth in 350 projects to contribute 20000 volunteer hours! 2
+hsr fares go up on tuesday. tickets (new issue) are $2.15. don't be overcharged! #hamont #hsr https://t.co/zbxytmcy1o 1
+@calum5sos just saw this on my instagram feed and instantly thought of you #jetblackheart #sheskindahotvma 0
+#selfiefornash @nashgrier you've helped me get through the rough times nash. i love you ???????? 1
+[DEBUG] Train label distribution:
+{0: 3522, 1: 3468, 2: 6631}
+-------------- Loading Datasets//MVSA-MTS/mvsa-mts-v3/test.tsv ---------------
+[DEBUG] raw_text: candid shot at #montreal @fetishweekend. #smile latex: @hwd_latex #ilovebiancamondays http://t.co/edaohprlrp
+[DEBUG] text_indices: [43624   433   109   350 43625 17603 43626 16153 43627 16135     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: #hamont stop by and help out lynwood hall raise some founds with a car wash! #lynwoodhallcarwash #machealth
+[DEBUG] text_indices: [  262   567   357    41  2422    76 43628  1398  5034   125 43629   213
+   206  8256 43630 43631 43632     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 0
+[DEBUG] raw_text: even my neice wants to vote #sheskindahotvma
+[DEBUG] text_indices: [   31    16 43633  6426   130  1160   329     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: looks like i'm going alone ????
+[DEBUG] text_indices: [  36  203  205  542 3334  739    0    0    0    0    0    0    0    0
+    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    0    0    0    0    0    0    0    0    0    0    0    0    0    0
+    0    0    0    0    0    0    0    0]
+[DEBUG] polarity: 2
+Time taken to load Datasets//MVSA-MTS/mvsa-mts-v3/test.tsv: 0.06 seconds(0.00 minutes)
+Test classes: [0, 1, 2], count=3
+[DEBUG] First 5 samples from train_data:
+candid shot at #montreal @fetishweekend. #smile latex: @hwd_latex #ilovebiancamondays http://t.co/edaohprlrp 2
+#hamont stop by and help out lynwood hall raise some founds with a car wash! #lynwoodhallcarwash #machealth 0
+even my neice wants to vote #sheskindahotvma 2
+looks like i'm going alone ???? 2
+here it comes!! @comedynest sept 24-26 call 514-932-6378 for reservations! #derekseguin #comedy #montreal #fun 2
+[DEBUG] Train label distribution:
+{0: 3522, 1: 3468, 2: 6631}
+Total Training Samples: 17027
+Number of Training Samples: 13621
+Number of Validation Samples: 1703
+Number of Test Samples: 1703
+Number of unique sentiment classes: 3
+Building model
+1
+n_trainable_params: 394243, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+[DEBUG] text_indices.shape: torch.Size([64, 64])
+[DEBUG] embedded_text.shape: torch.Size([64, 64, 200])
+[DEBUG] lstm_output.shape: torch.Size([64, 64, 1536])
+[DEBUG] h_n.shape: torch.Size([6, 64, 768])
+[DEBUG] c_n.shape: torch.Size([6, 64, 768])
+[DEBUG] text_features.shape: torch.Size([64, 1536])
+[DEBUG] Sample predictions in evaluate:  tensor([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], device='cuda:0')
+[DEBUG] outputs.shape: torch.Size([64, 3])
+[DEBUG] Sample of raw logits (first 5):
+tensor([[ 0.0037, -0.0071, -0.0276],
+        [ 0.0015, -0.0090, -0.0277],
+        [ 0.0002, -0.0119, -0.0250],
+        [ 0.0010, -0.0068, -0.0212],
+        [-0.0009, -0.0146, -0.0240]], device='cuda:0',
+       grad_fn=<SliceBackward0>)

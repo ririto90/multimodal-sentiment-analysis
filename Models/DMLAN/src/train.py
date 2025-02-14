@@ -12,6 +12,7 @@ from instructor import Instructor
 from models.dmlanfusion import DMLANFUSION
 from models.dmlanfusion2 import DMLANFUSION2
 from models.simplefusion import SimpleFusion
+from models.simpletext import SimpleText
 
 
 print("Python PATH:", sys.path)
@@ -58,7 +59,8 @@ if __name__ == '__main__':
     model_classes = {
         'dmlanfusion': DMLANFUSION,
         'dmlanfusion2': DMLANFUSION2,
-        'simplefusion': SimpleFusion
+        'simplefusion': SimpleFusion,
+        'simpletext': SimpleText
     }
 
     initializers = {

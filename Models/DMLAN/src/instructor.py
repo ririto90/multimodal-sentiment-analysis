@@ -73,7 +73,7 @@ class Instructor:
         num_embeddings, embedding_dim = embedding_matrix.size()
         self.embedding = nn.Embedding(num_embeddings, embedding_dim, padding_idx=1)
         self.embedding.weight.data.copy_(embedding_matrix)
-        self.embedding.weight.requires_grad = False  # Freeze embeddings if needed
+        self.embedding.weight.requires_grad = False 
 
         # Add LSTM layer
         self.lstm = nn.LSTM(input_size=embedding_dim, hidden_size=768, 
@@ -85,20 +85,19 @@ class Instructor:
             aux_logits=True
         )
         self.inception.Mixed_7c.register_forward_hook(self.save_feature_maps)
-        self.inception.fc = nn.Identity()  # Remove the final classification layer
-        self.feature_maps = None  # Placeholder to store feature maps
+        self.inception.fc = nn.Identity()  # Remove final classification layer
+        self.feature_maps = None 
 
-        # Freeze Inception V3 parameters if needed
+        # Freeze Inception V3 parameters
         for param in self.inception.parameters():
             param.requires_grad = False
 
-        # Adjust image_feature_dim according to the feature maps' dimensions
         self.model = opt.model_class(opt)
         self.opt.counter += 1
         if self.opt.counter < 3:
             print(self.opt.counter)
 
-        # Use multiple GPUs if available
+
         if torch.cuda.device_count() > 1:
             print("Using", torch.cuda.device_count(), "GPUs")
             self.embedding = nn.DataParallel(self.embedding)
@@ -161,7 +160,9 @@ class Instructor:
                 # Text processing through embedding and LSTM
                 embedded_text = self.embedding(text_indices)
                 lstm_output, (h_n, c_n) = self.lstm(embedded_text)
+                print(f"LSTM output shape: {lstm_output.shape}")
                 text_features = lstm_output[:, -1, :]
+                print(f"text_features: {text_features.shape}")
 
                 # Image processing through Inception V3
                 self.feature_maps = None  # Reset feature maps

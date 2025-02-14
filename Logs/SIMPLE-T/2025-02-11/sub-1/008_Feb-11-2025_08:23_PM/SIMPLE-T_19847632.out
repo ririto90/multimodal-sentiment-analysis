@@ -1,0 +1,1348 @@
+SLURM Job ID: 19847632
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-T/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-T/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-11/sub-1/008_Feb-11-2025_08:23_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: simpletextatt
+>>> dataset: mvsa-mts-v3-30
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f4740bb1440>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 200
+>>> batch_size: 256
+>>> log_step: 16
+>>> max_seq_len: 20
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-11/sub-1/008_Feb-11-2025_08:23_PM
+>>> counter: 0
+>>> model_class: <class 'models.simpletextatt.SimpleTextAtt'>
+Loading dataset 'mvsa-mts-v3-30':
+  Train path: Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv
+	Validation path: Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv
+  Test path: Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv ---------------
+[DEBUG] index: 10
+[DEBUG] raw_text: ?? Who is who and does what in the #elxn42 Conservative War Room? #CPC #CDNpoli #CANpoli http://t.co/ez5WknckYS
+[DEBUG] processed_str: who is who and does what in the conservative war room
+[DEBUG] text_indices: [ 2  3  2  4  5  6  7  8  9 10 11  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 2
+[DEBUG] index: 19
+[DEBUG] raw_text: Live in #Winnipeg South Centre riding? I recommend looking into @Andrew_D_Park #elxn2015 park4wsc.ca @CanadianGreens
+[DEBUG] processed_str: live in south centre riding i recommend looking into canadiangreens
+[DEBUG] text_indices: [12  7 13 14 15 16 17 18 19 20  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 1
+[DEBUG] index: 20
+[DEBUG] raw_text: "And the """"other"""" guy is just not ready? 1-man-show? #elxn2015 #elxn42 #cdnpoli #nicetoupeethough #Harperman #peegate"
+[DEBUG] processed_str: and the other guy is just not ready
+[DEBUG] text_indices: [ 4  8 21 22  3 23 24 25  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 0
+[DEBUG] index: 6
+[DEBUG] raw_text: Rdy to watch @ThomasMulcair rock it tnight in the @globeandmail debate at @WinnipegNews Café #NDP #cdnpoli #elxn42
+[DEBUG] processed_str: rdy to watch thomasmulcair rock it tnight in the globeandmail debate at winnipegnews café
+[DEBUG] text_indices: [26 27 28 29 30 31 32  7  8 33 34 35 36 37  0  0  0  0  0  0]
+[DEBUG] polarity: 1
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv: 0.02 seconds(0.00 minutes)
+Train classes: [0, 1, 2], count=3
+[DEBUG] Train label distribution:
+{0: 9, 1: 8, 2: 7}
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv ---------------
+[DEBUG] index: 21
+[DEBUG] raw_text: This girl in the background shares my feelings of Mr. Harper when he speaks. #elxn42 #yawn
+[DEBUG] processed_str: this girl in the background shares my feelings of harper when he speaks
+[DEBUG] text_indices: [ 44 186   7   8 187 188  46 189 110  71 179 190 149   0   0   0   0   0
+   0   0]
+[DEBUG] polarity: 1
+[DEBUG] index: 4
+[DEBUG] raw_text: """""I think it's time for change"""" - Ana Commit to Vote: #GenerationTrudeau #SFU #LPC #elxn42 http://t.co/hv2oIUdXIb"
+[DEBUG] processed_str: i think it time for change ana commit to vote
+[DEBUG] text_indices: [ 16 191  31  55  69 192 193 194  27  68   0   0   0   0   0   0   0   0
+   0   0]
+[DEBUG] polarity: 2
+[DEBUG] index: 18
+[DEBUG] raw_text: The Ballot Question in 2015? Integrity Matters. #cdnpoli #elxn42 #elxn2015 http://t.co/NSwTddCHS8
+[DEBUG] processed_str: the ballot question in integrity matters
+[DEBUG] text_indices: [  8 195 121   7 196 197   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0]
+[DEBUG] polarity: 0
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv: 0.00 seconds(0.00 minutes)
+Val classes: [0, 1, 2], count=3
+[DEBUG] Train label distribution:
+{0: 1, 1: 1, 2: 1}
+[DEBUG] Computed class_weights = [0.8888888955116272, 1.0, 1.1428571939468384]
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv ---------------
+[DEBUG] index: 13
+[DEBUG] raw_text: Great AM with riding neighbors @Carolyn_Bennett &amp; @marcomendicino sharing our #LPC plan for #RealChange! #DVW #elxn42
+[DEBUG] processed_str: great am with riding neighbors amp marcomendicino sharing our plan for
+[DEBUG] text_indices: [ 54 198  40  15 199  93 200 201 118 202  69   0   0   0   0   0   0   0
+   0   0]
+[DEBUG] polarity: 1
+[DEBUG] index: 25
+[DEBUG] raw_text: "Jason Kenny Redefines """"deficit"""" Next gives opinion on """"Unicorns and leprechauns"""" #cdnpoli #elxn42"
+[DEBUG] processed_str: jason kenny redefines deficit next gives opinion on unicorns and leprechauns
+[DEBUG] text_indices: [203 204 205 206 119 207 208 114 209   4 210   0   0   0   0   0   0   0
+   0   0]
+[DEBUG] polarity: 0
+[DEBUG] index: 30
+[DEBUG] raw_text: Another day, another sign going up - massive support for @OmarAlghabra in Mississauga Centre! #elxn42 #misspoli
+[DEBUG] processed_str: another day another sign going up massive support for omaralghabra in mississauga centre
+[DEBUG] text_indices: [ 53 211  53 212 213 214 215 216  69 217   7 218  14   0   0   0   0   0
+   0   0]
+[DEBUG] polarity: 2
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv: 0.00 seconds(0.00 minutes)
+Test classes: [0, 1, 2], count=3
+[DEBUG] Train label distribution:
+{0: 1, 1: 1, 2: 1}
+[DEBUG] 95th percentile sequence length across all splits: 15.00
+Total Training Samples: 30
+Number of Training Samples: 24
+Number of Validation Samples: 3
+Number of Test Samples: 3
+Number of unique sentiment classes: 3
+Building model
+1
+n_trainable_params: 7539971, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+[DEBUG] text_indices.shape: torch.Size([24, 20])
+[DEBUG] embedded_text.shape: torch.Size([24, 20, 200])
+[DEBUG] lstm_output.shape: torch.Size([24, 20, 1536])
+[DEBUG] h_n.shape: torch.Size([6, 24, 768])
+[DEBUG] c_n.shape: torch.Size([6, 24, 768])
+[DEBUG] text_features.shape: torch.Size([24, 1536])
+[DEBUG] Sample predictions in evaluate:  tensor([1, 1, 2, 0, 1, 1, 1, 1, 2, 1], device='cuda:0')
+[DEBUG] outputs.shape: torch.Size([24, 3])
+[DEBUG] Sample of raw logits (first 5):
+tensor([[ 0.4712,  2.0518, -4.0967],
+        [ 0.9979,  1.7571, -0.1928],
+        [ 0.0850,  0.4357,  2.2663],
+        [ 1.3437, -0.4926, -0.8990],
+        [-2.2068,  0.3316, -1.1892]], device='cuda:0',
+       grad_fn=<SliceBackward0>)
+[DEBUG] Sample of predicted probabilities (first 5):
+tensor([[0.1704, 0.8278, 0.0018],
+        [0.2907, 0.6210, 0.0884],
+        [0.0887, 0.1259, 0.7854],
+        [0.7901, 0.1260, 0.0839],
+        [0.0609, 0.7707, 0.1684]], device='cuda:0', grad_fn=<SliceBackward0>)
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.65 seconds (0.01 minutes)
+New best val_f1: 0.166667 (previous best: 0.000000)
+loss: 1.383337, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 0 completed in 0.70 seconds (0.01 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.631874, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 1 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.286927, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 2 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.547565, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 3 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.312954, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 4 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.454760, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 5 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.678842, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 6 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.512547, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 7 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.103150, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 8 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.534792, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 9 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 10
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.347485, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 10 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 11
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.153309, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 11 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 12
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.938691, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 12 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 13
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.642781, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 13 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 14
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.655849, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 14 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 15
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.409351, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 15 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 16
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.709169, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 16 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 17
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.338056, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 17 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 18
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.448162, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 18 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 19
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+New best val_f1: 0.222222 (previous best: 0.166667)
+loss: 1.473721, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 19 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 20
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.923465, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 20 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 21
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.743782, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 21 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 22
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.367558, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 22 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 23
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.977642, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 23 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 24
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.608686, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 24 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 25
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.491511, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 25 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 26
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.507585, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 26 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 27
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.391604, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 27 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 28
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.376370, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 28 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 29
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.364860, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 29 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 30
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.301951, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 30 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 31
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.521847, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 31 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 32
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.440278, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 32 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 33
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.285990, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 33 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 34
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.618943, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 34 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 35
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.576951, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 35 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 36
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.390871, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 36 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 37
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.441241, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 37 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 38
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.494870, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 38 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 39
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.311405, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 39 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 40
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.367399, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 40 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 41
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+New best val_f1: 0.555556 (previous best: 0.222222)
+loss: 1.411907, val_acc: 66.67% (0.666667), val_f1: 55.56% (0.555556), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 41 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 42
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.101807, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 66.67% (0.666667), test_f1: 55.56% (0.555556)
+Epoch 42 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 43
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.407580, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 43 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 44
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.359759, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 44 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 45
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.447033, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 45 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 46
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.933433, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 46 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 47
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.454665, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 47 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 48
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.133942, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 48 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 49
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.374536, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 49 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 50
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.038407, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 50 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 51
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.062808, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 51 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 52
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.354423, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 52 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 53
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.477283, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 53 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 54
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.201649, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 54 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 55
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.288763, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 55 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 56
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.480356, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 56 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 57
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.473296, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 57 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 58
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.581347, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 58 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 59
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.461380, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 59 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 60
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.139152, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 60 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 61
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.100855, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 61 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 62
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.012039, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 62 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 63
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.124508, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 63 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 64
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.434121, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 64 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 65
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.017264, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 65 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 66
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.267896, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 66 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 67
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.779514, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 67 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 68
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.583221, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 68 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 69
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.208485, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 69 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 70
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.209332, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 70 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 71
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.149210, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 71 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 72
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.399681, val_acc: 0.00% (0.000000), val_f1: 0.00% (0.000000), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 72 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 73
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.005273, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 73 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 74
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.345381, val_acc: 66.67% (0.666667), val_f1: 55.56% (0.555556), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 74 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 75
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.193187, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 75 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 76
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.358090, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 76 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 77
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.143697, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 77 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 78
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.044838, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 78 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 79
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.364687, val_acc: 0.00% (0.000000), val_f1: 0.00% (0.000000), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 79 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 80
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.138533, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 80 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 81
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.047121, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 81 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 82
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.010553, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 82 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 83
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.972739, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 83 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 84
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.053226, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 84 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 85
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.918438, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 85 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 86
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.967952, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 86 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 87
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.893948, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 87 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 88
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.825571, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 88 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 89
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.151598, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 89 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 90
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.967508, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 90 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 91
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.838948, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 91 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 92
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.284103, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 92 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 93
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.851637, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 93 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 94
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.835752, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 94 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 95
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.490786, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 95 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 96
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.876723, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 96 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 97
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.017179, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 97 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 98
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.518276, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 98 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 99
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 1.072808, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 99 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 100
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.882968, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 100 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 101
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.878930, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 101 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 102
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.555610, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 102 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 103
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.745956, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 103 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 104
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.556700, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 104 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 105
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.670082, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 105 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 106
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.693838, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 106 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 107
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.532132, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 107 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 108
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.428543, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 108 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 109
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.445669, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 109 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 110
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.495133, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 110 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 111
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.527376, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 111 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 112
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.548401, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 112 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 113
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.350050, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 113 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 114
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.495622, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 114 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 115
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.151008, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 115 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 116
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.331022, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 116 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 117
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.292779, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 117 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 118
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.290101, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 118 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 119
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.168444, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 119 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 120
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.180902, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 120 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 121
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.165291, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 121 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 122
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.098656, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 122 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 123
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.198381, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 123 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 124
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.296278, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 124 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 125
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.132304, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 125 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 126
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.117126, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 126 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 127
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.177580, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 127 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 128
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.127620, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 128 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 129
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.057976, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 129 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 130
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.062031, val_acc: 66.67% (0.666667), val_f1: 55.56% (0.555556), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 130 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 131
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.066831, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 131 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 132
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.064532, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 132 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 133
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.073631, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 133 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 134
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.026292, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 134 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 135
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.026479, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 135 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 136
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.075180, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 136 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 137
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.048965, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 137 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 138
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.013672, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 138 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 139
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.017172, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 139 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 140
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.018582, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 140 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 141
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.048892, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 141 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 142
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.012183, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 142 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 143
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.027206, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 143 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 144
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.005398, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 144 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 145
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.008479, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 145 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 146
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.020666, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 33.33% (0.333333), test_f1: 22.22% (0.222222)
+Epoch 146 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 147
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.012461, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 147 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 148
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.005663, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 148 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 149
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.004043, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 149 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 150
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.010069, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 150 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 151
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.004637, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 151 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 152
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.011066, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 152 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 153
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002131, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 153 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 154
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.009927, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 154 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 155
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001535, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 155 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 156
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002980, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 156 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 157
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.007070, val_acc: 33.33% (0.333333), val_f1: 16.67% (0.166667), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 157 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 158
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002456, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 0.00% (0.000000), test_f1: 0.00% (0.000000)
+Epoch 158 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 159
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.006073, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 159 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 160
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002976, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 160 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 161
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.014851, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 161 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 162
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002335, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 162 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 163
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001725, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 163 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 164
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002435, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 164 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 165
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.012759, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 165 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 166
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001292, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 166 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 167
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.005961, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 167 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 168
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.003402, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 168 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 169
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.002156, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 169 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 170
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001168, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 170 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 171
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001242, val_acc: 66.67% (0.666667), val_f1: 55.56% (0.555556), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 171 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 172
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001533, val_acc: 66.67% (0.666667), val_f1: 55.56% (0.555556), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 172 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 173
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000617, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 173 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 174
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000866, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 174 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 175
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001677, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 175 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 176
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001722, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 176 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 177
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.004761, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 177 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 178
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000523, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 178 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 179
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000601, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 179 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 180
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000528, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 180 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 181
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000841, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 181 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 182
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000536, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 182 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 183
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000448, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 183 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 184
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001136, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 184 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 185
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000760, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 185 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 186
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000633, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 186 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 187
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000929, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 187 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 188
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000330, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 188 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 189
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000841, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 189 completed in 0.03 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 190
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000832, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 190 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 191
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000777, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 191 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 192
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000563, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 192 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 193
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000459, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 193 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 194
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000487, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 194 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 195
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001057, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 195 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 196
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001263, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 196 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 197
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000615, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 197 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 198
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.001179, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 198 completed in 0.02 seconds (0.00 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 199
+[DEBUG] Sample predictions in evaluate:  tensor([2, 0, 1, 1, 2, 1, 0, 2, 2, 1], device='cuda:0')
+[DEBUG][WARNING] attention.w_qx gradient is all zero!
+Batch 0 completed in 0.01 seconds (0.00 minutes)
+loss: 0.000241, val_acc: 33.33% (0.333333), val_f1: 22.22% (0.222222), test_acc: 33.33% (0.333333), test_f1: 16.67% (0.166667)
+Epoch 199 completed in 0.02 seconds (0.00 minutes)
+RESULT: Max Val F1: 0.555556, Max Test F1: 0.166667
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-11/sub-1/008_Feb-11-2025_08:23_PM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train_batch', 'Loss/val_log_step', 'Loss/train_epoch', 'Loss/val_epoch'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-11/sub-1/008_Feb-11-2025_08:23_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-11/sub-1/008_Feb-11-2025_08:23_PM/trainval_loss_curves.png
+Total Completion Time: 0.56 minutes. (0.01 hours) 

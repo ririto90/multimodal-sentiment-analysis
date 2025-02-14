@@ -1,0 +1,162 @@
+SLURM Job ID: 19847614
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-F/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-F/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F/2025-02-11/sub-1/001_Feb-11-2025_07:02_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: simplefusion
+>>> dataset: mvsa-mts-v3-30
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7fee4ba31440>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 200
+>>> batch_size: 256
+>>> log_step: 16
+>>> max_seq_len: 64
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F/2025-02-11/sub-1/001_Feb-11-2025_07:02_PM
+>>> counter: 0
+>>> model_class: <class 'models.simplefusion.SimpleFusion'>
+Loading dataset 'mvsa-mts-v3-30':
+  Train path: Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv
+Validation path: Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv
+  Test path: Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv ---------------
+[DEBUG] index: 10
+[DEBUG] image_path: 10
+[DEBUG] raw_text: ?? Who is who and does what in the #elxn42 Conservative War Room? #CPC #CDNpoli #CANpoli http://t.co/ez5WknckYS
+[DEBUG] processed_str: who is who and does what in the conservative war room
+[DEBUG] text_indices: [ 2  3  2  4  5  6  7  8  9 10 11  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 2
+[DEBUG] index: 19
+[DEBUG] image_path: 19
+[DEBUG] raw_text: Live in #Winnipeg South Centre riding? I recommend looking into @Andrew_D_Park #elxn2015 park4wsc.ca @CanadianGreens
+[DEBUG] processed_str: live in south centre riding i recommend looking into canadiangreens
+[DEBUG] text_indices: [12  7 13 14 15 16 17 18 19 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 1
+[DEBUG] index: 20
+[DEBUG] image_path: 20
+[DEBUG] raw_text: "And the """"other"""" guy is just not ready? 1-man-show? #elxn2015 #elxn42 #cdnpoli #nicetoupeethough #Harperman #peegate"
+[DEBUG] processed_str: and the other guy is just not ready
+[DEBUG] text_indices: [ 4  8 21 22  3 23 24 25  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 0
+[DEBUG] index: 6
+[DEBUG] image_path: 6
+[DEBUG] raw_text: Rdy to watch @ThomasMulcair rock it tnight in the @globeandmail debate at @WinnipegNews Café #NDP #cdnpoli #elxn42
+[DEBUG] processed_str: rdy to watch thomasmulcair rock it tnight in the globeandmail debate at winnipegnews café
+[DEBUG] text_indices: [26 27 28 29 30 31 32  7  8 33 34 35 36 37  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 1
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-v3-30/train.tsv: 0.64 seconds(0.01 minutes)
+Train classes: [0, 1, 2], count=3
+[DEBUG] Train label distribution:
+{0: 9, 1: 8, 2: 7}
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv ---------------
+[DEBUG] index: 21
+[DEBUG] image_path: 21
+[DEBUG] raw_text: This girl in the background shares my feelings of Mr. Harper when he speaks. #elxn42 #yawn
+[DEBUG] processed_str: this girl in the background shares my feelings of harper when he speaks
+[DEBUG] text_indices: [ 44 186   7   8 187 188  46 189 110  71 179 190 149   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0]
+[DEBUG] polarity: 1
+[DEBUG] index: 4
+[DEBUG] image_path: 4
+[DEBUG] raw_text: """""I think it's time for change"""" - Ana Commit to Vote: #GenerationTrudeau #SFU #LPC #elxn42 http://t.co/hv2oIUdXIb"
+[DEBUG] processed_str: i think it time for change ana commit to vote
+[DEBUG] text_indices: [ 16 191  31  55  69 192 193 194  27  68   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0]
+[DEBUG] polarity: 2
+[DEBUG] index: 18
+[DEBUG] image_path: 18
+[DEBUG] raw_text: The Ballot Question in 2015? Integrity Matters. #cdnpoli #elxn42 #elxn2015 http://t.co/NSwTddCHS8
+[DEBUG] processed_str: the ballot question in integrity matters
+[DEBUG] text_indices: [  8 195 121   7 196 197   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0]
+[DEBUG] polarity: 0
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-v3-30/val.tsv: 0.07 seconds(0.00 minutes)
+Val classes: [0, 1, 2], count=3
+[DEBUG] Train label distribution:
+{0: 1, 1: 1, 2: 1}
+[DEBUG] Computed class_weights = [0.8888888955116272, 1.0, 1.1428571939468384]
+-------------- Loading Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv ---------------
+[DEBUG] index: 13
+[DEBUG] image_path: 13
+[DEBUG] raw_text: Great AM with riding neighbors @Carolyn_Bennett &amp; @marcomendicino sharing our #LPC plan for #RealChange! #DVW #elxn42
+[DEBUG] processed_str: great am with riding neighbors amp marcomendicino sharing our plan for
+[DEBUG] text_indices: [ 54 198  40  15 199  93 200 201 118 202  69   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0]
+[DEBUG] polarity: 1
+[DEBUG] index: 25
+[DEBUG] image_path: 25
+[DEBUG] raw_text: "Jason Kenny Redefines """"deficit"""" Next gives opinion on """"Unicorns and leprechauns"""" #cdnpoli #elxn42"
+[DEBUG] processed_str: jason kenny redefines deficit next gives opinion on unicorns and leprechauns
+[DEBUG] text_indices: [203 204 205 206 119 207 208 114 209   4 210   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0]
+[DEBUG] polarity: 0
+[DEBUG] index: 30
+[DEBUG] image_path: 30
+[DEBUG] raw_text: Another day, another sign going up - massive support for @OmarAlghabra in Mississauga Centre! #elxn42 #misspoli
+[DEBUG] processed_str: another day another sign going up massive support for omaralghabra in mississauga centre
+[DEBUG] text_indices: [ 53 211  53 212 213 214 215 216  69 217   7 218  14   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+   0   0   0   0   0   0   0   0   0   0]
+[DEBUG] polarity: 2
+Time taken to load Datasets/MVSA-MTS/mvsa-mts-v3-30/test.tsv: 0.07 seconds(0.00 minutes)
+Test classes: [0, 1, 2], count=3
+[DEBUG] Train label distribution:
+{0: 1, 1: 1, 2: 1}
+[DEBUG] 95th percentile sequence length across all splits: 15.00
+Total Training Samples: 30
+Number of Training Samples: 24
+Number of Validation Samples: 3
+Number of Test Samples: 3
+Number of unique sentiment classes: 3
+Building model
+1
+n_trainable_params: 919555, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+[DEBUG] text_indices.shape: torch.Size([24, 64])
+[DEBUG] embedded_text.shape: torch.Size([24, 64, 200])
+[DEBUG] lstm_output.shape: torch.Size([24, 64, 1536])
+[DEBUG] h_n.shape: torch.Size([6, 24, 768])
+[DEBUG] c_n.shape: torch.Size([6, 24, 768])
+[DEBUG] text_features.shape: torch.Size([24, 1536])
+[DEBUG] Sample predictions in evaluate:  tensor([2, 0, 2, 2, 2, 2, 2, 2, 1, 1], device='cuda:0')
+[DEBUG] outputs.shape: torch.Size([24, 3])
+[DEBUG] Sample of raw logits (first 5):
+tensor([[-0.6172,  0.0335,  0.3166],
+        [ 0.3791,  0.0139,  0.2443],
+        [ 0.1021, -0.1027,  0.7778],
+        [-0.0820, -0.1828,  0.3904],
+        [-0.1417, -0.0364,  0.6258]], device='cuda:0',
+       grad_fn=<SliceBackward0>)

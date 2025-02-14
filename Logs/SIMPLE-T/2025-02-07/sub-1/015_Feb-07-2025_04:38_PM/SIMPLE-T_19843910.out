@@ -1,0 +1,80 @@
+SLURM Job ID: 19843910
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-T/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-T/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-07/sub-1/015_Feb-07-2025_04:38_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: simpletext
+>>> dataset: mvsa-mts-v3-30
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7f3db3869440>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 200
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 10
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-T/2025-02-07/sub-1/015_Feb-07-2025_04:38_PM
+>>> counter: 0
+>>> model_class: <class 'models.simpletext.SimpleText'>
+Loading dataset 'mvsa-mts-v3-30':
+  Train path: Datasets//MVSA-MTS/mvsa-mts-v3-30/train.tsv
+Validation path: Datasets//MVSA-MTS/mvsa-mts-v3-30/val.tsv
+  Test path: Datasets//MVSA-MTS/mvsa-mts-v3-30/test.tsv
+loading word vectors...
+building embedding_matrix: 200_glove_embedding_matrix.dat
+-------------- Loading Datasets//MVSA-MTS/mvsa-mts-v3-30/train.tsv ---------------
+[DEBUG] raw_text: ?? Who is who and does what in the #elxn42 Conservative War Room? #CPC #CDNpoli #CANpoli http://t.co/ez5WknckYS
+[DEBUG] processed_str: conservative war room
+[DEBUG] text_indices: [2 3 4 0 0 0 0 0 0 0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: Live in #Winnipeg South Centre riding? I recommend looking into @Andrew_D_Park #elxn2015 park4wsc.ca @CanadianGreens
+[DEBUG] processed_str: live south centre riding recommend looking canadiangreens
+[DEBUG] text_indices: [ 5  6  7  8  9 10 11  0  0  0]
+[DEBUG] polarity: 1
+[DEBUG] raw_text: "And the """"other"""" guy is just not ready? 1-man-show? #elxn2015 #elxn42 #cdnpoli #nicetoupeethough #Harperman #peegate"
+[DEBUG] processed_str: guy ready
+[DEBUG] text_indices: [12 13  0  0  0  0  0  0  0  0]
+[DEBUG] polarity: 0
+[DEBUG] raw_text: Rdy to watch @ThomasMulcair rock it tnight in the @globeandmail debate at @WinnipegNews Café #NDP #cdnpoli #elxn42
+[DEBUG] processed_str: rdy watch thomasmulcair rock tnight globeandmail debate winnipegnews café
+[DEBUG] text_indices: [14 15 16 17 18 19 20 21 22  0]
+[DEBUG] polarity: 1
+Time taken to load Datasets//MVSA-MTS/mvsa-mts-v3-30/train.tsv: 0.01 seconds(0.00 minutes)
+Train classes: [0, 1, 2], count=3
+[DEBUG] First 5 samples from train_data:
+?? Who is who and does what in the #elxn42 Conservative War Room? #CPC #CDNpoli #CANpoli http://t.co/ez5WknckYS 2
+Live in #Winnipeg South Centre riding? I recommend looking into @Andrew_D_Park #elxn2015 park4wsc.ca @CanadianGreens 1
+"And the """"other"""" guy is just not ready? 1-man-show? #elxn2015 #elxn42 #cdnpoli #nicetoupeethough #Harperman #peegate" 0
+Rdy to watch @ThomasMulcair rock it tnight in the @globeandmail debate at @WinnipegNews Café #NDP #cdnpoli #elxn42 1
+Knocked doors with the venerable #TeamTrudeau #lpc candidate @kylejpeterson this aft in my hometown, Aurora! #elxn42 2
+[DEBUG] Train label distribution:
+{0: 9, 1: 8, 2: 7}
+-------------- Loading Datasets//MVSA-MTS/mvsa-mts-v3-30/val.tsv ---------------
+[DEBUG] raw_text: This girl in the background shares my feelings of Mr. Harper when he speaks. #elxn42 #yawn
+[DEBUG] processed_str: girl background shares feelings harper speaks
+[DEBUG] text_indices: [146 147 148 149  51 114   0   0   0   0]
+[DEBUG] polarity: 1
+[DEBUG] raw_text: """""I think it's time for change"""" - Ana Commit to Vote: #GenerationTrudeau #SFU #LPC #elxn42 http://t.co/hv2oIUdXIb"
+[DEBUG] processed_str: think time change ana commit vote
+[DEBUG] text_indices: [150  36 151 152 153  49   0   0   0   0]
+[DEBUG] polarity: 2
+[DEBUG] raw_text: The Ballot Question in 2015? Integrity Matters. #cdnpoli #elxn42 #elxn2015 http://t.co/NSwTddCHS8
+[DEBUG] processed_str: ballot question integrity matters
+[DEBUG] text_indices: [154  92 155 156   0   0   0   0   0   0]
+[DEBUG] polarity: 0
+Time taken to load Datasets//MVSA-MTS/mvsa-mts-v3-30/val.tsv: 0.00 seconds(0.00 minutes)
+Val classes: [0, 1, 2], count=3
+[DEBUG] First 5 samples from train_data:
+This girl in the background shares my feelings of Mr. Harper when he speaks. #elxn42 #yawn 1
+"""""I think it's time for change"""" - Ana Commit to Vote: #GenerationTrudeau #SFU #LPC #elxn42 http://t.co/hv2oIUdXIb" 2
+The Ballot Question in 2015? Integrity Matters. #cdnpoli #elxn42 #elxn2015 http://t.co/NSwTddCHS8 0

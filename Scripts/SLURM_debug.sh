@@ -1,14 +1,18 @@
 #!/bin/bash
 
-MODEL_NAME='DMLAN'
-
 # Model Variables
-fusion='dmlanfusion2' # 'dmlanfusion' 'dmlanfusion2'
-dataset='mvsa-mts-v3-30' # 'mvsa-mts-v3' 'mvsa-mts-v3-1000'
+MODEL_NAME='SIMPLE-F3'
+fusion='multiattfusion'
+dataset='mvsa-mts-v3-30'
 lr='0.001'
 dr='0.5'
-
 batch_size='64'
+epochs=20
+
+# Slurm Variables
+memory='16' # '64' '128' '256'
+
+batch_size='8'
 epochs=5
 
 # Slurm Variables
