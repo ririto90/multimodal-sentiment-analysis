@@ -125,7 +125,7 @@ PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${model}/src/ \\
 python -u -Wd Models/${model}/src/train.py \\
     --model_fusion "\${fusion}" \\
     --dataset "\${dataset}" \\
-    --num_epoch 70 \\
+    --num_epoch 25 \\
     --batch_size 128 \\
     --log_step 60 \\
     --learning_rate "\${lr}" \\

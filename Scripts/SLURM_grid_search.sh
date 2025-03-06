@@ -4,12 +4,12 @@
 jobfile="./SLURM_gridscript.sh"
 
 # Values for hyperparameters
-model_names=('SIMPLE-F2')
-fusion_models=('simplefusion') # 'mfcchfusion2' 'mfcchfusion3' 'mfcchfusion4'
+model_names=('SIMPLE-F3')
+fusion_models=('multiattfusion') # 'mfcchfusion2' 'mfcchfusion3' 'mfcchfusion4'
 datasets=('mvsa-mts-v3') # 'mvsa-mts' 'mvsa-mts-balanced' 'mvsa-mts-oversampled' 'mvsa-mts-undersampled'
-lr_vals=(0.001 0.0001 0.0005)
-dr_vals=(0.3 0.5)
-hidden_dims=(512 768 1024)
+lr_vals=(0.001 0.0001 0.0005 0.00005)
+dr_vals=(0.1 0.3 0.5)
+hidden_dims=(768)
 
 
 echo

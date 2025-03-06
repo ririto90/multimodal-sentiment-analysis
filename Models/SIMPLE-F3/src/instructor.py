@@ -99,7 +99,7 @@ class Instructor:
         self.model.to(device)
         
         # Loss & optimizer
-        self.criterion = nn.CrossEntropyLoss(weight=self.class_weights)
+        self.criterion = nn.CrossEntropyLoss()
         params = filter(lambda p: p.requires_grad, self.model.parameters())
         self.optimizer = opt.optimizer(params, lr=opt.learning_rate)
 

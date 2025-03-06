@@ -10,7 +10,6 @@ import torch
 
 from instructor import Instructor
 from models.multiattfusion import MultiAttFusion
-from models.multiattfusion2 import MultiAttFusion2
 
 
 print("Python PATH:", sys.path)
@@ -34,7 +33,7 @@ if __name__ == '__main__':
     parser.add_argument('--num_epoch', default=8, type=int)
     parser.add_argument('--batch_size', default=16, type=int)
     parser.add_argument('--log_step', default=10, type=int)
-    parser.add_argument('--max_seq_len', default=20, type=int)
+    parser.add_argument('--max_seq_len', default=120, type=int)
     parser.add_argument('--polarities_dim', default=3, type=int)
     parser.add_argument('--clip_grad', type=float, default=5.0)
     parser.add_argument('--path_image', default='./images')
@@ -55,8 +54,7 @@ if __name__ == '__main__':
     torch.manual_seed(opt.rand_seed)
 
     model_classes = {
-        'multiattfusion': MultiAttFusion,
-        'multiattfusion2': MultiAttFusion2
+        'multiattfusion': MultiAttFusion
     }
 
     initializers = {

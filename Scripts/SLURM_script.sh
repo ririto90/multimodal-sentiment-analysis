@@ -2,7 +2,7 @@
 
 # Model Variables
 MODEL_NAME='SIMPLE-F3'
-fusion='multiattfusion2'
+fusion='multiattfusion'
 dataset='mvsa-mts-v3'
 lr='0.001'
 dr='0.5'
