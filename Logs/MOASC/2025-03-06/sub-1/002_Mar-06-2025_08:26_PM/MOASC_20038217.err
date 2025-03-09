@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MOASC/run_project.py", line 247, in <module>
+    run_sentiment_classifier(multimodal_train_loader, multimodal_val_loader, multimodal_test_loader, params, device)
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MOASC/run_project.py", line 214, in run_sentiment_classifier
+    train(train_loader, validation_loader, test_loader, params, device)
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MOASC/run_project.py", line 149, in train
+    for it, (sequences, attn_masks, images, labels) in enumerate(train_loader):
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 630, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/utils/data/dataloader.py", line 674, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 51, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py", line 51, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+            ~~~~~~~~~~~~^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MOASC/DataSet.py", line 327, in __getitem__
+    image = self.X_image[idx]
+            ~~~~~~~~~~~~^^^^^
+IndexError: list index out of range

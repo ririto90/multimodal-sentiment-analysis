@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+# DataSet.py
+
+>>>>>>> 287902a (MOA)
 from helpers import *
 
 def overall_sentiment(row):
@@ -12,8 +17,16 @@ def overall_sentiment(row):
     return row['text']
 
 class DataSet:
+<<<<<<< HEAD
     def __init__(self, current_working_directory):
         self.dataset_name = 'MVSA_Single' # dataset name: MVSA_Single/MVSA_Multi
+=======
+    def __init__(self, current_working_directory, dataset_type='single'):
+        if dataset_type == 'single':
+            self.dataset_name = 'MVSA-Single'
+        else:
+            self.dataset_name = 'MVSA-Multiple'
+>>>>>>> 287902a (MOA)
         self.dataset_dir = '/home/rgg2706/Multimodal-Sentiment-Analysis/Datasets/%s' %self.dataset_name
         self.cwd = current_working_directory
         self.texts_path = join_path(self.dataset_dir, 'text')
@@ -153,6 +166,24 @@ class DataSet:
         self.__y_post_train = y_train['overall_sentiment'].values
         self.__y_post_val = y_val['overall_sentiment'].values
         self.__y_post_test = y_test['overall_sentiment'].values
+<<<<<<< HEAD
+=======
+        
+        # Example debug printing:
+        print("\n=== DATASET DEBUG INFO ===")
+        print(f"Dataset name: {self.dataset_name}")
+        print("Train set size:", len(self.__X_text_train))
+        print("Val set size:", len(self.__X_text_val))
+        print("Test set size:", len(self.__X_text_test))
+        print("Max text length:", self.max_text_length)
+
+        # Optionally print the first few samples:
+        print("\n[Sample of training data]")
+        for i in range(min(3, len(self.__X_text_train))):
+            print(f"  Index {i} ID => text: {self.__X_text_train[i]!r}")
+            print(f"              label: {self.__y_post_train[i]}")
+        print("========================\n")
+>>>>>>> 287902a (MOA)
 
     def get_labels(self, y_text, y_images):
         y_text, y_images = np.array(y_text), np.array(y_images)

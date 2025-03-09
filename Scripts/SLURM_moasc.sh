@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Model Variables
-MODEL_NAME='MOASC'
+MODEL_NAME='MultimodalOpinionAnalysis2'
+dataset='MVSA-single' # 'MVSA-single' 'MVSA-multiple'
 # fusion='multiattfusion'
 # dataset='mvsa-mts-v3'
 # lr='0.001'
@@ -10,8 +11,8 @@ MODEL_NAME='MOASC'
 # epochs=100
 
 # Slurm Variables
-memory='16' # '64' '128' '256'
-partition='debug' # 'tier3' 'debug'
+memory='64' # '64' '128' '256'
+partition='tier3' # 'tier3' 'debug'
 time='0-01:00:00'
 
 
@@ -116,11 +117,13 @@ dr="${dr}"
 cd "${REPO_DIR}"
 
 echo "SLURM Job ID: \$SLURM_JOB_ID"
+echo "Dataset: ${dataset}"
 
 export PYTHONPATH=$PYTHONPATH:/home/rgg2706/Multimodal-Sentiment-Analysis
 
 PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME} \\
 python -u -Wd Models/${MODEL_NAME}/run_project.py \\
+    --dataset "${dataset}" \\
 
 EOT
 

@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 241, in <module>
+    run_sentiment_classifier(multimodal_train_loader, multimodal_val_loader, multimodal_test_loader, params, device)
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 208, in run_sentiment_classifier
+    train(train_loader, validation_loader, test_loader, params, device)
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 184, in train
+    val_acc, val_loss, _, _ = evaluate(model, validation_loader)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 120, in evaluate
+    logits = model(sequences, attn_masks, images)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/SentimentClassifier.py", line 116, in forward
+    cont_reps = self.bert_model(sequences, attn_masks)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/transformers/models/bert/modeling_bert.py", line 1006, in forward
+    embedding_output = self.embeddings(
+                       ^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/transformers/models/bert/modeling_bert.py", line 232, in forward
+    inputs_embeds = self.word_embeddings(input_ids)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1518, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1527, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/modules/sparse.py", line 162, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/nn/functional.py", line 2233, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument index in method wrapper_CUDA__index_select)

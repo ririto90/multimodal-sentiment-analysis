@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3790, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 152, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 181, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'text2'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 3, in <module>
+    from prepare_datasets import *
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/prepare_datasets.py", line 50, in <module>
+    labels_MVSA_Multi[col] = labels_MVSA_Multi[col].apply(lambda x: sentiment_label[x])
+                             ~~~~~~~~~~~~~~~~~^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/pandas/core/frame.py", line 3893, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/pandas/core/indexes/base.py", line 3797, in get_loc
+    raise KeyError(key) from err
+KeyError: 'text2'

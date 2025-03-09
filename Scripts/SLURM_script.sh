@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Model Variables
-MODEL_NAME='SIMPLE-F3'
+MODEL_NAME='SIMPLE-F3v3'
 fusion='multiattfusion'
 dataset='mvsa-mts-v3'
 lr='0.001'
 dr='0.5'
 batch_size='64'
-epochs=100
+epochs=10
 
 # Slurm Variables
-memory='128' # '64' '128' '256'
+memory='92' # '64' '128' '256'
 
 
 REPO_DIR="${HOME}/Multimodal-Sentiment-Analysis"
@@ -114,6 +114,7 @@ dr="${dr}"
 cd "${REPO_DIR}"
 
 echo "SLURM Job ID: \$SLURM_JOB_ID"
+echo "Dataset: ${dataset}"
 
 export PYTHONPATH=$PYTHONPATH:/home/rgg2706/Multimodal-Sentiment-Analysis
 

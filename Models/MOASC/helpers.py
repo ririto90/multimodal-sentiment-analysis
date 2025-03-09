@@ -40,9 +40,16 @@ warnings.filterwarnings("ignore")
 
 base_dir = '/home/rgg2706/Multimodal-Sentiment-Analysis'
 datasets_dir = os.path.join(base_dir, 'Datasets')
+<<<<<<< HEAD
 
 additional_files_dir = os.path.join(base_dir, 'Models/MOASC/AdditionalFiles')
 datasets_names = ['MVSA_Single', 'MVSA_Multi']
+=======
+print(datasets_dir)
+
+additional_files_dir = os.path.join(base_dir, 'Models/MOASC/AdditionalFiles')
+datasets_names = ['MVSA_Single', 'MVSA_Multi', 'MVSA_Multiple']
+>>>>>>> 287902a (MOA)
 
 punctuation = string.punctuation
 sentiment_label = {"negative": 0, "positive": 1, "neutral": 2}
@@ -112,6 +119,7 @@ def read_image(path):
 
 
 def get_images(path, images_filenames):
+<<<<<<< HEAD
     images = []
     for image_filename in images_filenames:
         input_image = Image.open(image_filename)
@@ -124,6 +132,38 @@ def get_images(path, images_filenames):
         input_tensor = preprocess(input_image)
         images.append(input_tensor)
     
+=======
+    # Path to your fallback image
+    fallback_path = "/home/rgg2706/Multimodal-Sentiment-Analysis/Datasets/0default.jpg"
+
+    images = []
+    for image_filename in images_filenames:
+        full_path = os.path.join(path, image_filename)
+        try:
+            input_image = Image.open(full_path).convert('RGB')
+        except Exception as e:
+            print(f"Error loading image {full_path}: {e}")
+            # Use the fallback image
+            try:
+                input_image = Image.open(fallback_path).convert('RGB')
+                print(f"  [*] Using fallback image: {fallback_path}")
+            except Exception as e_fallback:
+                # If the fallback also fails, skip or raise
+                print(f"  [!] Fallback also failed: {fallback_path} => {e_fallback}")
+                continue  # or raise, or append some default tensor
+
+        # Preprocessing
+        preprocess = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.485, 0.456, 0.406],
+                                 std=[0.229, 0.224, 0.225]),
+        ])
+        input_tensor = preprocess(input_image)
+        images.append(input_tensor)
+
+>>>>>>> 287902a (MOA)
     return images
 
 

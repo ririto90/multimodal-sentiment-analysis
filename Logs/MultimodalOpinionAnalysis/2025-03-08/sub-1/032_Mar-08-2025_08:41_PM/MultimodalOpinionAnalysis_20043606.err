@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 248, in <module>
+    run_sentiment_classifier(multimodal_train_loader, multimodal_val_loader, multimodal_test_loader, params, device)
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 215, in run_sentiment_classifier
+    train(train_loader, validation_loader, test_loader, params, device)
+  File "/home/rgg2706/Multimodal-Sentiment-Analysis/Models/MultimodalOpinionAnalysis/run_project.py", line 164, in train
+    classes=np.unique(labels),
+            ^^^^^^^^^^^^^^^^^
+  File "<__array_function__ internals>", line 200, in unique
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/numpy/lib/arraysetops.py", line 272, in unique
+    ar = np.asanyarray(ar)
+         ^^^^^^^^^^^^^^^^^
+  File "/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages/torch/_tensor.py", line 1030, in __array__
+    return self.numpy()
+           ^^^^^^^^^^^^
+TypeError: can't convert cuda:0 device type tensor to numpy. Use Tensor.cpu() to copy the tensor to host memory first.
