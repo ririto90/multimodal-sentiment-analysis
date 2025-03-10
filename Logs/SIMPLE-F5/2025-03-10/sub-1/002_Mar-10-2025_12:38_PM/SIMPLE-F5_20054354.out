@@ -1,0 +1,59 @@
+SLURM Job ID: 20054354
+MODEL_NAME=SIMPLE-F5
+fusion=multiattfusion
+dataset=MOA-MVSA-single
+lr=0.001
+dr=0.5
+batch_size=64
+epochs=40
+memory=16
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-F5/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-F5/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F5/2025-03-10/sub-1/002_Mar-10-2025_12:38_PM
+SIMPLE-F5: This model adds ReduceLROnPlateau & compute_class_weight on each batch
+> training arguments:
+>>> model_name: SIMPLE-F5
+>>> rand_seed: 8
+>>> model_fusion: multiattfusion
+>>> dataset: MOA-MVSA-single
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7fe62f5594e0>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 40
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 120
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F5/2025-03-10/sub-1/002_Mar-10-2025_12:38_PM
+>>> counter: 0
+>>> model_class: <class 'models.multiattfusion.MultiAttFusion'>
+
+[DEBUG] First 5 training texts:
+    ID: 1 | Overall sentiment: 1 | Text: how  i feel today legday jelly aching gym 
+
+    ID: 4 | Overall sentiment: 1 | Text: esco  we have a young and energetic team and we pride ourselves on offering the highes hoer 
+
+    ID: 5 | Overall sentiment: 1 | Text:  chrisashaffer  went to  ssc today to be a movie star to rep for the  deaf and got to meet an energetic great guy  mark  white! 
+
+    ID: 6 | Overall sentiment: 1 | Text:  babeshawnmendes that was really energetic 
+
+    ID: 7 | Overall sentiment: 1 | Text:  deepikapadukone  to my most hard workingfun loving and energetic team.. thank you and  i love you! 
+
+Building model
+This model replicates MOA with scaled dot product attention, and BERT-RESNET
+1
+n_trainable_params: 4820739, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+Batch 0 completed in 1.05 seconds (0.02 minutes)
+New best val_f1: 0.246377 (previous best: 0.000000)
+loss: 1.223595, val_acc: 58.62% (0.586207), val_f1: 24.64% (0.246377), test_acc: 55.09% (0.550885), test_f1: 23.68% (0.236805)

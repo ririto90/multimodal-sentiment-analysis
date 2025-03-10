@@ -102,7 +102,7 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 #SBATCH --time=0-08:00:00       # 4 hours time limit
 #SBATCH --nodes=1              # Number of nodes
 #SBATCH --ntasks=1             # 1 task (i.e., process)
-#SBATCH --mem=128g              # Increase RAM to 32GB
+#SBATCH --mem=92g              # Increase RAM to 32GB
 #SBATCH --gres=gpu:a100:1      # 1 a100 GPU
 #SBATCH --output=${OUTPUT_PATH}# Output file
 #SBATCH --error=${ERROR_PATH}  # Error file
@@ -118,6 +118,14 @@ cd "${REPO_DIR}"
 
 echo ${jobname}
 echo "SLURM Job ID: \$SLURM_JOB_ID"
+echo "MODEL_NAME=$MODEL_NAME"
+echo "fusion=$fusion"
+echo "dataset=$dataset"
+echo "lr=$lr"
+echo "dr=$dr"
+echo "batch_size=$batch_size"
+echo "epochs=$epochs"
+echo "memory=$memory"
 
 export PYTHONPATH=$PYTHONPATH:/home/rgg2706/Multimodal-Sentiment-Analysis
 

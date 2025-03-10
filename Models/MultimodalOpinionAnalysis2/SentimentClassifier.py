@@ -1,3 +1,5 @@
+# SentimentClassifier
+
 from helpers import *
 
 class TextSentimentClassifier(nn.Module):

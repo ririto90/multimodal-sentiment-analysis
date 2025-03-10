@@ -1,16 +1,17 @@
 #!/bin/bash
 
 # Model Variables
-MODEL_NAME='SIMPLE-F3v3'
+MODEL_NAME='SIMPLE-F4v2'
 fusion='multiattfusion'
-dataset='mvsa-mts-v3'
+dataset='MOA-MVSA-multiple2'
 lr='0.001'
 dr='0.5'
 batch_size='64'
-epochs=10
+epochs=40
+
 
 # Slurm Variables
-memory='92' # '64' '128' '256'
+memory='64' # '64' '128' '256'
 
 
 REPO_DIR="${HOME}/Multimodal-Sentiment-Analysis"
@@ -92,7 +93,7 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 #SBATCH --job-name=${MODEL_NAME}    # Name of your job
 #SBATCH --account=multisass    # Your Slurm account
 #SBATCH --partition=tier3      # Run on tier3
-#SBATCH --time=0-12:00:00       # 4 hours time limit
+#SBATCH --time=0-01:00:00       # 4 hours time limit
 #SBATCH --nodes=1              # Number of nodes
 #SBATCH --ntasks=1             # 1 task (i.e., process)
 #SBATCH --mem=${memory}g         # Increase RAM to 32GB
@@ -114,12 +115,20 @@ dr="${dr}"
 cd "${REPO_DIR}"
 
 echo "SLURM Job ID: \$SLURM_JOB_ID"
-echo "Dataset: ${dataset}"
+echo "MODEL_NAME=$MODEL_NAME"
+echo "fusion=$fusion"
+echo "dataset=$dataset"
+echo "lr=$lr"
+echo "dr=$dr"
+echo "batch_size=$batch_size"
+echo "epochs=$epochs"
+echo "memory=$memory"
 
 export PYTHONPATH=$PYTHONPATH:/home/rgg2706/Multimodal-Sentiment-Analysis
 
 PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME}/src/ \\
 python -u -Wd Models/${MODEL_NAME}/src/train.py \\
+    --model_name "${MODEL_NAME}" \\
     --model_fusion "${fusion}" \\
     --dataset "${dataset}" \\
     --num_epoch "${epochs}" \\

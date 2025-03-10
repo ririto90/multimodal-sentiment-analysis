@@ -1,0 +1,180 @@
+SLURM Job ID: 20052012
+MODEL_NAME=SIMPLE-F4
+fusion=multiattfusion
+dataset=MOA-MVSA-single
+lr=0.001
+dr=0.5
+batch_size=64
+epochs=20
+memory=16
+Number of GPUs available: 1
+Python PATH: ['/home/rgg2706/Multimodal-Sentiment-Analysis/Models/SIMPLE-F4/src', '/home/rgg2706/Multimodal-Sentiment-Analysis', '/Models/SIMPLE-F4/src', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python311.zip', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/lib-dynload', '/.autofs/tools/spack/var/spack/environments/default-nlp-x86_64-24072401/.spack-env/._view/wtxwc3mlkmzy7fbaxlum2674jarpitc2/lib/python3.11/site-packages']
+Logs directory: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F4/2025-03-09/sub-1/005_Mar-09-2025_09:41_PM
+> training arguments:
+>>> rand_seed: 8
+>>> model_fusion: multiattfusion
+>>> dataset: MOA-MVSA-single
+>>> optimizer: <class 'torch.optim.adam.Adam'>
+>>> initializer: <function xavier_uniform_ at 0x7ff186415440>
+>>> learning_rate: 0.001
+>>> dropout_rate: 0.5
+>>> weight_decay: 0.0
+>>> num_layers: 3
+>>> num_epoch: 20
+>>> batch_size: 64
+>>> log_step: 60
+>>> max_seq_len: 120
+>>> polarities_dim: 3
+>>> clip_grad: 5.0
+>>> path_image: ./images
+>>> crop_size: 224
+>>> n_head: 8
+>>> hidden_dim: 256
+>>> num_classes: 3
+>>> log_dir: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F4/2025-03-09/sub-1/005_Mar-09-2025_09:41_PM
+>>> counter: 0
+>>> model_class: <class 'models.multiattfusion.MultiAttFusion'>
+
+[DEBUG] First 5 training texts:
+    ID: 1 | Overall sentiment: 1 | Text: how  i feel today legday jelly aching gym 
+
+    ID: 4 | Overall sentiment: 1 | Text: esco  we have a young and energetic team and we pride ourselves on offering the highes hoer 
+
+    ID: 5 | Overall sentiment: 1 | Text:  chrisashaffer  went to  ssc today to be a movie star to rep for the  deaf and got to meet an energetic great guy  mark  white! 
+
+    ID: 6 | Overall sentiment: 1 | Text:  babeshawnmendes that was really energetic 
+
+    ID: 7 | Overall sentiment: 1 | Text:  deepikapadukone  to my most hard workingfun loving and energetic team.. thank you and  i love you! 
+
+Building model
+1
+n_trainable_params: 4820739, n_nontrainable_params: 0
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 0
+[DEBUG] Sample predictions in evaluate:  tensor([2, 2, 0, 0, 2, 2, 0, 0, 2, 2], device='cuda:0')
+[DEBUG] outputs.shape: torch.Size([64, 3])
+[DEBUG] Sample of raw logits (first 5):
+tensor([[ 0.0849,  0.0308,  0.1120],
+        [-0.1176, -0.0975, -0.0343],
+        [ 0.1923, -0.1261,  0.0428],
+        [ 0.1934, -0.0268,  0.1363],
+        [-0.3285, -0.2329, -0.1700]], device='cuda:0',
+       grad_fn=<SliceBackward0>)
+[DEBUG] Sample of predicted probabilities (first 5):
+tensor([[0.3362, 0.3185, 0.3454],
+        [0.3218, 0.3284, 0.3498],
+        [0.3863, 0.2810, 0.3327],
+        [0.3640, 0.2921, 0.3439],
+        [0.3056, 0.3363, 0.3581]], device='cuda:0', grad_fn=<SliceBackward0>)
+Batch 0 completed in 1.43 seconds (0.02 minutes)
+New best val_f1: 0.246377 (previous best: 0.000000)
+loss: 1.210729, val_acc: 58.62% (0.586207), val_f1: 24.64% (0.246377), test_acc: 55.09% (0.550885), test_f1: 23.68% (0.236805)
+Epoch 0 completed in 27.27 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 1
+Batch 0 completed in 0.36 seconds (0.01 minutes)
+New best val_f1: 0.498771 (previous best: 0.246377)
+loss: 0.652205, val_acc: 68.47% (0.684729), val_f1: 49.88% (0.498771), test_acc: 65.71% (0.657080), test_f1: 53.35% (0.533486)
+Epoch 1 completed in 26.29 seconds (0.44 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 2
+Batch 0 completed in 0.36 seconds (0.01 minutes)
+New best val_f1: 0.527584 (previous best: 0.498771)
+loss: 0.681570, val_acc: 68.72% (0.687192), val_f1: 52.76% (0.527584), test_acc: 67.48% (0.674779), test_f1: 55.32% (0.553225)
+Epoch 2 completed in 26.79 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 3
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.606786, val_acc: 69.70% (0.697044), val_f1: 51.72% (0.517242), test_acc: 68.36% (0.683628), test_f1: 55.67% (0.556731)
+Epoch 3 completed in 26.47 seconds (0.44 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 4
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.654828, val_acc: 69.46% (0.694581), val_f1: 49.93% (0.499343), test_acc: 66.81% (0.668142), test_f1: 52.31% (0.523096)
+Epoch 4 completed in 26.30 seconds (0.44 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 5
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.508221, val_acc: 59.36% (0.593596), val_f1: 46.23% (0.462278), test_acc: 63.27% (0.632743), test_f1: 55.18% (0.551800)
+Epoch 5 completed in 26.39 seconds (0.44 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 6
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.451464, val_acc: 61.33% (0.613300), val_f1: 46.91% (0.469096), test_acc: 69.25% (0.692478), test_f1: 57.55% (0.575513)
+Epoch 6 completed in 26.87 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 7
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.395982, val_acc: 64.78% (0.647783), val_f1: 51.84% (0.518393), test_acc: 63.72% (0.637168), test_f1: 51.01% (0.510059)
+Epoch 7 completed in 26.79 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 8
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.415488, val_acc: 69.95% (0.699507), val_f1: 49.96% (0.499597), test_acc: 64.60% (0.646018), test_f1: 45.45% (0.454455)
+Epoch 8 completed in 26.86 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 9
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.353838, val_acc: 65.76% (0.657635), val_f1: 51.81% (0.518141), test_acc: 62.61% (0.626106), test_f1: 53.70% (0.537019)
+Epoch 9 completed in 26.97 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 10
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.286843, val_acc: 67.00% (0.669951), val_f1: 51.74% (0.517409), test_acc: 67.04% (0.670354), test_f1: 57.26% (0.572626)
+Epoch 10 completed in 26.77 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 11
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+New best val_f1: 0.556445 (previous best: 0.527584)
+loss: 0.190505, val_acc: 68.72% (0.687192), val_f1: 55.64% (0.556445), test_acc: 66.81% (0.668142), test_f1: 57.21% (0.572142)
+Epoch 11 completed in 27.05 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 12
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.180184, val_acc: 65.76% (0.657635), val_f1: 51.72% (0.517179), test_acc: 67.04% (0.670354), test_f1: 57.49% (0.574937)
+Epoch 12 completed in 26.64 seconds (0.44 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 13
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.035529, val_acc: 70.20% (0.701970), val_f1: 55.19% (0.551916), test_acc: 69.25% (0.692478), test_f1: 59.57% (0.595691)
+Epoch 13 completed in 26.44 seconds (0.44 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 14
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.114278, val_acc: 69.21% (0.692118), val_f1: 52.86% (0.528646), test_acc: 67.92% (0.679204), test_f1: 57.57% (0.575668)
+Epoch 14 completed in 26.80 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 15
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+New best val_f1: 0.599266 (previous best: 0.556445)
+loss: 0.149867, val_acc: 71.18% (0.711823), val_f1: 59.93% (0.599266), test_acc: 64.16% (0.641593), test_f1: 56.21% (0.562104)
+Epoch 15 completed in 26.97 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 16
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.141906, val_acc: 69.46% (0.694581), val_f1: 52.88% (0.528765), test_acc: 68.58% (0.685841), test_f1: 58.39% (0.583916)
+Epoch 16 completed in 26.72 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 17
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.084864, val_acc: 68.72% (0.687192), val_f1: 53.63% (0.536260), test_acc: 68.36% (0.683628), test_f1: 58.48% (0.584841)
+Epoch 17 completed in 27.04 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 18
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.069173, val_acc: 68.47% (0.684729), val_f1: 55.34% (0.553404), test_acc: 67.26% (0.672566), test_f1: 58.12% (0.581222)
+Epoch 18 completed in 26.75 seconds (0.45 minutes)
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+epoch: 19
+[DEBUG] Sample predictions in evaluate:  tensor([1, 0, 1, 0, 1, 1, 0, 1, 2, 1], device='cuda:0')
+Batch 0 completed in 0.37 seconds (0.01 minutes)
+loss: 0.098867, val_acc: 68.72% (0.687192), val_f1: 54.93% (0.549348), test_acc: 67.04% (0.670354), test_f1: 55.99% (0.559895)
+Epoch 19 completed in 26.90 seconds (0.45 minutes)
+RESULT: Max Val F1: 0.599266, Max Test F1: 0.562104
+Training complete. Generating confusion matrix on the test set.
+Confusion matrix saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F4/2025-03-09/sub-1/005_Mar-09-2025_09:41_PM/confusion_matrix.png
+Reading TensorBoard loss at each epoch:
+Available tags: {'images': [], 'audio': [], 'histograms': [], 'scalars': ['Loss/train_batch', 'Loss/val_log_step', 'Loss/train_epoch', 'Loss/val_epoch'], 'distributions': [], 'tensors': [], 'graph': False, 'meta_graph': False, 'run_metadata': []}
+Output File: /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F4/2025-03-09/sub-1/005_Mar-09-2025_09:41_PM/trainval_loss_curves.png
+Training and validation loss curves saved to /home/rgg2706/Multimodal-Sentiment-Analysis/Logs/SIMPLE-F4/2025-03-09/sub-1/005_Mar-09-2025_09:41_PM/trainval_loss_curves.png
+Total Completion Time: 11.35 minutes. (0.19 hours) 

@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Model Variables
-MODEL_NAME='SIMPLE-F3'
+MODEL_NAME='SIMPLE-F3v3'
 fusion='multiattfusion'
-dataset='mvsa-mts-v3-30'
+dataset='MOA-MVSA-single'
 lr='0.001'
 dr='0.5'
 batch_size='64'
 epochs=20
 
 # Slurm Variables
-memory='16' # '64' '128' '256'
+memory='8' # '64' '128' '256'
 
 batch_size='8'
 epochs=5
