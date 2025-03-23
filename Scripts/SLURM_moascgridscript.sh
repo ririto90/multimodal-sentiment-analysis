@@ -1,19 +1,5 @@
 #!/bin/bash
 
-# Model Variables
-MODEL_NAME='SIMPLE-F4v2'
-fusion='multiattfusion'
-dataset='MOA-MVSA-multiple2'
-lr='0.001'
-dr='0.5'
-batch_size='64'
-epochs=40
-
-
-# Slurm Variables
-memory='64' # '64' '128' '256'
-
-
 REPO_DIR="${HOME}/Multimodal-Sentiment-Analysis"
 
 # Check if MODEL_NAME is set to "default" or not set
@@ -92,8 +78,8 @@ cat <<EOT > "${TEMP_SLURM_SCRIPT}"
 
 #SBATCH --job-name=${MODEL_NAME}    # Name of your job
 #SBATCH --account=multisass    # Your Slurm account
-#SBATCH --partition=tier3      # Run on tier3
-#SBATCH --time=0-03:00:00       # 4 hours time limit
+#SBATCH --partition=${partition}      # Run on tier3
+#SBATCH --time=${time}       # 4 hours time limit
 #SBATCH --nodes=1              # Number of nodes
 #SBATCH --ntasks=1             # 1 task (i.e., process)
 #SBATCH --mem=${memory}g         # Increase RAM to 32GB
@@ -114,33 +100,26 @@ dr="${dr}"
 # Run the main script
 cd "${REPO_DIR}"
 
+
 echo "SLURM Job ID: \$SLURM_JOB_ID"
-echo "MODEL_NAME=$MODEL_NAME"
-echo "fusion=$fusion"
-echo "dataset=$dataset"
-echo "lr=$lr"
-echo "dr=$dr"
-echo "batch_size=$batch_size"
-echo "epochs=$epochs"
-echo "memory=$memory"
+echo 'The first version with resnset'
+echo "Model: ${MODEL_NAME}"
+echo "Dataset: ${dataset}"
+
 
 export PYTHONPATH=$PYTHONPATH:/home/rgg2706/Multimodal-Sentiment-Analysis
 
-PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME}/src/ \\
-python -u -Wd Models/${MODEL_NAME}/src/train.py \\
+PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME} \\
+python -u -Wd Models/${MODEL_NAME}/run_project.py \\
     --model_name "${MODEL_NAME}" \\
-    --model_fusion "${fusion}" \\
     --dataset "${dataset}" \\
-    --num_epoch "${epochs}" \\
-    --batch_size "${batch_size}" \\
-    --log_step 60 \\
-    --learning_rate "${lr}" \\
-    --dropout_rate "${dr}" \\
-    --weight_decay 0
+    --seed "${seed}" \\
+
+
 EOT
 
 # Make the temporary script executable
 chmod +x "${TEMP_SLURM_SCRIPT}"
 
 # Submit the temporary Slurm script
-sbatch --export=fusion="${fusion}",dataset="${dataset}",lr="${lr}",dr="${dr}" "${TEMP_SLURM_SCRIPT}"
+sbatch "${TEMP_SLURM_SCRIPT}"

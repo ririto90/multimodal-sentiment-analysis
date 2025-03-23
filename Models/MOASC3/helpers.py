@@ -40,9 +40,16 @@ from transformers import BertTokenizer, BertModel, AdamW
 import warnings
 warnings.filterwarnings("ignore")
 
-base_dir = '/home/rgg2706/Multimodal-Sentiment-Analysis/Models'
-additional_files_dir = os.path.join(base_dir, 'MultimodalOpinionAnalysis2/AdditionalFiles')
-datasets_names = ['MVSA-single', 'MVSA-multiple']
+MODEL_NAME = None  # Global variable, starts as None
+contractions = None  # We'll load this later
+
+base_dir = '/home/rgg2706/Multimodal-Sentiment-Analysis'
+DATASET_BASE = os.path.join(base_dir, 'Datasets')
+datasets_names = ['MOA-MVSA-single', 'MOA-MVSA-multiple']
+
+base_dir = '/home/rgg2706/Multimodal-Sentiment-Analysis'
+additional_files_dir = os.path.join(base_dir, f'Models/{MODEL_NAME}/AdditionalFiles')
+datasets_names = ['MOA-MVSA-single', 'MOA-MVSA-multiple']
 
 punctuation = string.punctuation
 sentiment_label = {"negative": 0, "positive": 1, "neutral": 2}
@@ -54,8 +61,31 @@ mail_reg = r'^(\w|\.|\_|\-)+[@](\w|\_|\-|\.)+[.]\w{2,3}$'
 url_addresses_reg = r'(http|ftp|https)://([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-])?|http:/\W"|http:\/\/\w\W\.\W'
 retweets_reg = r'^rt[\s]+|rt '
 
-with open(additional_files_dir + "/contractions.json") as f:
-    contractions = json.loads(f.read())
+def set_model_name(name: str):
+    """
+    Called by run_project.py once it parses --model_name.
+    """
+    global MODEL_NAME
+    MODEL_NAME = name
+
+def load_contractions():
+    """
+    Called by run_project.py AFTER set_model_name() is called,
+    so MODEL_NAME is guaranteed to be valid.
+    """
+    global contractions
+
+    additional_files_dir = os.path.join(
+        "/home/rgg2706/Multimodal-Sentiment-Analysis",
+        "Models",
+        MODEL_NAME,
+        "AdditionalFiles"
+    )
+    path_to_contractions = os.path.join(additional_files_dir, "contractions.json")
+
+    # Now open the file
+    with open(path_to_contractions, "r") as f:
+        contractions = json.load(f)
 
 
 def get_file_index(file):
@@ -269,6 +299,36 @@ def get_f1_pn(tp, fp, fn):
 
   f1_pn = .5 * (f1_negative + f1_positive)
   return f1_pn
+
+def get_f1_macro(tp, fp, fn):
+    # Each index 0=negative, 1=positive, 2=neutral
+    f1_scores = []
+    for i in range(3):
+        precision_i = tp[i] / (tp[i] + fp[i] + 1e-5)
+        recall_i    = tp[i] / (tp[i] + fn[i] + 1e-5)
+        f1_i        = 2. * (precision_i * recall_i) / (precision_i + recall_i + 1e-5)
+        f1_scores.append(f1_i)
+    # Macro-F1 across negative, positive, neutral
+    return sum(f1_scores) / 3.0
+
+def get_f1_weighted(tp, fp, fn):
+    # total # of samples across all classes
+    total_samples = sum(tp) + sum(fn)  # for each class i, tp[i]+fn[i] is how many samples are truly class i
+    
+    weighted_f1_sum = 0.0
+    for i in range(3):
+        # Per-class counts
+        support_i   = tp[i] + fn[i] + 1e-5  # how many actual class-i
+        precision_i = tp[i] / (tp[i] + fp[i] + 1e-5)
+        recall_i    = tp[i] / (tp[i] + fn[i] + 1e-5)
+        
+        f1_i = 2.0 * precision_i * recall_i / (precision_i + recall_i + 1e-5)
+        
+        # Multiply F1_i by that class's proportion of total samples
+        weighted_f1_sum += (f1_i * support_i)
+    
+    # Weighted-F1 is the sum of (F1_i * support_i / total)
+    return weighted_f1_sum / (total_samples)
 
 
 def plot_losses(train_loss, val_loss, test_loss):

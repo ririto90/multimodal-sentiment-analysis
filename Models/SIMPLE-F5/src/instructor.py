@@ -40,6 +40,16 @@ def macro_f1(y_true, y_pred):
     )
     return f_macro
 
+def weighted_macro_f1(y_true, y_pred):
+    preds = np.argmax(y_pred, axis=-1)
+    p_macro, r_macro, f_macro, _ = precision_recall_fscore_support(
+        y_true, 
+        preds, 
+        average='weighted',
+        zero_division=0
+    )
+    return f_macro
+
 class Instructor:
     def __init__(self, opt):
         self.opt = opt
@@ -207,7 +217,7 @@ class Instructor:
 
                 # Evaluate at intervals
                 if i_batch % self.opt.log_step == 0:
-                    val_acc, val_f1, val_loss = self.evaluate(self.val_data_loader)
+                    val_acc, val_f1_macro, val_f1_weighted, val_loss = self.evaluate(self.val_data_loader)
                     test_acc, test_f1, test_loss = self.evaluate(self.test_data_loader)
 
                     self.writer.add_scalar('Loss/val_log_step', val_loss, global_step)
@@ -215,19 +225,20 @@ class Instructor:
                           f'({(batch_end_time - batch_start_time) / 60:.2f} minutes)')
 
                     if val_f1 > self.max_val_f1:
-                        print(f"New best val_f1: {val_f1:.6f} (previous best: {self.max_val_f1:.6f})")
-                        self.max_val_f1 = val_f1
+                        print(f"Val Acc: {val_acc:.4f}, Macro-F1: {val_f1_macro:.4f}, Weighted-F1: {val_f1_weighted:.4f}, Loss: {val_loss:.4f}")
+                        self.max_val_f1 = val_f1_macro
+                        self.max_val_weighted_f1 = val_f1_weighted
                         self.max_test_f1 = test_f1
 
                     print(f'loss: {loss.item():.6f}, val_acc: {val_acc * 100:.2f}% ({val_acc:.6f}), '
-                          f'val_f1: {val_f1 * 100:.2f}% ({val_f1:.6f}), test_acc: {test_acc * 100:.2f}% '
+                          f'Val Acc: {val_acc:.4f}, Macro-F1: {val_f1_macro:.4f}, Weighted-F1: {val_f1_weighted:.4f}, Loss: {val_loss:.4f}'
                           f'({test_acc:.6f}), test_f1: {test_f1 * 100:.2f}% ({test_f1:.6f})')
             
             # End of epoch compute epoch-average training loss
             epoch_train_loss = running_loss / total_samples
 
             # Evaluate on the validation set
-            val_acc, val_f1, val_loss = self.evaluate(self.val_data_loader)
+            val_acc, val_f1_macro, val_f1_weighted, val_loss = self.evaluate(self.val_data_loader)
 
             # **Epoch-level** logging to TensorBoard
             self.writer.add_scalar('Loss/train_epoch', epoch_train_loss, epoch)
@@ -242,7 +253,7 @@ class Instructor:
 
         self.writer.flush()
 
-        print(f"RESULT: Max Val F1: {self.max_val_f1:.6f}, Max Test F1: {self.max_test_f1:.6f}")
+        print(f"RESULT: Max Val F1: {self.max_val_f1:.6f}, Max Weighted F1: {self.max_val_weighted_f1:.6f}, Max Test F1: {self.max_test_f1:.6f}")
         print("Training complete. Generating confusion matrix on the test set.")
 
         test_acc, test_f1, test_loss, true_labels, pred_probs = self.evaluate(self.test_data_loader, return_labels=True)
@@ -281,15 +292,17 @@ class Instructor:
 
         true_labels = np.concatenate(true_labels)
         pred_probs = np.concatenate(pred_probs)
-
-        f1_score = macro_f1(true_labels, pred_probs)
+        
+        f1_score_macro = macro_f1(true_labels, pred_probs)
+        f1_score_weighted = weighted_macro_f1(true_labels, pred_probs)
         accuracy = (np.argmax(pred_probs, axis=-1) == true_labels).mean()
         avg_loss = total_loss / len(data_loader.dataset)
-
+        
         if return_labels:
-            return accuracy, f1_score, avg_loss, true_labels, pred_probs
+            return accuracy, f1_score_macro, avg_loss, true_labels, pred_probs
         else:
-            return accuracy, f1_score, avg_loss
+            # Return 4 things: accuracy, macro-F1, weighted-F1, and loss
+            return accuracy, f1_score_macro, f1_score_weighted, avg_loss
 
     def read_tensorboard_loss(self, log_dir=None):
         print('Reading TensorBoard loss at each epoch:')

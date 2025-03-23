@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Model Variables
-MODEL_NAME='MultimodalOpinionAnalysis2'
-dataset='MVSA-single' # 'MVSA-single' 'MVSA-multiple'
+MODEL_NAME='MOASC4'
+dataset='MOA-MVSA-single' # 'MVSA-single' 'MVSA-multiple'
+seed=42
 # fusion='multiattfusion'
 # dataset='mvsa-mts-v3'
 # lr='0.001'
@@ -10,10 +11,10 @@ dataset='MVSA-single' # 'MVSA-single' 'MVSA-multiple'
 # batch_size='64'
 # epochs=100
 
-# Slurm Variables
-memory='64' # '64' '128' '256'
-partition='tier3' # 'tier3' 'debug'
-time='0-01:00:00'
+# Slurm settings
+partition="tier3" # 'tier3' 'debug'
+time="01:00:00"
+memory=16
 
 
 REPO_DIR="${HOME}/Multimodal-Sentiment-Analysis"
@@ -116,14 +117,20 @@ dr="${dr}"
 # Run the main script
 cd "${REPO_DIR}"
 
+
 echo "SLURM Job ID: \$SLURM_JOB_ID"
+echo 'The first version with resnset'
+echo "Model: ${MODEL_NAME}"
 echo "Dataset: ${dataset}"
 
 export PYTHONPATH=$PYTHONPATH:/home/rgg2706/Multimodal-Sentiment-Analysis
 
 PYTHONPATH=\$PYTHONPATH:\${REPO_DIR}/Models/${MODEL_NAME} \\
 python -u -Wd Models/${MODEL_NAME}/run_project.py \\
+    --model_name "${MODEL_NAME}" \\
     --dataset "${dataset}" \\
+    --seed "${seed}" \\
+
 
 EOT
 
